@@ -26,17 +26,17 @@ inc_sources = [
     "UK-based charities (other)"
 ]
 
-dash.register_page(
-    module= __name__,
-    external_stylesheets = [dbc.themes.BOOTSTRAP, 'assets/style.css'],
-    path = '/overview'
-)
-
 # read in datasets
 results_df = pd.read_csv('data/results_cleaned.csv')
 income_df = pd.read_csv('data/income_cleaned.csv')
 incomeiK_df = pd.read_csv('data/incomeiK_cleaned.csv')
 phd_df = pd.read_csv('data/phd_awarded_cleaned.csv')
+
+dash.register_page(
+    module= __name__,
+    external_stylesheets = [dbc.themes.BOOTSTRAP, 'assets/style.css'],
+    path = '/overview'
+)
 
 # layout
 layout = dbc.Container(
@@ -113,7 +113,7 @@ layout = dbc.Container(
                             width=6,
                         ),
                         dbc.Col(        # breakdown of research income 
-
+                            
                         )
                     ]
                 ),
@@ -121,11 +121,17 @@ layout = dbc.Container(
                 dbc.Row(
                     [
                         dbc.Col(        # phd awarded plot
-
+                            dcc.Loading(
+                                dcc.Graph(
+                                    id="income-cat-chart",
+                                    config={"displayModeBar": False},
+                                    className="chart-card",
+                                    style={"height": "400px"},
+                                ),
+                                type="circle",
+                                color="#000000",
+                            ),
                         ),
-                        dbc.Col(        # research income in kind plot
-
-                        )
                     ]
                 )
             ],
@@ -141,6 +147,7 @@ layout = dbc.Container(
     Output("impact-card", "children"),
     Output("env-card", "children"),
     Output("income-chart", "figure"),
+    Output("income-cat-chart", "figure"),
     Input("uni-dropdown", "value"),
     prevent_initial_call = True
 )
@@ -152,7 +159,10 @@ def update_cards(selected_uni):
     outputs = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Outputs")]["GPA"])
     impact = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Impact")]["GPA"])
     env = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Environment")]["GPA"])
-    
+
+    return np.round(overall,2), np.round(outputs,2), np.round(impact,2), np.round(env,2), generateIncomeChart(selected_uni), generateIncomeCategoryChart(selected_uni)
+
+def generateIncomeChart(uni):
     # agg functions
     agg_func = {
         '2013-14': 'sum',
@@ -161,11 +171,12 @@ def update_cards(selected_uni):
     }
 
     # copy of income df to filter
-    income_filtered = income_df.loc[(income_df["Institution name"] == selected_uni) & (income_df['Income source'] != 'Total income')].agg(agg_func)
+    income_filtered = income_df.loc[(income_df["Institution name"] == uni) & (income_df['Income source'] != 'Total income')].agg(agg_func)
 
     # graph cards
     income_chart = px.bar(income_filtered.T,
-                          text_auto=True,)
+                          text_auto=True,
+                          title=f'Research Income for {uni}',)
 
     income_chart.update_traces(
         marker_color="#f79500",
@@ -180,4 +191,38 @@ def update_cards(selected_uni):
         margin=dict(l=35, r=35, t=60, b=40),
     )
 
-    return np.round(overall,2), np.round(outputs,2), np.round(impact,2), np.round(env,2), income_chart
+    return income_chart
+
+def generateIncomeCategoryChart(uni):
+    # agg functions
+    agg_func = {
+        '2013-2020 (total)': 'sum',
+    }
+
+    # copy of income df to filter
+    income_filtered = income_df.loc[(income_df["Institution name"] == uni) & 
+                                    (income_df['Income source'] != 'Total income')].groupby("Income source").agg(agg_func).reset_index()
+
+    # defining the treemap chart
+    income_cat_chart = px.treemap(
+        income_filtered,
+        path=[px.Constant("Total income"), "Income source"], 
+        values="2013-2020 (total)",
+        title=f'Research Income Sources for {uni}',
+        color="2013-2020 (total)",
+        color_continuous_scale=["#e6cce6", "#800080"],
+    )
+
+    income_cat_chart.data[0].textinfo = "label+value"
+
+    income_cat_chart.update_traces(
+        textinfo="label+value",
+        hoverinfo="text",
+        hovertemplate="%{label}<br>£%{value}"
+    )
+
+    income_cat_chart.update_layout(
+        margin=dict(l=35, r=35, t=60, b=35),
+    )
+
+    return income_cat_chart
