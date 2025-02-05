@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
 import plotly.express as px
-from utils.dashboard_components import create_card
+from utils.dashboard_components import create_card, format_value
 
 ## Global variables
 
@@ -174,14 +174,14 @@ def generateIncomeChart(uni):
     income_filtered = income_df.loc[(income_df["Institution name"] == uni) & (income_df['Income source'] != 'Total income')].agg(agg_func)
 
     # graph cards
-    income_chart = px.bar(income_filtered.T,
+    income_chart = px.bar(income_filtered,
                           text_auto=True,
                           title=f'Research Income for {uni}',)
 
     income_chart.update_traces(
-        marker_color="#f79500",
+        marker_color="#800080",
         hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-        hovertemplate="<b>%{x}</b><br>Value: %{y:,}<extra></extra>",
+        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
     )
 
     income_chart.update_layout(
@@ -189,6 +189,7 @@ def generateIncomeChart(uni):
         yaxis_title="Amount (£)",
         plot_bgcolor="rgba(0, 0, 0, 0)",
         margin=dict(l=35, r=35, t=60, b=40),
+        showlegend=False,
     )
 
     return income_chart
@@ -223,6 +224,7 @@ def generateIncomeCategoryChart(uni):
 
     income_cat_chart.update_layout(
         margin=dict(l=35, r=35, t=60, b=35),
+        coloraxis_showscale=False,
     )
 
     return income_cat_chart
