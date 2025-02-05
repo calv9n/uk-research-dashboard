@@ -110,10 +110,20 @@ layout = dbc.Container(
                                 type="circle",
                                 color="#000000",
                             ),
-                            width=6,
+                            width=4,
                         ),
-                        dbc.Col(        # breakdown of research income 
-                            
+                        dbc.Col(        # breakdown of research income in-kind
+                            dcc.Loading(
+                                dcc.Graph(
+                                    id="income-ik-chart",
+                                    config={"displayModeBar": False},
+                                    className="chart-card",
+                                    style={"height": "400px"},
+                                ),
+                                type="circle",
+                                color="#000000",
+                            ),
+                            width=4,
                         )
                     ]
                 ),
@@ -148,6 +158,7 @@ layout = dbc.Container(
     Output("impact-card", "children"),
     Output("env-card", "children"),
     Output("income-chart", "figure"),
+    Output("income-ik-chart", "figure"),
     Output("income-cat-chart", "figure"),
     Input("uni-dropdown", "value"),
     prevent_initial_call = True
@@ -160,34 +171,54 @@ def update_cards(selected_uni):
     impact = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Impact")]["GPA"]), 2)
     env = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Environment")]["GPA"]), 2)
 
-    return overall, outputs, impact, env, generateIncomeChart(selected_uni), generateIncomeCategoryChart(selected_uni)
+    return overall, outputs, impact, env, generateIncomeChart(selected_uni, income_df), generateIncomeChart(selected_uni, incomeiK_df, True),  generateIncomeCategoryChart(selected_uni)
 
 
 ## Helper Functions
 
-def generateIncomeChart(uni):
+def generateIncomeChart(uni, df, inkind=False):
     # agg functions
-    agg_func = {
-        '2013-14': 'sum',
-        '2014-15': 'sum',
-        '2015-2020 (avg)': 'sum',
-    }
+    if (inkind):
+        agg_func = {
+            '2013-14': 'sum',
+            '2014-15': 'sum',
+            '2016-17': 'sum',
+            '2017-18': 'sum',
+            '2018-19': 'sum',
+            '2019-20': 'sum',
+        }
+        title = f"Research Income In-Kind for {uni}"
+        col_name = "Total income-in-kind"
+    else:
+        agg_func = {
+            '2013-14': 'sum',
+            '2014-15': 'sum',
+            '2015-2020 (avg)': 'sum',
+        }
+        title = f"Research Income for {uni}"
+        col_name = "Total income"
 
     # copy of income df to filter
-    income_filtered = income_df.loc[(income_df["Institution name"] == uni) & (income_df['Income source'] != 'Total income')].agg(agg_func)
+    df_filtered = df.loc[(df["Institution name"] == uni) & (df['Income source'] == col_name)].agg(agg_func)
 
     # graph cards
-    income_chart = px.bar(income_filtered,
-                          text_auto=True,
-                          title=f'Research Income for {uni}',)
+    if (inkind):
+        chart = px.line(df_filtered,
+                        title=title,
+                        markers=True,)
+    else:
+        chart = px.bar(df_filtered,
+                        text_auto=True,
+                        title=title,)
+    
 
-    income_chart.update_traces(
+    chart.update_traces(
         marker_color="#800080",
         hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
         hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
     )
 
-    income_chart.update_layout(
+    chart.update_layout(
         xaxis_title="Year",
         yaxis_title="Amount (£)",
         plot_bgcolor="rgba(0, 0, 0, 0)",
@@ -195,7 +226,7 @@ def generateIncomeChart(uni):
         showlegend=False,
     )
 
-    return income_chart
+    return chart
 
 def generateIncomeCategoryChart(uni):
     # agg functions
@@ -212,7 +243,7 @@ def generateIncomeCategoryChart(uni):
         income_filtered,
         path=[px.Constant("Total income"), "Income source"], 
         values="2013-2020 (total)",
-        title=f'Research Income Sources for {uni}',
+        title=f'Research Income Sources for {uni} (2013-2020)',
         color="2013-2020 (total)",
         color_continuous_scale=["#e6cce6", "#800080"],
     )
