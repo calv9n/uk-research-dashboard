@@ -141,6 +141,7 @@ layout = dbc.Container(
     fluid=True,
 )
 
+## Callback Functions
 @callback(
     Output("overall-card", "children"),
     Output("outputs-card", "children"),
@@ -154,13 +155,15 @@ layout = dbc.Container(
 def update_cards(selected_uni):
 
     # GPA cards
-    overall = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Overall")]["GPA"])
-    # ri = "{:,.0f}".format(np.round(np.mean(income_df.loc[income_df["Institution name"] == selected_uni]["2013-2020 (avg)"]), -2)) // ref for next time
-    outputs = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Outputs")]["GPA"])
-    impact = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Impact")]["GPA"])
-    env = np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Environment")]["GPA"])
+    overall = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Overall")]["GPA"]), 2)
+    outputs = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Outputs")]["GPA"]), 2)
+    impact = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Impact")]["GPA"]), 2)
+    env = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Environment")]["GPA"]), 2)
 
-    return np.round(overall,2), np.round(outputs,2), np.round(impact,2), np.round(env,2), generateIncomeChart(selected_uni), generateIncomeCategoryChart(selected_uni)
+    return overall, outputs, impact, env, generateIncomeChart(selected_uni), generateIncomeCategoryChart(selected_uni)
+
+
+## Helper Functions
 
 def generateIncomeChart(uni):
     # agg functions
