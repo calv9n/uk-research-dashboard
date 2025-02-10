@@ -112,10 +112,23 @@ layout = dbc.Container(
                             ),
                             width=4,
                         ),
-                        dbc.Col(        # breakdown of research income in-kind
+                        dbc.Col(        # research income in-kind plot
                             dcc.Loading(
                                 dcc.Graph(
                                     id="income-ik-chart",
+                                    config={"displayModeBar": False},
+                                    className="chart-card",
+                                    style={"height": "400px"},
+                                ),
+                                type="circle",
+                                color="#000000",
+                            ),
+                            width=4,
+                        ),
+                        dbc.Col(        # phd awarded plot
+                            dcc.Loading(
+                                dcc.Graph(
+                                    id="phd-awarded-chart",
                                     config={"displayModeBar": False},
                                     className="chart-card",
                                     style={"height": "400px"},
@@ -159,9 +172,10 @@ layout = dbc.Container(
     Output("env-card", "children"),
     Output("income-chart", "figure"),
     Output("income-ik-chart", "figure"),
+    Output("phd-awarded-chart", "figure"),
     Output("income-cat-chart", "figure"),
     Input("uni-dropdown", "value"),
-    prevent_initial_call = True
+    prevent_initial_call = True,
 )
 def update_cards(selected_uni):
 
@@ -171,7 +185,11 @@ def update_cards(selected_uni):
     impact = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Impact")]["GPA"]), 2)
     env = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Environment")]["GPA"]), 2)
 
-    return overall, outputs, impact, env, generateIncomeChart(selected_uni, income_df), generateIncomeChart(selected_uni, incomeiK_df, True),  generateIncomeCategoryChart(selected_uni)
+    return (overall, outputs, impact, env, 
+            generateIncomeChart(selected_uni, income_df), 
+            generateIncomeChart(selected_uni, incomeiK_df, True),  
+            generatePhdChart(selected_uni), 
+            generateIncomeCategoryChart(selected_uni))
 
 
 ## Helper Functions
@@ -187,7 +205,7 @@ def generateIncomeChart(uni, df, inkind=False):
             '2018-19': 'sum',
             '2019-20': 'sum',
         }
-        title = f"Research Income In-Kind for {uni}"
+        title = f"Research Income In-Kind"
         col_name = "Total income-in-kind"
     else:
         agg_func = {
@@ -195,7 +213,7 @@ def generateIncomeChart(uni, df, inkind=False):
             '2014-15': 'sum',
             '2015-2020 (avg)': 'sum',
         }
-        title = f"Research Income for {uni}"
+        title = f"Research Income"
         col_name = "Total income"
 
     # copy of income df to filter
@@ -227,6 +245,39 @@ def generateIncomeChart(uni, df, inkind=False):
     )
 
     return chart
+
+def generatePhdChart(uni):
+
+    agg_func = {
+            '2013': 'sum',
+            '2014': 'sum',
+            '2016': 'sum',
+            '2017': 'sum',
+            '2018': 'sum',
+            '2019': 'sum',
+        }
+    
+    df_filtered = phd_df.loc[(phd_df["Institution name"] == uni)].agg(agg_func)
+
+    phd_awarded_chart = px.line(df_filtered,
+                                markers=True,
+                                title=f"Total PhDs Awarded")
+
+    phd_awarded_chart.update_traces(
+        marker_color="#800080",
+        hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
+        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
+    )
+
+    phd_awarded_chart.update_layout(
+        xaxis_title="Year",
+        yaxis_title="# of PhD degrees awarded",
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        margin=dict(l=35, r=35, t=60, b=40),
+        showlegend=False,
+    )
+
+    return phd_awarded_chart
 
 def generateIncomeCategoryChart(uni):
     # agg functions
