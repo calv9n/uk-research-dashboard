@@ -16,7 +16,7 @@ phd_df = pd.read_csv('data/phd_awarded_cleaned.csv')
 dash.register_page(
     module= __name__,
     external_stylesheets = [dbc.themes.BOOTSTRAP, 'assets/style.css'],
-    path = '/overview'
+    path = '/institution_overview'
 )
 
 # layout
