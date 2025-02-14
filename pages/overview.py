@@ -300,7 +300,6 @@ def generateIncomeCategoryChart(uni):
                     parents=[""] + (len(income_filtered)) * ["Total income"],
                     values=[0] + income_filtered['2013-2020 (total)'].tolist(),
                     marker_colorscale = 'Blues',
-                    maxdepth=2
                 ))
 
     income_cat_chart.update_layout(
