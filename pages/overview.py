@@ -300,13 +300,16 @@ def generateIncomeCategoryChart(uni):
                     parents=[""] + (len(income_filtered)) * ["Total income"],
                     values=[0] + income_filtered['2013-2020 (total)'].tolist(),
                     marker_colorscale = 'Blues',
-                    hovertemplate='<b>%{label} </b><br>Funding Amount: £%{value}<br>',
-                    texttemplate="<b>%{label}</b><br>£%{value}",
                     maxdepth=2
                 ))
 
     income_cat_chart.update_layout(
         margin = dict(t=50, l=25, r=25, b=25)
         )
+    
+    income_cat_chart.update_traces(
+        hovertemplate='<b>%{label} </b><br>Funding Amount: £%{value}<br>',
+        texttemplate="<b>%{label}</b><br>£%{value}",
+    )
 
     return income_cat_chart
