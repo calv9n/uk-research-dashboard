@@ -7,26 +7,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 from utils.dashboard_components import create_card, format_value
 
-## Global variables
-
-inc_sources = [
-    "BEIS Research Councils, The Royal Society, British Academy and The Royal Society of Edinburgh",
-    "EU (excluding UK) other",
-    "EU government bodies",
-    "EU industry, commerce and public corporations",
-    "EU-based charities (open competitive process)",
-    "Health research funding bodies",
-    "Non-EU industry commerce and public corporations",
-    "Non-EU other",
-    "Non-EU-based charities (open competitive process)",
-    "UK central government bodies/local authorities, health and hospital authorities",
-    "UK central government tax credits for research and development expenditure",
-    "UK industry, commerce and public corporations",
-    "UK other sources",
-    "UK-based charities (open competitive process)",
-    "UK-based charities (other)"
-]
-
 # read in datasets
 results_df = pd.read_csv('data/results_cleaned.csv')
 income_df = pd.read_csv('data/income_cleaned.csv')
@@ -303,7 +283,8 @@ def generateIncomeCategoryChart(uni):
                 ))
 
     income_cat_chart.update_layout(
-        margin = dict(t=50, l=25, r=25, b=25)
+        margin = dict(t=50, l=25, r=25, b=25),
+        title="Research Income Sources (2013-2020)",
         )
     
     income_cat_chart.update_traces(
