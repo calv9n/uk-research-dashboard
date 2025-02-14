@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import plotly.graph_objects as go
 from utils.dashboard_components import create_card, format_value
 
 ## Global variables
@@ -286,30 +287,26 @@ def generateIncomeCategoryChart(uni):
     }
 
     # copy of income df to filter
-    income_filtered = income_df.loc[(income_df["Institution name"] == uni) & 
-                                    (income_df['Income source'] != 'Total income')].groupby("Income source").agg(agg_func).reset_index()
+    income_filtered = income_df.loc[(income_df["Institution name"] == uni) 
+                                    & (income_df['Income source'] != 'Total income')]\
+                                    .groupby('Income source')\
+                                    .agg({'2013-2020 (total)':'sum'})\
+                                    .reset_index()\
+                                    .sort_values(by="2013-2020 (total)",ascending=False)
 
     # defining the treemap chart
-    income_cat_chart = px.treemap(
-        income_filtered,
-        path=[px.Constant("Total income"), "Income source"], 
-        values="2013-2020 (total)",
-        title=f'Research Income Sources for {uni} (2013-2020)',
-        color="2013-2020 (total)",
-        color_continuous_scale=["#e6cce6", "#800080"],
-    )
-
-    income_cat_chart.data[0].textinfo = "label+value"
-
-    income_cat_chart.update_traces(
-        textinfo="label+value",
-        hoverinfo="text",
-        hovertemplate="%{label}<br>£%{value}"
-    )
+    income_cat_chart = go.Figure(go.Treemap(
+                    labels=["Total income"] + income_filtered['Income source'].tolist(),
+                    parents=[""] + (len(income_filtered)) * ["Total income"],
+                    values=[0] + income_filtered['2013-2020 (total)'].tolist(),
+                    marker_colorscale = 'Blues',
+                    hovertemplate='<b>%{label} </b><br>Funding Amount: £%{value}<br>',
+                    texttemplate="<b>%{label}</b><br>£%{value}",
+                    maxdepth=2
+                ))
 
     income_cat_chart.update_layout(
-        margin=dict(l=35, r=35, t=60, b=35),
-        coloraxis_showscale=False,
-    )
+        margin = dict(t=50, l=25, r=25, b=25)
+        )
 
     return income_cat_chart
