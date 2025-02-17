@@ -217,7 +217,7 @@ def update_cards(uni, uoa):
             generateIncomeChart(uni, uoa, income_df), 
             generateIncomeChart(uni, uoa, incomeiK_df, True),  
             generatePhdChart(uni, uoa), 
-            generateIncomeCategoryChart(uni))
+            generateIncomeCategoryChart(uni, uoa))
 
 
 ## Helper Functions
@@ -320,25 +320,35 @@ def generatePhdChart(uni, uoa):
 
     return phd_awarded_chart
 
-def generateIncomeCategoryChart(uni):
+def generateIncomeCategoryChart(uni, uoa):
     # agg functions
     agg_func = {
         '2013-2020 (total)': 'sum',
     }
 
+    if (uoa == 'All'):
+        income_filtered = income_df.loc[
+            (income_df["Institution name"] == uni) &
+            (income_df["Income source"] != "Total income")
+        ]
+    else:
+        income_filtered = income_df.loc[
+            (income_df["Institution name"] == uni) &
+            (income_df["Income source"] != "Total income") &
+            (income_df["UOA name"] == uoa)
+        ]
+
     # copy of income df to filter
-    income_filtered = income_df.loc[(income_df["Institution name"] == uni) 
-                                    & (income_df['Income source'] != 'Total income')]\
-                                    .groupby('Income source')\
+    income_filter_agg = income_filtered.groupby('Income source')\
                                     .agg({'2013-2020 (total)':'sum'})\
                                     .reset_index()\
                                     .sort_values(by="2013-2020 (total)",ascending=False)
 
     # defining the treemap chart
     income_cat_chart = go.Figure(go.Treemap(
-                    labels=["Total income"] + income_filtered['Income source'].tolist(),
-                    parents=[""] + (len(income_filtered)) * ["Total income"],
-                    values=[0] + income_filtered['2013-2020 (total)'].tolist(),
+                    labels=["Total income"] + income_filter_agg['Income source'].tolist(),
+                    parents=[""] + (len(income_filter_agg)) * ["Total income"],
+                    values=[0] + income_filter_agg['2013-2020 (total)'].tolist(),
                     marker_colorscale = 'Blues',
                 ))
 
