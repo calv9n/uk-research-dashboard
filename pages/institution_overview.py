@@ -6,6 +6,7 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from utils.dashboard_components import create_card, format_value
+import textwrap
 
 # read in datasets
 results_df = pd.read_csv('data/results_cleaned.csv')
@@ -221,6 +222,8 @@ def update_cards(uni, uoa):
 
 
 ## Helper Functions
+def customwrap(s, width=30):
+    return "<br>".join(textwrap.wrap(s,width=width))
 
 def generateIncomeChart(uni, uoa, df, inkind=False):
     # agg functions
@@ -338,6 +341,8 @@ def generateIncomeCategoryChart(uni, uoa):
             (income_df["UOA name"] == uoa)
         ]
 
+    income_filtered['Income source'] = income_filtered['Income source'].map(customwrap)
+
     # copy of income df to filter
     income_filter_agg = income_filtered.groupby('Income source')\
                                     .agg({'2013-2020 (total)':'sum'})\
@@ -351,15 +356,19 @@ def generateIncomeCategoryChart(uni, uoa):
                     values=[0] + income_filter_agg['2013-2020 (total)'].tolist(),
                     marker_colorscale = 'Blues',
                 ))
+    
 
     income_cat_chart.update_layout(
         margin = dict(t=50, l=25, r=25, b=25),
         title="Research Income Sources (2013-2020)",
+        uniformtext=dict(
+            minsize=12,
+        )
         )
     
     income_cat_chart.update_traces(
         hovertemplate='<b>%{label} </b><br>Funding Amount: £%{value}<br>',
-        texttemplate="<b>%{label}</b><br>£%{value}",
+        texttemplate="<b>%{label}</b><br><br>£%{value}",
     )
 
     return income_cat_chart
