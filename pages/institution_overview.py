@@ -216,7 +216,7 @@ def update_cards(uni, uoa):
     return (overall, outputs, impact, env, 
             generateIncomeChart(uni, uoa, income_df), 
             generateIncomeChart(uni, uoa, incomeiK_df, True),  
-            generatePhdChart(uni), 
+            generatePhdChart(uni, uoa), 
             generateIncomeCategoryChart(uni))
 
 
@@ -282,7 +282,7 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
 
     return chart
 
-def generatePhdChart(uni):
+def generatePhdChart(uni, uoa):
 
     agg_func = {
             '2013': 'sum',
@@ -293,7 +293,12 @@ def generatePhdChart(uni):
             '2019': 'sum',
         }
     
-    df_filtered = phd_df.loc[(phd_df["Institution name"] == uni)].agg(agg_func)
+    if (uoa == "All"):
+        df_filtered = phd_df.loc[(phd_df["Institution name"] == uni)].agg(agg_func)
+    else:
+        df_filtered = phd_df.loc[(phd_df["Institution name"] == uni) &
+                                 (phd_df["UOA name"] == uoa)].agg(agg_func)
+
 
     phd_awarded_chart = px.line(df_filtered,
                                 markers=True,
