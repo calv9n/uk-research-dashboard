@@ -37,7 +37,7 @@ layout = dbc.Container(
                                     "Select University",
                                     className='subtitle-small',
                                 ),
-                                dcc.Dropdown(
+                                dcc.Dropdown(               # dropdown for uni filter
                                     id='uni-dropdown',
                                     options=[
                                         {"label": col, "value": col}
@@ -51,6 +51,27 @@ layout = dbc.Container(
                                     placeholder="Select University",
                                     className="custom-dropdown",
                                 ),
+                                html.Br(),
+                                html.H3(
+                                    "Select Unit of Assessment",
+                                    className='subtitle-small',
+                                ),
+                                dcc.Dropdown(               # dropdown for uoa filter
+                                    id='uoa-dropdown',
+                                    options=[
+                                        {"label": 'All', 'value':'All'}
+                                    ] + [
+                                        {"label": col, "value": col}
+                                        for col in sorted(
+                                            results_df["UOA name"].unique()
+                                        )
+                                    ],
+                                    value="All",
+                                    clearable=True,
+                                    multi=False,            # can extend to be multi-select
+                                    placeholder="Select Unit of Assessment",
+                                    className="custom-dropdown",
+                                )
                             ],
                             width = 4,
                         ),
