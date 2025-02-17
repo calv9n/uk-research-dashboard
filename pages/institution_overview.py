@@ -58,14 +58,7 @@ layout = dbc.Container(
                                 ),
                                 dcc.Dropdown(               # dropdown for uoa filter
                                     id='uoa-dropdown',
-                                    options=[
-                                        {"label": 'All', 'value':'All'}
-                                    ] + [
-                                        {"label": col, "value": col}
-                                        for col in sorted(
-                                            results_df["UOA name"].unique()
-                                        )
-                                    ],
+                                    options=[],
                                     value="All",
                                     clearable=True,
                                     multi=False,            # can extend to be multi-select
@@ -168,6 +161,23 @@ layout = dbc.Container(
 
 ## Callback Functions
 @callback(
+    Output("uoa-dropdown", "options"),
+    Input("uni-dropdown", "value"),
+    prevent_initial_call=True,
+)
+def updateUOAbyUni(selected_uni):
+    options=[
+        {"label": "All", "value": "All"}
+        ] + [
+        {"label": col, "value": col}
+        for col in sorted(
+            results_df[(results_df["Institution name"] == selected_uni)]["UOA name"].unique()
+        )
+    ]
+
+    return options
+
+@callback(
     Output("overall-card", "children"),
     Output("outputs-card", "children"),
     Output("impact-card", "children"),
@@ -177,26 +187,42 @@ layout = dbc.Container(
     Output("phd-awarded-chart", "figure"),
     Output("income-cat-chart", "figure"),
     Input("uni-dropdown", "value"),
+    Input("uoa-dropdown", "value"),
     prevent_initial_call = True,
 )
-def update_cards(selected_uni):
+def update_cards(uni, uoa):
 
     # GPA cards
-    overall = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Overall")]["GPA"]), 2)
-    outputs = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Outputs")]["GPA"]), 2)
-    impact = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Impact")]["GPA"]), 2)
-    env = np.round(np.mean(results_df.loc[(results_df["Institution name"] == selected_uni) & (results_df["Profile"] == "Environment")]["GPA"]), 2)
+    if (uoa == "All"):
+        filtered_df = results_df[
+            (results_df['Institution name'] == uni) 
+        ]
+    else:
+        filtered_df = results_df[
+            (results_df['Institution name'] == uni) &
+            (results_df['UOA name'] == uoa)
+        ]
+
+
+    # GPA cards
+    overall = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Overall")]["GPA"]),2)
+
+    outputs = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Outputs")]["GPA"]), 2)
+
+    impact = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Impact")]["GPA"]), 2)
+
+    env = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Environment")]["GPA"]), 2)
 
     return (overall, outputs, impact, env, 
-            generateIncomeChart(selected_uni, income_df), 
-            generateIncomeChart(selected_uni, incomeiK_df, True),  
-            generatePhdChart(selected_uni), 
-            generateIncomeCategoryChart(selected_uni))
+            generateIncomeChart(uni, uoa, income_df), 
+            generateIncomeChart(uni, uoa, incomeiK_df, True),  
+            generatePhdChart(uni), 
+            generateIncomeCategoryChart(uni))
 
 
 ## Helper Functions
 
-def generateIncomeChart(uni, df, inkind=False):
+def generateIncomeChart(uni, uoa, df, inkind=False):
     # agg functions
     if (inkind):
         agg_func = {
@@ -219,7 +245,15 @@ def generateIncomeChart(uni, df, inkind=False):
         col_name = "Total income"
 
     # copy of income df to filter
-    df_filtered = df.loc[(df["Institution name"] == uni) & (df['Income source'] == col_name)].agg(agg_func)
+    if (uoa == "All"):
+        df_filtered = df.loc[(df["Institution name"] == uni) 
+                            & (df['Income source'] == col_name)
+                            ].agg(agg_func)
+    else:
+        df_filtered = df.loc[(df["Institution name"] == uni) 
+                            & (df['Income source'] == col_name)
+                            & (df["UOA name"] == uoa)].agg(agg_func)
+        
 
     # graph cards
     if (inkind):
