@@ -25,10 +25,21 @@ layout = dbc.Container(
     [
         html.Div(
             [
-                html.H2(
+                html.H1(
                     'Institution Overview',
+                    className='subtitle-medium',
+                    id='page-title'
+                ),
+                html.H1(
+                    'University of Test',
                     className='title',
-                    id='title'
+                    id='uni-name-heading',
+
+                ),
+                html.H1(
+                    'Test UOA',
+                    className='subtitle-small-color',
+                    id='uoa-name-subheading',
                 ),
                 html.Br(),
                 dbc.Row(            # row for dropdown
@@ -167,7 +178,8 @@ layout = dbc.Container(
 
 ## Callback Functions
 @callback(
-    Output("title", "children"),
+    Output("uni-name-heading", "children"),
+    Output("uoa-name-subheading", "children"),
     Input("uni-dropdown", "value"),
     Input("uoa-dropdown", "value"),
     prevent_initial_call=True,
@@ -177,15 +189,15 @@ def updatePageTitle(uni, uoa):
     uoa_rtn = ""
 
     if (uni != None):
-        uni_rtn = f" - {uni}"
+        uni_rtn = uni
 
     if (uoa != None):
         if (uoa == "All"):
-            uoa_rtn = f" - All UoAs"
+            uoa_rtn = "All UoAs"
         else:
-            uoa_rtn = f" - {uoa}"
+            uoa_rtn = uoa
 
-    return f"Institution Overview{uni_rtn}{uoa_rtn}" 
+    return uni_rtn, uoa_rtn
 
 @callback(
     Output("uoa-dropdown", "options"),
