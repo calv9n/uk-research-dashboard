@@ -223,7 +223,10 @@ def update_cards(uni, uoa):
 
 ## Helper Functions
 def customwrap(s, width=30):
-    return "<br>".join(textwrap.wrap(s,width=width))
+    if (s != None):
+        return "<br>".join(textwrap.wrap(s,width=width))
+    else:
+        return None
 
 def generateIncomeChart(uni, uoa, df, inkind=False):
     # agg functions
@@ -341,7 +344,9 @@ def generateIncomeCategoryChart(uni, uoa):
             (income_df["UOA name"] == uoa)
         ]
 
-    income_filtered['Income source'] = income_filtered['Income source'].map(customwrap)
+    # print(income_filtered['Income source'].isna().value_counts())
+
+    income_filtered.loc[:,'Income source'] = income_filtered['Income source'].apply(customwrap)
 
     # copy of income df to filter
     income_filter_agg = income_filtered.groupby('Income source')\
