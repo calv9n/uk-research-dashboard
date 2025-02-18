@@ -28,6 +28,7 @@ layout = dbc.Container(
                 html.H2(
                     'UK Research Dashboard',
                     className='title',
+                    id='title'
                 ),
                 html.Br(),
                 dbc.Row(            # row for dropdown
@@ -161,6 +162,24 @@ layout = dbc.Container(
 )
 
 ## Callback Functions
+@callback(
+    Output("title", "children"),
+    Input("uni-dropdown", "value"),
+    Input("uoa-dropdown", "value"),
+    prevent_initial_call=True,
+)
+def updatePageTitle(uni, uoa):
+    uni_rtn = ""
+    uoa_rtn = ""
+
+    if (uni != None):
+        uni_rtn = f" - {uni}"
+
+    if (uoa != None):
+        uoa_rtn = f" - {uoa}"
+
+    return f"UK Research Dashboard{uni_rtn}{uoa_rtn}" 
+
 @callback(
     Output("uoa-dropdown", "options"),
     Input("uni-dropdown", "value"),
