@@ -349,10 +349,6 @@ def generatePhdChart(uni, uoa):
     return phd_awarded_chart
 
 def generateIncomeCategoryChart(uni, uoa):
-    # agg functions
-    agg_func = {
-        '2013-2020 (total)': 'sum',
-    }
 
     if (uoa == 'All'):
         income_filtered = income_df.loc[
@@ -370,29 +366,29 @@ def generateIncomeCategoryChart(uni, uoa):
 
     # copy of income df to filter
     income_filter_agg = income_filtered.groupby('Income source')\
-                                    .agg({'2013-2020 (total)':'sum'})\
+                                    .agg({'2013-2020 (avg)':'sum'})\
                                     .reset_index()\
-                                    .sort_values(by="2013-2020 (total)",ascending=False)
+                                    .sort_values(by="2013-2020 (avg)",ascending=False)
 
     # defining the treemap chart
     income_cat_chart = go.Figure(go.Treemap(
-                    labels=["Total income"] + income_filter_agg['Income source'].tolist(),
-                    parents=[""] + (len(income_filter_agg)) * ["Total income"],
-                    values=[0] + income_filter_agg['2013-2020 (total)'].tolist(),
+                    labels=["Average annual income"] + income_filter_agg['Income source'].tolist(),
+                    parents=[""] + (len(income_filter_agg)) * ["Average annual income"],
+                    values=[0] + income_filter_agg['2013-2020 (avg)'].tolist(),
                     marker_colorscale = ["#FFFFFF", "#800080"],
                 ))
     
 
     income_cat_chart.update_layout(
         margin = dict(t=50, l=25, r=25, b=25),
-        title="Research Income Sources (2013-2020)",
+        title="Average Annual Income by Sources (£)",
         uniformtext=dict(
             minsize=14,
         ),
         )
     
     income_cat_chart.update_traces(
-        hovertemplate='<b>%{label} </b><br>Funding Amount: £%{value}<br>',
+        hovertemplate='<b>%{label} </b><br>Avg funding: £%{value}/yr<br>',
         texttemplate="<b>%{label}</b><br><br>£%{value}",
     )
 
