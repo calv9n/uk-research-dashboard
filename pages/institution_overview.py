@@ -26,7 +26,7 @@ layout = dbc.Container(
         html.Div(
             [
                 html.H2(
-                    'UK Research Dashboard',
+                    'Institution Overview',
                     className='title',
                     id='title'
                 ),
@@ -176,9 +176,12 @@ def updatePageTitle(uni, uoa):
         uni_rtn = f" - {uni}"
 
     if (uoa != None):
-        uoa_rtn = f" - {uoa}"
+        if (uoa == "All"):
+            uoa_rtn = f" - All UoAs"
+        else:
+            uoa_rtn = f" - {uoa}"
 
-    return f"UK Research Dashboard{uni_rtn}{uoa_rtn}" 
+    return f"Institution Overview{uni_rtn}{uoa_rtn}" 
 
 @callback(
     Output("uoa-dropdown", "options"),
@@ -238,7 +241,6 @@ def update_cards(uni, uoa):
             generateIncomeChart(uni, uoa, incomeiK_df, True),  
             generatePhdChart(uni, uoa), 
             generateIncomeCategoryChart(uni, uoa))
-
 
 ## Helper Functions
 def customwrap(s, width=40):
