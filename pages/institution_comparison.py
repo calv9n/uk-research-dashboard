@@ -21,6 +21,34 @@ dash.register_page(
 
 layout = dbc.Container(
     [
-        "Hello World!!"
-    ]
+        html.Div(
+            [
+                html.H2(
+                    "Institution Comparison",
+                    className="title",
+                ),
+                html.Br(),
+                dbc.Row(            # row for filters?
+                    [
+                        dbc.Col(    # search and select unis (dropdown)
+
+                        ),
+                        dbc.Col(    # show selected unis (dialog)
+                                        
+                        ),
+                    ]
+                ),
+                html.Br(),
+                dbc.Row(            # row for set of graphs 1
+
+                ),
+                html.Br(),
+                dbc.Row(            # row for set of graphs 2
+
+                ),
+            ],
+            className="page-content"
+        )
+    ],
+    fluid=True,
 )

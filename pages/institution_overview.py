@@ -161,20 +161,25 @@ layout = dbc.Container(
                                     id="income-cat-chart",
                                     config={"displayModeBar": False},
                                     className="chart-card",
-                                    style={"height": "400px"},
+                                    style={"height": "450px"},
                                 ),
                                 type="circle",
                                 color="#000000",
                             ),
-                            width=6,
+                            width=8,
                         ),
-                        dbc.Col(
+                        dbc.Col(        # income in-kind category treemap
                             dcc.Loading(
                                 dcc.Graph(
-
-                                )
+                                    id="income-ik-cat-chart",
+                                    config={"displayModeBar": False},
+                                    className="chart-card",
+                                    style={"height": "450px"},
+                                ),
+                                type="circle",
+                                color="#000000",
                             ),
-                            width=6,
+                            width=4,
                         )
                     ]
                 )
@@ -234,6 +239,7 @@ def updateUOAbyUni(selected_uni):
     Output("income-ik-chart", "figure"),
     Output("phd-awarded-chart", "figure"),
     Output("income-cat-chart", "figure"),
+    Output("income-ik-cat-chart", "figure"),
     Input("uni-dropdown", "value"),
     Input("uoa-dropdown", "value"),
     prevent_initial_call = True,
@@ -265,7 +271,8 @@ def update_cards(uni, uoa):
             generateIncomeChart(uni, uoa, income_df), 
             generateIncomeChart(uni, uoa, incomeiK_df, True),  
             generatePhdChart(uni, uoa), 
-            generateIncomeCategoryChart(uni, uoa))
+            generateIncomeCategoryChart(uni, uoa),
+            generateIncomeInKindPieChart(uni, uoa))
 
 ## Helper Functions
 def customwrap(s, width=30):
@@ -331,6 +338,8 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
         plot_bgcolor="rgba(0, 0, 0, 0)",
         margin=dict(l=35, r=35, t=60, b=40),
         showlegend=False,
+        title_font_size=18,
+        font_family="Inter, sans-serif",
     )
 
     return chart
@@ -369,6 +378,8 @@ def generatePhdChart(uni, uoa):
         plot_bgcolor="rgba(0, 0, 0, 0)",
         margin=dict(l=35, r=35, t=60, b=40),
         showlegend=False,
+        title_font_size=18,
+        font_family="Inter, sans-serif",
     )
 
     return phd_awarded_chart
@@ -406,11 +417,13 @@ def generateIncomeCategoryChart(uni, uoa):
 
     income_cat_chart.update_layout(
         margin = dict(t=50, l=25, r=25, b=25),
-        title="Average Annual Income by Sources (£)",
+        title="Research Income Sources (£avg/yr)",
+        title_font_size=18,
+        font_family="Inter, sans-serif",
         uniformtext=dict(
-            minsize=14,
+            minsize=16,
         ),
-        )
+    )
     
     income_cat_chart.update_traces(
         hovertemplate='<b>%{label} </b><br>Avg funding: £%{value}/yr<br>',
@@ -418,3 +431,52 @@ def generateIncomeCategoryChart(uni, uoa):
     )
 
     return income_cat_chart
+
+def generateIncomeInKindPieChart(uni, uoa):
+    if (uoa == 'All'):
+        income_filtered = incomeiK_df.loc[
+            (incomeiK_df["Institution name"] == uni) &
+            (incomeiK_df["Income source"] != "Total income")
+        ]
+    else:
+        income_filtered = incomeiK_df.loc[
+            (incomeiK_df["Institution name"] == uni) &
+            (incomeiK_df["Income source"] != "Total income") &
+            (incomeiK_df["UOA name"] == uoa)
+        ]
+
+    incomeik_pie_chart = go.Figure(
+        data=[
+            go.Pie(
+                labels=income_filtered['Income source'],
+                values=income_filtered['2013-2020 (avg)'],
+            )
+        ]
+    )
+
+    incomeik_pie_chart.update_traces(
+        marker=dict(colors=["#800080", "#bc8bd0"]),
+        hole=0.7,
+        textposition= "outside",
+        texttemplate="<b>%{label}</b><br>%{percent}",
+        hovertemplate='<b>%{label} </b><br>Avg funding: £%{value}/yr<br>',
+    )
+
+    incomeik_pie_chart.update_layout(
+        margin = dict(t=50, l=25, r=25, b=25),
+        showlegend = False,
+    )
+
+    incomeik_pie_chart.add_annotation(
+        x=0.5,
+        y=0.5,
+        align="center",
+        xref="paper",
+        yref="paper",
+        showarrow=False,
+        font_size=18,
+        font_family="Inter, sans-serif",
+        text="Research In-Kind Income<br>Sources (£avg/yr)",
+    )
+
+    return incomeik_pie_chart
