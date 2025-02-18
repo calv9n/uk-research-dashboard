@@ -334,7 +334,7 @@ def generatePhdChart(uni, uoa):
     phd_awarded_chart.update_traces(
         marker_color="#800080",
         hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
+        hovertemplate="<b>%{x}</b><br>PhDs Awarded: %{y}",
     )
 
     phd_awarded_chart.update_layout(
