@@ -36,7 +36,7 @@ layout = dbc.Container(
                         dbc.Col(
                             [
                                 html.H3(
-                                    "Select University",
+                                    "Institution",
                                     className='subtitle-small',
                                 ),
                                 dcc.Dropdown(               # dropdown for uni filter
@@ -50,12 +50,16 @@ layout = dbc.Container(
                                     value="All",
                                     clearable=True,
                                     multi=False,            # can extend to be multi-select
-                                    placeholder="Select University",
+                                    placeholder="Select Institution",
                                     className="custom-dropdown",
                                 ),
-                                html.Br(),
+                            ],
+                            width = 3,
+                        ),
+                        dbc.Col(
+                            [
                                 html.H3(
-                                    "Select Unit of Assessment",
+                                    "Unit of Assessment",
                                     className='subtitle-small',
                                 ),
                                 dcc.Dropdown(               # dropdown for uoa filter
@@ -66,9 +70,9 @@ layout = dbc.Container(
                                     multi=False,            # can extend to be multi-select
                                     placeholder="Select Unit of Assessment",
                                     className="custom-dropdown",
-                                )
+                                ),
                             ],
-                            width = 4,
+                            width=3,
                         ),
                     ]
                 ),
