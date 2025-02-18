@@ -222,7 +222,7 @@ def update_cards(uni, uoa):
 
 
 ## Helper Functions
-def customwrap(s, width=30):
+def customwrap(s, width=40):
     if (s != None):
         return "<br>".join(textwrap.wrap(s,width=width))
     else:
@@ -344,8 +344,6 @@ def generateIncomeCategoryChart(uni, uoa):
             (income_df["UOA name"] == uoa)
         ]
 
-    # print(income_filtered['Income source'].isna().value_counts())
-
     income_filtered.loc[:,'Income source'] = income_filtered['Income source'].apply(customwrap)
 
     # copy of income df to filter
@@ -367,7 +365,7 @@ def generateIncomeCategoryChart(uni, uoa):
         margin = dict(t=50, l=25, r=25, b=25),
         title="Research Income Sources (2013-2020)",
         uniformtext=dict(
-            minsize=12,
+            minsize=14,
         )
         )
     
