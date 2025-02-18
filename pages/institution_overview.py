@@ -155,7 +155,7 @@ layout = dbc.Container(
                 html.Br(),
                 dbc.Row(
                     [
-                        dbc.Col(        # phd awarded plot
+                        dbc.Col(        # income category treemap
                             dcc.Loading(
                                 dcc.Graph(
                                     id="income-cat-chart",
@@ -166,7 +166,16 @@ layout = dbc.Container(
                                 type="circle",
                                 color="#000000",
                             ),
+                            width=6,
                         ),
+                        dbc.Col(
+                            dcc.Loading(
+                                dcc.Graph(
+
+                                )
+                            ),
+                            width=6,
+                        )
                     ]
                 )
             ],
@@ -259,7 +268,7 @@ def update_cards(uni, uoa):
             generateIncomeCategoryChart(uni, uoa))
 
 ## Helper Functions
-def customwrap(s, width=40):
+def customwrap(s, width=30):
     if (s != None):
         return "<br>".join(textwrap.wrap(s,width=width))
     else:
