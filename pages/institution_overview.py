@@ -267,6 +267,7 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
             '2013-14': 'sum',
             '2014-15': 'sum',
             '2015-2020 (avg)': 'sum',
+            '2013-2020 (avg)': 'sum',
         }
         title = f"Research Income"
         col_name = "Total income"
