@@ -379,7 +379,7 @@ def generateIncomeCategoryChart(uni, uoa):
                     labels=["Total income"] + income_filter_agg['Income source'].tolist(),
                     parents=[""] + (len(income_filter_agg)) * ["Total income"],
                     values=[0] + income_filter_agg['2013-2020 (total)'].tolist(),
-                    marker_colorscale = 'Blues',
+                    marker_colorscale = ["#FFFFFF", "#800080"],
                 ))
     
 
@@ -388,7 +388,7 @@ def generateIncomeCategoryChart(uni, uoa):
         title="Research Income Sources (2013-2020)",
         uniformtext=dict(
             minsize=14,
-        )
+        ),
         )
     
     income_cat_chart.update_traces(
