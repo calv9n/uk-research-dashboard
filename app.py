@@ -16,8 +16,7 @@ sidebar = html.Div(
     [
         dbc.Row(
             [
-                "SOME LOGO",
-                ## logo goes here
+                html.Img(src="assets/refined-analytics-high-resolution-logo-transparent.png", style={"height":"25px"})
             ],
             className = "sidebar-logo"
         ),
@@ -26,6 +25,7 @@ sidebar = html.Div(
             [
                 dbc.NavLink('Institution Overview', href='/institution_overview', active='exact'),
                 dbc.NavLink('Institution Comparison', href='/institution_comparison', active='exact'),
+                dbc.NavLink('National Overview', href='/national_overview', active='exact'),
                 dbc.NavLink('Regional Overview', href='/regional_overview', active='exact'),
             ],
             vertical=True,
