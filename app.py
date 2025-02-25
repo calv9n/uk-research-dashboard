@@ -23,10 +23,9 @@ sidebar = html.Div(
         html.Hr(),
         dbc.Nav(
             [
-                dbc.NavLink('Institution Overview', href='/institution_overview', active='exact'),
-                dbc.NavLink('Institution Comparison', href='/institution_comparison', active='exact'),
                 dbc.NavLink('National Overview', href='/national_overview', active='exact'),
                 dbc.NavLink('Regional Overview', href='/regional_overview', active='exact'),
+                dbc.NavLink('Institution Overview', href='/institution_overview', active='exact'),
             ],
             vertical=True,
             pills=True
@@ -65,7 +64,7 @@ app.index_string = """
 # layout
 app.layout = html.Div(
     [
-        dcc.Location(id='url', pathname="/institution_overview"),
+        dcc.Location(id='url', pathname="/national_overview"),
         sidebar,
         content,
         dash.page_container,
