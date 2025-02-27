@@ -39,8 +39,13 @@ layout = dbc.Container(
                     ]
                 ),
                 html.Br(),
-                dbc.Row(            # row for set of graphs 1
-
+                dbc.Row(            # national view
+                    dcc.Graph(
+                        id="region-map",
+                        config={"displayModeBar": False},
+                        className="chart-card",
+                        style={"height": "400px"},
+                    ),
                 ),
                 html.Br(),
                 dbc.Row(            # row for set of graphs 2
