@@ -4,12 +4,19 @@ import dash_bootstrap_components as dbc
 import textwrap
 import plotly.express as px
 import plotly.graph_objects as go
+import json
 
 # read in datasets
 results_df = pd.read_csv('data/results_cleaned.csv')
 income_df = pd.read_csv('data/income_cleaned.csv')
 incomeiK_df = pd.read_csv('data/incomeiK_cleaned.csv')
 phd_df = pd.read_csv('data/phd_awarded_cleaned.csv')
+
+with open("assets/countries.geojson") as f:
+    countries_geojson = json.load(f)
+
+with open("assets/regions.geojson") as f:
+    regions_geojson = json.load(f)
 
 def format_value(value):
     if int(value) < 1e6:
@@ -242,3 +249,57 @@ def generateIncomeInKindPieChart(uni, uoa):
     )
 
     return incomeik_pie_chart
+
+def generateMap(data, uoa="All", period=""):
+    if data == "GPA":
+        df = results_df
+        agg_func = {
+            "GPA":"mean"
+        }
+        color = "GPA"
+    if data == "PhDs Awarded":
+        df = phd_df
+        agg_func = {
+            period:"mean"
+        }
+        color = period
+    if data == "Income":
+        df = income_df
+        agg_func = {
+            period:"mean"
+        }
+        color = period
+    if data == "Income In-Kind":
+        df = incomeiK_df
+        agg_func = {
+            period:"mean"
+        }
+        color = period
+
+    if uoa != "All":
+        df = df[df['UOA name'] == uoa]
+    
+    df = df.groupby("Region").agg(agg_func).reset_index()
+
+    map_graph = px.choropleth(df,
+                        geojson=regions_geojson,  
+                        locations="Region",
+                        featureidkey="properties.RGN24NM",  # Match with GeoJSON key
+                        color=color,
+                        color_continuous_scale=["#FFFFFF", "#800080"],
+                        center={"lat": 55.0, "lon": -2.0},  # Approximate UK center
+                        scope="europe")
+    
+    map_graph.update_geos(
+        fitbounds = "locations",
+        visible = False,
+        projection_scale=1  # Adjust the scale
+    )
+
+    map_graph.update_layout(
+        margin=dict(t=75, l=25, r=25, b=25),  # Adjust margins
+        title="Some title",
+        height=750  # Increase map height for better fit
+    )
+    
+    return map_graph

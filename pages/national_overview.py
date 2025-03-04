@@ -5,7 +5,8 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-from utils.dashboard_components import create_card, format_value
+from utils.dashboard_components import create_card, format_value, generateMap
+import json
 
 # read in datasets
 results_df = pd.read_csv('data/results_cleaned.csv')
@@ -39,13 +40,7 @@ layout = dbc.Container(
                     ]
                 ),
                 html.Br(),
-                dbc.Row(            # national view
-                    dcc.Graph(
-                        id="region-map",
-                        config={"displayModeBar": False},
-                        className="chart-card",
-                        style={"height": "400px"},
-                    ),
+                dbc.Row(            # 
                 ),
                 html.Br(),
                 dbc.Row(            # row for set of graphs 2
