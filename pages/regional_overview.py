@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-from utils.dashboard_components import create_card, format_value, generateMap
+from utils.dashboard_components import returnUoAOptions, generateMap
 
 # read in datasets
 results_df = pd.read_csv('data/results_cleaned.csv')
@@ -28,24 +28,14 @@ layout = dbc.Container(
                     className="title",
                 ),
                 html.Br(),
-                dbc.Row(            # row for filters?
-                    [
-                        dbc.Col(    # search and select unis (dropdown)
-
-                        ),
-                        dbc.Col(    # show selected unis (dialog)
-                                        
-                        ),
-                    ]
-                ),
-                html.Br(),
-                dbc.Row([            # row for set of graphs 1
-                    dbc.Col(        # col for filters
-                        [
-                            html.Div(
-                                [
-                                    html.H6(
-                                        "Data Selection"
+                html.Div(
+                    children=[
+                        dbc.Row(            # row for filters?
+                            [
+                                dbc.Col([    # search and select unis (dropdown)
+                                    html.Header(
+                                        "Data",
+                                        className="subtitle-small",
                                     ),
                                     dcc.Dropdown(
                                         options=[
@@ -58,50 +48,60 @@ layout = dbc.Container(
                                         id="map-data-selection",
                                         placeholder="Select Data"
                                     ),
-                                    html.Div(
-                                        dcc.Dropdown(
-                                            id='period-selection',
-                                            placeholder="Select Period"
-                                        ),
-                                        id="period-selection-div",
-                                        hidden=True
-                                    ),
-                                    html.Div(
-                                        dcc.Dropdown(
-                                            id='uoa-selection',
-                                            options = [
-                                                {'label': "All UoAs", 'value': "All"}
-                                                ]
-                                                +[
-                                                {'label': col, 'value': col}
-                                                for col in sorted(
-                                                    results_df["UOA name"].unique()
-                                                )
-                                            ],
-                                            placeholder="Select UOA"
-                                        ),
-                                        id="uoa-selection-div",
-                                        hidden=True
-                                    ),
-                                    html.Br(),
-                                    html.Button(
-                                        "Apply Selection",
-                                        id="apply-filters",
-                                        className="btn-custom",
-                                    )
                                 ],
-                                className="filter-card"
-                            ), 
-                        ],
-                        width=4,
-                    ),
-                    # dbc.Col(        # col for plots
-                    #     [
-
-                    #     ],
-                    #     width=4,
-                    # )
-                ]),
+                                width=3
+                                ),
+                                dbc.Col([
+                                    html.Header(
+                                        "Select UoA"
+                                    ),  
+                                    dcc.Dropdown(
+                                        options = returnUoAOptions(),
+                                        id='uoa-selection',
+                                        placeholder="Please select Data to view options",
+                                        disabled=True,
+                                    ),
+                                ],
+                                width=3
+                                ),
+                                dbc.Col([    
+                                    html.Header(
+                                        "Select Period"
+                                    ),
+                                    dcc.Dropdown(
+                                        id='period-selection',
+                                        placeholder="Please select Data to view options",
+                                        disabled=True,
+                                    ),               
+                                ],
+                                width=3
+                                ),
+                                dbc.Col([    
+                                    html.Header(
+                                        "Select Region"
+                                    ),
+                                    dcc.Dropdown(
+                                        id='region-selection',
+                                        placeholder="Please select Data to view options",
+                                        disabled=True,
+                                    ),               
+                                ],
+                                width=3
+                                ),
+                            ]
+                        ),
+                        html.Br(),
+                        html.Div(
+                            html.Button(
+                                "Apply Selection",
+                                id="apply-filters",
+                                className="btn-custom",
+                            ),
+                            style={"display": "flex", "justify-content": "flex-end"}
+                        ),
+                    ],
+                    className="filter-card"
+                ),
                 html.Br(),
                 dbc.Row(            # row for set of graphs 2
                     dbc.Col(
@@ -144,16 +144,18 @@ def buildMap(n_clicks, mapdata, uoa, period):
     return graphcomponent
 
 @callback(
-    Output("period-selection-div", "hidden"),
-    Output("uoa-selection-div", "hidden"),
+    Output("period-selection", "disabled"),
+    Output("uoa-selection", "disabled"),
+    Output("uoa-selection", "value"),
+    Output("period-selection", "placeholder"),
     Input("map-data-selection", "value"),
     prevent_initial_call = True
 )
 def displayFilters(mapdata):
     if (mapdata == "GPA") or (mapdata == "Staff FTE"):
-        return True, False
+        return True, False, "All", "Not Applicable"
     else:
-        return False, False
+        return False, False, "All", "Select Period"
 
 @callback(
     Output("period-selection", "options"),
@@ -188,8 +190,7 @@ def displayAvailablePeriodsForData(mapdata):
                 "2017-18",
                 "2018-19",
                 "2019-20",
-                "2013-2020 (total)",
-                "2013-2020 (avg)"]
-    
+                "2013-2020 (avg)",
+                "2013-2020 (total)"]
     else:
         return []
