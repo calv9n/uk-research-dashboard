@@ -53,6 +53,17 @@ def customwrap(s, width=30):
     else:
         return None
 
+def returnUoAOptions():
+    options = [
+        {'label': "All UoAs", 'value': "All"}
+        ] + [
+        {'label': col, 'value': col}
+        for col in sorted(
+            results_df["UOA name"].unique()
+        )
+        ]
+    return options
+
 def generateIncomeChart(uni, uoa, df, inkind=False):
     # agg functions
     if (inkind):
@@ -251,11 +262,16 @@ def generateIncomeInKindPieChart(uni, uoa):
     return incomeik_pie_chart
 
 def generateMap(data, uoa="All", period=""):
-    if data == "GPA":
+    if (data == "GPA") or (data == "Staff FTE"):
         df = results_df
-        agg_func = {
-            "GPA":"mean"
-        }
+        if data == "Staff FTE":
+            agg_func = {
+                "Staff FTE":"sum"
+            }
+        else:
+            agg_func = {
+                "GPA":"mean"
+            }
         color = "GPA"
     if data == "PhDs Awarded":
         df = phd_df
@@ -275,7 +291,6 @@ def generateMap(data, uoa="All", period=""):
             period:"mean"
         }
         color = period
-
     if uoa != "All":
         df = df[df['UOA name'] == uoa]
     
