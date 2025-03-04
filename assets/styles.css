@@ -131,6 +131,15 @@ body {
     box-shadow: 0 6px 8px rgba(89, 87, 87, 0.1);
 }
 
+/* Filter cards */
+.filter-card {
+    border: 2px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 8px rgba(89, 87, 87, 0.1);
+    padding: 1rem;
+    background-color: #fff;
+}
+
 /* Dropdown */
 .custom-dropdown {
     color: #3a4552;
@@ -159,11 +168,10 @@ body {
 
 /* Button */
 .btn-custom {
-    background-color: #f79500;
+    background-color: #800080;
     color: #fff;
-    width: 120px;
+    width: fit-content;
     text-align: center;
-    border: 1px solid #f79500;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
