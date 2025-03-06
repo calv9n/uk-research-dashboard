@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 import textwrap
@@ -11,6 +12,7 @@ results_df = pd.read_csv('data/results_cleaned.csv')
 income_df = pd.read_csv('data/income_cleaned.csv')
 incomeiK_df = pd.read_csv('data/incomeiK_cleaned.csv')
 phd_df = pd.read_csv('data/phd_awarded_cleaned.csv')
+regions_mapping = pd.read_csv("data/regions.csv")
 
 with open("assets/countries.geojson") as f:
     countries_geojson = json.load(f)
@@ -20,9 +22,9 @@ with open("assets/regions.geojson") as f:
 
 def format_value(value):
     if int(value) < 1e6:
-        return f"{int(value) / 1e3:.1f}K"                   # Values below 1 million in thousands
+        return f"{int(value) / 1e3:.1f} K"                   # Values below 1 million in thousands
     else:
-        return f"{int(value) / 1e6:.1f}M"                  # Values above 1 million in millions
+        return f"{int(value) / 1e6:.1f} M"                  # Values above 1 million in millions
 
 def create_card(title, card_id, icon_class):
     return dbc.Card(
@@ -46,6 +48,56 @@ def create_card(title, card_id, icon_class):
         className="card",
     )
 
+def create_leaderboard(title, num_rows, df, col):
+    return dbc.Card(
+    dcc.Loading(  # Adding the loading spinner
+        dbc.CardBody(  # The body of the card
+            [
+                html.Div(
+                    [
+                        html.I(  # Icon for the card (you can adjust the icon as per your needs)
+                            className=f"fas fa-ranking-star card-icon",
+                        ),
+                        html.H3(title, className="card-title"),
+                    ],
+                    className="d-flex align-items-center",  # Flexbox for alignment
+                ),
+                
+                # Table inside the card body
+                dbc.Table(
+                    [
+                        html.Thead(
+                            html.Tr(
+                                [
+                                    html.Th("Rank"),
+                                    html.Th("Institution"),
+                                    html.Th(col),
+                                ]
+                            )
+                        ),
+                        html.Tbody(
+                            [
+                                html.Tr(
+                                    [
+                                        html.Td(i + 1),
+                                        html.Td(row["Institution name"]),
+                                        html.Td(np.round(row[col], 2) if col == "GPA" or col == "FTE staff" else format_value(row[col])),
+                                    ]
+                                )
+                                for i, row in df.sort_values(col, ascending=False).head(num_rows).reset_index(drop=True).iterrows()
+                            ]
+                        ),
+                    ],
+                    hover=True,
+                    responsive=True,
+                ),
+            ],
+            className="card-body",  # Card body styles
+        ),
+    ),
+    className="card",  # Card styling
+)
+
 ## Helper Functions
 def customwrap(s, width=30):
     if (s != None):
@@ -67,7 +119,7 @@ def returnUoAOptions():
 def generateIncomeChart(uni, uoa, df, inkind=False):
     # agg functions
     if (inkind):
-        agg_func = {
+        agg_func_dict = {
             '2013-14': 'sum',
             '2014-15': 'sum',
             '2016-17': 'sum',
@@ -78,7 +130,7 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
         title = f"Research Income In-Kind"
         col_name = "Total income"
     else:
-        agg_func = {
+        agg_func_dict = {
             '2013-14': 'sum',
             '2014-15': 'sum',
             '2015-2020 (avg)': 'sum',
@@ -91,11 +143,11 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
     if (uoa == "All"):
         df_filtered = df.loc[(df["Institution name"] == uni) 
                             & (df['Income source'] == col_name)
-                            ].agg(agg_func)
+                            ].agg(agg_func_dict)
     else:
         df_filtered = df.loc[(df["Institution name"] == uni) 
                             & (df['Income source'] == col_name)
-                            & (df["UOA name"] == uoa)].agg(agg_func)
+                            & (df["UOA name"] == uoa)].agg(agg_func_dict)
         
 
     # graph cards
@@ -128,7 +180,7 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
     return chart
 
 def generatePhdChart(uni, uoa):
-    agg_func = {
+    agg_func_dict = {
             '2013': 'sum',
             '2014': 'sum',
             '2016': 'sum',
@@ -138,10 +190,10 @@ def generatePhdChart(uni, uoa):
         }
     
     if (uoa == "All"):
-        df_filtered = phd_df.loc[(phd_df["Institution name"] == uni)].agg(agg_func)
+        df_filtered = phd_df.loc[(phd_df["Institution name"] == uni)].agg(agg_func_dict)
     else:
         df_filtered = phd_df.loc[(phd_df["Institution name"] == uni) &
-                                 (phd_df["UOA name"] == uoa)].agg(agg_func)
+                                 (phd_df["UOA name"] == uoa)].agg(agg_func_dict)
 
 
     phd_awarded_chart = px.line(df_filtered,
@@ -261,40 +313,37 @@ def generateIncomeInKindPieChart(uni, uoa):
 
     return incomeik_pie_chart
 
-def generateMap(data, uoa="All", period=""):
+def generateMap(data, uoa, period, aggfunc):
+    agg_func_dict = {
+        period:aggfunc
+    }
+    color = period
+
     if (data == "GPA") or (data == "Staff FTE"):
         df = results_df
         if data == "Staff FTE":
-            agg_func = {
-                "Staff FTE":"sum"
+            agg_func_dict = {
+                "FTE staff":aggfunc
             }
+            color = "FTE staff"
         else:
-            agg_func = {
+            agg_func_dict = {
                 "GPA":"mean"
             }
-        color = "GPA"
+            color = "GPA"
     if data == "PhDs Awarded":
         df = phd_df
-        agg_func = {
-            period:"mean"
-        }
-        color = period
+        
     if data == "Income":
         df = income_df
-        agg_func = {
-            period:"mean"
-        }
-        color = period
+        
     if data == "Income In-Kind":
         df = incomeiK_df
-        agg_func = {
-            period:"mean"
-        }
-        color = period
+    
     if uoa != "All":
         df = df[df['UOA name'] == uoa]
     
-    df = df.groupby("Region").agg(agg_func).reset_index()
+    df = df.groupby("Region").agg(agg_func_dict).reset_index()
 
     map_graph = px.choropleth(df,
                         geojson=regions_geojson,  
@@ -314,7 +363,63 @@ def generateMap(data, uoa="All", period=""):
     map_graph.update_layout(
         margin=dict(t=75, l=25, r=25, b=25),  # Adjust margins
         title="Some title",
-        height=750  # Increase map height for better fit
     )
     
     return map_graph
+
+def generateScatter(df, data, uoa, period, region, aggfunc):
+    x_col = period
+    y_col = "GPA" 
+    color = "Region"
+     
+    if (data == "GPA") or (data == "Staff FTE"):
+        x_col = "FTE staff"
+    if region != "All":
+        color = None
+    else:
+        color = "Region"
+
+    scatter_graph = px.scatter(
+        df,
+        x=x_col,
+        y=y_col,
+        hover_name="Institution name",
+        color=color,
+    )
+
+    scatter_graph.update_layout(
+        yaxis=dict(range=[1,4]),
+    )
+
+    return scatter_graph
+
+def generateDataFrameForScatter(data, uoa, period, region, aggfunc):
+    agg_func_dict = {
+            "GPA":"mean",
+            period:aggfunc
+        }  
+    
+    agg_results = results_df[results_df['Profile'] == "Overall"].groupby("Institution name").agg({"GPA":"mean"}).reset_index()
+    
+    if (data == "GPA") or (data == "Staff FTE"):
+        df = results_df
+        agg_func_dict = {
+            "FTE staff":aggfunc,
+            "GPA":"mean"
+        }
+    if data == "PhDs Awarded":
+        df = phd_df.merge(agg_results, on="Institution name")
+    if data == "Income":
+        df = income_df.merge(agg_results, on="Institution name")
+    if data == "Income In-Kind":
+        df = incomeiK_df.merge(agg_results, on="Institution name")
+
+    if uoa != "All":
+        df = df[df['UOA name'] == uoa]
+
+    if region != "All":
+        df = df[df['Region'] == region]
+
+    df = df.groupby(["Institution name", "Region"]).agg(agg_func_dict).reset_index()
+
+    return df
