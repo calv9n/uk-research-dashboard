@@ -3,14 +3,17 @@ from dash import callback, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
+import io
 import plotly.express as px
 import plotly.graph_objects as go
 from utils.dashboard_components import (
     returnUoAOptions,
     generateMap,
     generateScatter,
+    generateDataFrameForMap,
     generateDataFrameForScatter,
-    create_leaderboard
+    create_leaderboard,
+    create_info_cards
 )
   
 
@@ -33,7 +36,11 @@ layout = dbc.Container(
             storage_type="memory"
         ),
         dcc.Store(
-            id="current-df", 
+            id="current-scatter-df", 
+            storage_type="memory"
+        ),
+        dcc.Store(
+            id="current-map-df", 
             storage_type="memory"
         ),
         html.Div(
@@ -172,13 +179,31 @@ layout = dbc.Container(
                     color="danger"
                 ),
                 dbc.Row([            # row for metrics
-                    html.Div(
-                        dbc.Col(
-                            id = "leaderboard",
-                            width=6,
-                        ),
-                        id = "leaderboard-div",
-                        hidden = True,
+                    dbc.Col(
+                        [
+                          dcc.Loading(
+                            [
+                                html.Div(
+                                    id = "institution-leaderboard",
+                                    hidden=True
+                                )
+                            ]  
+                          ),  
+                        ],
+                        width=6,
+                    ),
+                    dbc.Col(
+                        [
+                          dcc.Loading(
+                            [
+                                html.Div(
+                                    id = "region-leaderboard",
+                                    hidden=True
+                                )
+                            ]  
+                          ),  
+                        ],
+                        width=6,
                     ),
                 ]),
                 html.Br(),
@@ -235,7 +260,8 @@ layout = dbc.Container(
                                     ),
                                 ]
                             ),
-                        ]
+                        ],
+                        width=6,
                     )
 
                 ]),
@@ -291,11 +317,11 @@ def resetXAxisScaleWhenFiltersApplied(n_clicks):
     Output("region-map-div", "hidden"),
     Output("scatter-plot", "figure"),
     Output("scatter-plot-div", "hidden"),
-    Output("leaderboard", "children"),
-    Output("leaderboard-div", "hidden"),
     Output("alert-msg", "children"),
     Output("alert-msg", "is_open"),
     Output("missing-fields-store", "data"),
+    Output("current-map-df", "data"),
+    Output("current-scatter-df", "data"),
     Input("apply-filters-btn", "n_clicks"),
     State("data-selection", "value"),
     State("uoa-selection", "value"),
@@ -321,31 +347,77 @@ def validateDropdownsAndGenerateDataViz(n_clicks, data, uoa, period, region, agg
 
     if missing_fields:
         missing_fields_msg = "The following fields are empty: " + ", ".join(missing_fields)
-        return {}, True, {}, True, {}, True, missing_fields_msg, True, missing_fields
+        return {}, True, {}, True, {}, True, missing_fields_msg, True, missing_fields, None, None
     
     if data == "GPA":
         aggfunc = "mean"
 
-    df = generateDataFrameForScatter(data, uoa, period, region, aggfunc)
-    mapfig = generateMap(data, uoa, period, aggfunc)
-    scatterfig = generateScatter(df, data, uoa, period, region, aggfunc)
+    map_df = generateDataFrameForMap(data, uoa, period, aggfunc)
+    scatter_df = generateDataFrameForScatter(data, uoa, period, region, aggfunc)
+    mapfig = generateMap(map_df, data, period)
+    scatterfig = generateScatter(scatter_df, data, period, region)
 
+    return (
+        mapfig,                             # Output("region-map", "figure"),
+        False,                              # Output("region-map-div", "hidden"),
+        scatterfig,                         # Output("scatter-plot", "figure"),
+        False,                              # Output("scatter-plot-div", "hidden"),
+        "",                                 # Output("alert-msg", "children"),
+        False,                              # Output("alert-msg", "is_open"),
+        missing_fields,                     # Output("missing-fields-store", "data"),
+        map_df.to_json(orient='split'),                   # Output("current-map-df", "data"),
+        scatter_df.to_json(orient='split')                # Output("current-scatter-df", "data"),
+    )
+    
+@callback(
+    Output("institution-leaderboard", "children"),
+    Output("institution-leaderboard", "hidden"),
+    Output("region-leaderboard", "children"),
+    Output("region-leaderboard", "hidden"),
+    Input("current-map-df", "data"),
+    Input("current-scatter-df", "data"),
+    State("data-selection", "value"),
+    State("period-selection", "value"),
+    State("region-selection", "value"),
+    prevent_initial_call = True,
+)
+def generateLeaderboardsAndCards(map_df, scatter_df, data, period, region):
     if data == "Staff FTE":
         col_data = "FTE staff"
     if data == "GPA":
         col_data = data
     if data in ["Income", "Income In-Kind", "PhDs Awarded"]:
         col_data = period
-
-    leaderboard = create_leaderboard(
-        "Ranking",
-        5,
-        df, 
-        col_data,
-    )
-
-    return mapfig, False, scatterfig, False, leaderboard, False, "", False, missing_fields
     
+    if data == "GPA":             # TO CHANGE IF EXTENDING GPA TO INCLUDE ALL CATEGORIES
+        aggfunc = "mean"
+
+
+    institution_leaderboard = create_leaderboard(
+        "Best Performing Institutions",
+        # using io.StringIO because directly passing json string into read_json() has been deprecated
+        pd.read_json(io.StringIO(scatter_df), orient="split"),      
+        col_data,
+        region=False,
+    )
+    
+    if region != "All":
+        region_leaderboard = create_info_cards(
+            data,
+            pd.read_json(io.StringIO(scatter_df), orient="split"), 
+            col_data,
+            region,
+            )
+    else:
+        region_leaderboard = create_leaderboard(
+            data,
+            "Best Performing Regions",
+            pd.read_json(io.StringIO(map_df), orient="split"), 
+            col_data,
+            region=True,
+        )
+
+    return institution_leaderboard, False, region_leaderboard, False
 
 @callback(
     Output("scatter-plot", "figure", allow_duplicate=True),
