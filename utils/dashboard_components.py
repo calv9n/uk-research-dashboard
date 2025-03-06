@@ -48,7 +48,14 @@ def create_card(title, card_id, icon_class):
         className="card",
     )
 
-def create_leaderboard(title, num_rows, df, col):
+def create_leaderboard(title, df, col, region):
+    if region:
+        th = "Region",
+        td_data_col = "Region"
+    else:
+        th = "Institution name"
+        td_data_col = "Institution name"
+
     return dbc.Card(
     dcc.Loading(  # Adding the loading spinner
         dbc.CardBody(  # The body of the card
@@ -70,7 +77,7 @@ def create_leaderboard(title, num_rows, df, col):
                             html.Tr(
                                 [
                                     html.Th("Rank"),
-                                    html.Th("Institution"),
+                                    html.Th(th),
                                     html.Th(col),
                                 ]
                             )
@@ -80,11 +87,11 @@ def create_leaderboard(title, num_rows, df, col):
                                 html.Tr(
                                     [
                                         html.Td(i + 1),
-                                        html.Td(row["Institution name"]),
+                                        html.Td(row[td_data_col]),
                                         html.Td(np.round(row[col], 2) if col == "GPA" or col == "FTE staff" else format_value(row[col])),
                                     ]
                                 )
-                                for i, row in df.sort_values(col, ascending=False).head(num_rows).reset_index(drop=True).iterrows()
+                                for i, row in df.sort_values(col, ascending=False).head(5).reset_index(drop=True).iterrows()
                             ]
                         ),
                     ],
@@ -97,6 +104,79 @@ def create_leaderboard(title, num_rows, df, col):
     ),
     className="card",  # Card styling
 )
+
+def create_info_cards(data, df, col, region):
+    df = df.sort_values(col, ascending=False).reset_index(drop=True)
+    best_text = df["Institution name"].iloc[0]
+    best_value = np.round(df[col].iloc[0],2)
+    worst_text = df["Institution name"].iloc[-1]
+    worst_value = np.round(df[col].iloc[-1],2)
+
+    if data in ["Income", "Income In-Kind"]:
+        best_value = format_value(best_value)
+        worst_value = format_value(worst_value)
+
+    return html.Div(
+        [
+            dbc.Card(
+                dcc.Loading(
+                    dbc.CardBody(
+                        [
+                            html.Div(
+                                [
+                                    html.I(
+                                        className=f"fas fa-medal card-icon",
+                                    ),
+                                    html.H3(f"Best Performing Institution in {region}", className="card-title"),
+                                ],
+                                className="d-flex align-items-center",
+                            ),
+                            html.H4(
+                                best_text,
+                                className="title-color"
+                            ),
+                            html.H4(
+                                best_value,
+                                className="subtitle-medium-color"
+                            )
+                        ],
+                        className="card-body",
+                    ),
+                ), 
+                className="card",
+            ),
+            html.Div(style={"padding":"6px"}),
+            dbc.Card(
+                dcc.Loading(
+                    dbc.CardBody(
+                        [
+                            html.Div(
+                                [
+                                    html.I(
+                                        className=f"fa-solid fa-circle-exclamation card-icon",
+                                    ),
+                                    html.H3(f"Worst Performing Institution in {region}", className="card-title"),
+                                ],
+                                className="d-flex align-items-center",
+                            ),
+                            html.H4(
+                                worst_text,
+                                className="title-color"
+
+                            ),
+                            html.H4(
+                                worst_value,
+                                className="subtitle-medium-color"
+                            )
+                        ],
+                        className="card-body",
+                    ),
+                ), 
+                className="card",
+            )        
+        ]
+    )
+    
 
 ## Helper Functions
 def customwrap(s, width=30):
@@ -313,37 +393,13 @@ def generateIncomeInKindPieChart(uni, uoa):
 
     return incomeik_pie_chart
 
-def generateMap(data, uoa, period, aggfunc):
-    agg_func_dict = {
-        period:aggfunc
-    }
+def generateMap(df, data, period):
     color = period
 
-    if (data == "GPA") or (data == "Staff FTE"):
-        df = results_df
-        if data == "Staff FTE":
-            agg_func_dict = {
-                "FTE staff":aggfunc
-            }
-            color = "FTE staff"
-        else:
-            agg_func_dict = {
-                "GPA":"mean"
-            }
-            color = "GPA"
-    if data == "PhDs Awarded":
-        df = phd_df
-        
-    if data == "Income":
-        df = income_df
-        
-    if data == "Income In-Kind":
-        df = incomeiK_df
-    
-    if uoa != "All":
-        df = df[df['UOA name'] == uoa]
-    
-    df = df.groupby("Region").agg(agg_func_dict).reset_index()
+    if data == "Staff FTE":
+        color = "FTE staff"
+    if data == "GPA":
+        color = "GPA"
 
     map_graph = px.choropleth(df,
                         geojson=regions_geojson,  
@@ -367,7 +423,7 @@ def generateMap(data, uoa, period, aggfunc):
     
     return map_graph
 
-def generateScatter(df, data, uoa, period, region, aggfunc):
+def generateScatter(df, data, period, region):
     x_col = period
     y_col = "GPA" 
     color = "Region"
@@ -392,6 +448,37 @@ def generateScatter(df, data, uoa, period, region, aggfunc):
     )
 
     return scatter_graph
+
+def generateDataFrameForMap(data, uoa, period, aggfunc):
+    agg_func_dict = {
+        period:aggfunc
+    }
+
+    if (data == "GPA"):
+        df = results_df    
+        agg_func_dict = {
+            "GPA":"mean"
+        }
+    if (data == "Staff FTE"):
+        df = results_df
+        agg_func_dict = {
+            "FTE staff":aggfunc
+        }
+    if data == "PhDs Awarded":
+        df = phd_df
+        
+    if data == "Income":
+        df = income_df
+        
+    if data == "Income In-Kind":
+        df = incomeiK_df
+    
+    if uoa != "All":
+        df = df[df['UOA name'] == uoa]
+    
+    df = df.groupby("Region").agg(agg_func_dict).reset_index()
+
+    return df
 
 def generateDataFrameForScatter(data, uoa, period, region, aggfunc):
     agg_func_dict = {
