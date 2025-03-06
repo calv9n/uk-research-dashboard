@@ -1,4 +1,4 @@
-,UKPRN,Institution name,Main panel,UOA number,UOA name,Multiple submission name,Joint submission,Profile,FTE staff,Total staff FTE (joint),Eligible staff (%),4*,3*,2*,1*,Unclassified,GPA,Region
+Unnamed: 0,UKPRN,Institution name,Main panel,UOA number,UOA name,Multiple submission name,Joint submission,Profile,FTE staff,Total staff FTE (joint),Eligible staff (%),4*,3*,2*,1*,Unclassified,GPA,Region
 0,10007783,University of Aberdeen,A,1,Clinical Medicine,,,Overall,139.02,,100.0,15.0,62.0,23.0,0.0,0.0,2.92,Scotland
 1,10007783,University of Aberdeen,A,1,Clinical Medicine,,,Outputs,139.02,,100.0,21.0,51.7,26.7,0.3,0.3,2.928,Scotland
 2,10007783,University of Aberdeen,A,1,Clinical Medicine,,,Impact,139.02,,100.0,11.1,61.1,27.8,0.0,0.0,2.833,Scotland
@@ -1085,7 +1085,7 @@
 1083,10007788,University of Cambridge,B,11,Computer Science and Informatics,,,Impact,80.8,,105.0,85.7,0.0,0.0,0.0,14.3,3.428,East of England
 1084,10007788,University of Cambridge,B,11,Computer Science and Informatics,,,Environment,80.8,,105.0,100.0,0.0,0.0,0.0,0.0,4.0,East of England
 1085,10007788,University of Cambridge,B,12,Engineering,,,Overall,255.51,,105.0,70.0,29.0,1.0,0.0,0.0,3.69,East of England
-1086,10007788,University of Cambridge,B,12,Engineering,,,Outputs,255.51,,105.0,56.8,40.9,2.1,0.2,0.0,3.5429999999999997,East of England
+1086,10007788,University of Cambridge,B,12,Engineering,,,Outputs,255.51,,105.0,56.8,40.9,2.1,0.2,0.0,3.543,East of England
 1087,10007788,University of Cambridge,B,12,Engineering,,,Impact,255.51,,105.0,81.8,18.2,0.0,0.0,0.0,3.818,East of England
 1088,10007788,University of Cambridge,B,12,Engineering,,,Environment,255.51,,105.0,100.0,0.0,0.0,0.0,0.0,4.0,East of England
 1089,10007788,University of Cambridge,C,13,"Architecture, Built Environment and Planning",,,Overall,46.3,,100.0,67.0,31.0,1.0,0.0,1.0,3.63,East of England
@@ -1687,7 +1687,7 @@
 1685,10001883,De Montfort University,D,32,"Art and Design: History, Practice and Theory",,,Impact,21.4,,20.0,0.0,83.3,16.7,0.0,0.0,2.833,East Midlands
 1686,10001883,De Montfort University,D,32,"Art and Design: History, Practice and Theory",,,Environment,21.4,,20.0,27.5,72.5,0.0,0.0,0.0,3.275,East Midlands
 1687,10001883,De Montfort University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Overall,34.85,,50.0,36.0,36.0,25.0,3.0,0.0,3.05,East Midlands
-1688,10001883,De Montfort University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Outputs,34.85,,50.0,33.3,33.4,28.7,4.6,0.0,2.9539999999999997,East Midlands
+1688,10001883,De Montfort University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Outputs,34.85,,50.0,33.3,33.4,28.7,4.6,0.0,2.954,East Midlands
 1689,10001883,De Montfort University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Impact,34.85,,50.0,33.3,33.4,33.3,0.0,0.0,3.0,East Midlands
 1690,10001883,De Montfort University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Environment,34.85,,50.0,50.0,50.0,0.0,0.0,0.0,3.5,East Midlands
 1691,10001883,De Montfort University,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Overall,16.0,,65.0,12.0,48.0,34.0,6.0,0.0,2.66,East Midlands
@@ -1919,7 +1919,7 @@
 1917,10007789,The University of East Anglia,A,6,"Agriculture, Food and Veterinary Sciences",,,Impact,19.4,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,London
 1918,10007789,The University of East Anglia,A,6,"Agriculture, Food and Veterinary Sciences",,,Environment,19.4,,100.0,25.0,75.0,0.0,0.0,0.0,3.25,London
 1919,10007789,The University of East Anglia,B,7,Earth Systems and Environmental Sciences,,,Overall,65.43,,100.0,67.0,27.0,6.0,0.0,0.0,3.61,London
-1920,10007789,The University of East Anglia,B,7,Earth Systems and Environmental Sciences,,,Outputs,65.43,,100.0,54.9,37.8,6.7,0.6,0.0,3.4699999999999998,London
+1920,10007789,The University of East Anglia,B,7,Earth Systems and Environmental Sciences,,,Outputs,65.43,,100.0,54.9,37.8,6.7,0.6,0.0,3.47,London
 1921,10007789,The University of East Anglia,B,7,Earth Systems and Environmental Sciences,,,Impact,65.43,,100.0,83.3,8.4,8.3,0.0,0.0,3.75,London
 1922,10007789,The University of East Anglia,B,7,Earth Systems and Environmental Sciences,,,Environment,65.43,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,London
 1923,10007789,The University of East Anglia,B,8,Chemistry,,,Overall,34.2,,100.0,41.0,52.0,7.0,0.0,0.0,3.3400000000000003,London
@@ -2378,7 +2378,7 @@
 2376,10007792,University of Exeter,C,17,Business and Management Studies,,,Outputs,79.1,,100.0,50.6,38.8,10.0,0.6,0.0,3.394,South West
 2377,10007792,University of Exeter,C,17,Business and Management Studies,,,Impact,79.1,,100.0,71.4,28.6,0.0,0.0,0.0,3.714,South West
 2378,10007792,University of Exeter,C,17,Business and Management Studies,,,Environment,79.1,,100.0,37.5,50.0,12.5,0.0,0.0,3.25,South West
-2379,10007792,University of Exeter,C,18,Law,,,Overall,52.92,,100.0,46.0,35.0,16.0,3.0,0.0,3.2399999999999998,South West
+2379,10007792,University of Exeter,C,18,Law,,,Overall,52.92,,100.0,46.0,35.0,16.0,3.0,0.0,3.24,South West
 2380,10007792,University of Exeter,C,18,Law,,,Outputs,52.92,,100.0,35.4,32.7,27.5,4.4,0.0,2.991,South West
 2381,10007792,University of Exeter,C,18,Law,,,Impact,52.92,,100.0,90.0,10.0,0.0,0.0,0.0,3.9,South West
 2382,10007792,University of Exeter,C,18,Law,,,Environment,52.92,,100.0,12.5,87.5,0.0,0.0,0.0,3.125,South West
@@ -2386,7 +2386,7 @@
 2384,10007792,University of Exeter,C,19,Politics and International Studies,,,Outputs,58.25,,100.0,35.6,49.3,13.7,1.4,0.0,3.1910000000000003,South West
 2385,10007792,University of Exeter,C,19,Politics and International Studies,,,Impact,58.25,,100.0,60.0,20.0,20.0,0.0,0.0,3.4,South West
 2386,10007792,University of Exeter,C,19,Politics and International Studies,,,Environment,58.25,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South West
-2387,10007792,University of Exeter,C,21,Sociology,,,Overall,49.6,,100.0,35.0,47.0,17.0,1.0,0.0,3.1599999999999997,South West
+2387,10007792,University of Exeter,C,21,Sociology,,,Overall,49.6,,100.0,35.0,47.0,17.0,1.0,0.0,3.16,South West
 2388,10007792,University of Exeter,C,21,Sociology,,,Outputs,49.6,,100.0,31.5,44.3,21.8,2.4,0.0,3.0489999999999995,South West
 2389,10007792,University of Exeter,C,21,Sociology,,,Impact,49.6,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,South West
 2390,10007792,University of Exeter,C,21,Sociology,,,Environment,49.6,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South West
@@ -2756,7 +2756,7 @@
 2754,10007146,University of Greenwich,D,28,History,,,Environment,6.5,,70.0,0.0,77.5,22.5,0.0,0.0,2.7750000000000004,London
 2755,10007146,University of Greenwich,D,32,"Art and Design: History, Practice and Theory",,,Overall,30.2,,55.0,21.0,36.0,36.0,7.0,0.0,2.7099999999999995,London
 2756,10007146,University of Greenwich,D,32,"Art and Design: History, Practice and Theory",,,Outputs,30.2,,55.0,21.1,43.4,30.2,5.3,0.0,2.803,London
-2757,10007146,University of Greenwich,D,32,"Art and Design: History, Practice and Theory",,,Impact,30.2,,55.0,33.3,33.4,16.6,16.7,0.0,2.8329999999999997,London
+2757,10007146,University of Greenwich,D,32,"Art and Design: History, Practice and Theory",,,Impact,30.2,,55.0,33.3,33.4,16.6,16.7,0.0,2.833,London
 2758,10007146,University of Greenwich,D,32,"Art and Design: History, Practice and Theory",,,Environment,30.2,,55.0,0.0,12.5,87.5,0.0,0.0,2.125,London
 2759,10007825,Guildhall School of Music & Drama,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Overall,18.99,,100.0,56.0,21.0,19.0,3.0,1.0,3.28,London
 2760,10007825,Guildhall School of Music & Drama,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Outputs,18.99,,100.0,46.5,18.6,27.9,4.7,2.3,3.023,London
@@ -2952,7 +2952,7 @@
 2950,10007148,The University of Huddersfield,D,28,History,,,Environment,12.5,,100.0,10.0,90.0,0.0,0.0,0.0,3.1,Yorkshire and The Humber
 2951,10007148,The University of Huddersfield,D,32,"Art and Design: History, Practice and Theory",,,Overall,29.2,,45.0,20.0,43.0,30.0,7.0,0.0,2.76,Yorkshire and The Humber
 2952,10007148,The University of Huddersfield,D,32,"Art and Design: History, Practice and Theory",,,Outputs,29.2,,45.0,19.2,39.7,37.0,4.1,0.0,2.74,Yorkshire and The Humber
-2953,10007148,The University of Huddersfield,D,32,"Art and Design: History, Practice and Theory",,,Impact,29.2,,45.0,33.3,33.4,16.6,16.7,0.0,2.8329999999999997,Yorkshire and The Humber
+2953,10007148,The University of Huddersfield,D,32,"Art and Design: History, Practice and Theory",,,Impact,29.2,,45.0,33.3,33.4,16.6,16.7,0.0,2.833,Yorkshire and The Humber
 2954,10007148,The University of Huddersfield,D,32,"Art and Design: History, Practice and Theory",,,Environment,29.2,,45.0,0.0,75.0,25.0,0.0,0.0,2.75,Yorkshire and The Humber
 2955,10007148,The University of Huddersfield,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Overall,30.35,,95.0,64.0,30.0,4.0,2.0,0.0,3.56,Yorkshire and The Humber
 2956,10007148,The University of Huddersfield,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Outputs,30.35,,95.0,47.4,42.1,7.9,2.6,0.0,3.3429999999999995,Yorkshire and The Humber
@@ -3488,7 +3488,7 @@
 3486,10007795,The University of Leeds,A,5,Biological Sciences,,,Environment,84.93,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,Yorkshire and The Humber
 3487,10007795,The University of Leeds,A,6,"Agriculture, Food and Veterinary Sciences",,,Overall,29.4,,100.0,32.0,54.0,10.0,4.0,0.0,3.140000000000001,Yorkshire and The Humber
 3488,10007795,The University of Leeds,A,6,"Agriculture, Food and Veterinary Sciences",,,Outputs,29.4,,100.0,29.9,61.1,9.0,0.0,0.0,3.209,Yorkshire and The Humber
-3489,10007795,The University of Leeds,A,6,"Agriculture, Food and Veterinary Sciences",,,Impact,29.4,,100.0,33.3,33.4,16.6,16.7,0.0,2.8329999999999997,Yorkshire and The Humber
+3489,10007795,The University of Leeds,A,6,"Agriculture, Food and Veterinary Sciences",,,Impact,29.4,,100.0,33.3,33.4,16.6,16.7,0.0,2.833,Yorkshire and The Humber
 3490,10007795,The University of Leeds,A,6,"Agriculture, Food and Veterinary Sciences",,,Environment,29.4,,100.0,37.5,62.5,0.0,0.0,0.0,3.375,Yorkshire and The Humber
 3491,10007795,The University of Leeds,B,7,Earth Systems and Environmental Sciences,,,Overall,127.15,,100.0,59.0,37.0,4.0,0.0,0.0,3.55,Yorkshire and The Humber
 3492,10007795,The University of Leeds,B,7,Earth Systems and Environmental Sciences,,,Outputs,127.15,,100.0,56.0,39.3,4.7,0.0,0.0,3.513,Yorkshire and The Humber
@@ -3985,7 +3985,7 @@
 3983,10003956,Liverpool Hope University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Impact,14.0,,95.0,0.0,100.0,0.0,0.0,0.0,3.0,North West
 3984,10003956,Liverpool Hope University,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Environment,14.0,,95.0,0.0,37.5,52.5,10.0,0.0,2.275,North West
 3985,10003957,Liverpool John Moores University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Overall,72.38,,40.0,14.0,50.0,32.0,4.0,0.0,2.74,North West
-3986,10003957,Liverpool John Moores University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,72.38,,40.0,16.6,56.3,24.3,2.2,0.6,2.8609999999999998,North West
+3986,10003957,Liverpool John Moores University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,72.38,,40.0,16.6,56.3,24.3,2.2,0.6,2.861,North West
 3987,10003957,Liverpool John Moores University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,72.38,,40.0,16.7,58.3,16.7,8.3,0.0,2.834,North West
 3988,10003957,Liverpool John Moores University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Environment,72.38,,40.0,0.0,12.5,87.5,0.0,0.0,2.125,North West
 3989,10003957,Liverpool John Moores University,A,4,"Psychology, Psychiatry and Neuroscience",,,Overall,42.09,,85.0,7.0,37.0,53.0,1.0,2.0,2.46,North West
@@ -4061,7 +4061,7 @@
 4059,10007769,London Business School,C,17,Business and Management Studies,,,Impact,106.45,,100.0,37.5,43.8,18.7,0.0,0.0,3.188,London
 4060,10007769,London Business School,C,17,Business and Management Studies,,,Environment,106.45,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,London
 4061,10004048,London Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Overall,23.9,,100.0,10.0,55.0,29.0,4.0,2.0,2.6700000000000004,London
-4062,10004048,London Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,23.9,,100.0,16.7,53.3,26.7,0.0,3.3,2.8009999999999997,London
+4062,10004048,London Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,23.9,,100.0,16.7,53.3,26.7,0.0,3.3,2.801,London
 4063,10004048,London Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,23.9,,100.0,0.0,83.3,16.7,0.0,0.0,2.833,London
 4064,10004048,London Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Environment,23.9,,100.0,0.0,12.5,62.5,25.0,0.0,1.875,London
 4065,10004048,London Metropolitan University,B,10,Mathematical Sciences,,,Overall,1.9,,100.0,25.0,50.0,18.0,7.0,0.0,2.93,London
@@ -4252,130 +4252,130 @@
 4250,10004113,Loughborough University,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Outputs,40.0,,100.0,41.0,46.0,13.0,0.0,0.0,3.28,East Midlands
 4251,10004113,Loughborough University,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Impact,40.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,East Midlands
 4252,10004113,Loughborough University,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Environment,40.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,East Midlands
-4253,10007798,The University of Manchester,A,1,Clinical Medicine,,,Overall,221.06,,100.0,52.0,37.0,10.0,0.0,1.0,3.39,South East
-4254,10007798,The University of Manchester,A,1,Clinical Medicine,,,Outputs,221.06,,100.0,37.4,44.5,15.9,1.1,1.1,3.16,South East
-4255,10007798,The University of Manchester,A,1,Clinical Medicine,,,Impact,221.06,,100.0,72.7,27.3,0.0,0.0,0.0,3.727,South East
-4256,10007798,The University of Manchester,A,1,Clinical Medicine,,,Environment,221.06,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4257,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Overall,85.6,,100.0,55.0,31.0,11.0,0.0,3.0,3.35,South East
-4258,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Outputs,85.6,,100.0,42.5,46.8,5.6,0.0,5.1,3.216,South East
-4259,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Impact,85.6,,100.0,64.3,7.1,28.6,0.0,0.0,3.357,South East
-4260,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Environment,85.6,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,South East
-4261,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Overall,125.52,,100.0,63.0,33.0,3.0,1.0,0.0,3.58,South East
-4262,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,125.52,,100.0,47.5,48.4,3.1,0.7,0.3,3.421,South East
-4263,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,125.52,,100.0,77.8,16.6,5.6,0.0,0.0,3.722,South East
-4264,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Environment,125.52,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4265,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Overall,94.72,,100.0,54.0,35.0,8.0,1.0,2.0,3.38,South East
-4266,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Outputs,94.72,,100.0,35.9,45.5,14.0,1.6,3.0,3.0970000000000004,South East
-4267,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Impact,94.72,,100.0,85.7,14.3,0.0,0.0,0.0,3.857,South East
-4268,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Environment,94.72,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4269,10007798,The University of Manchester,A,5,Biological Sciences,,,Overall,143.05,,100.0,61.0,34.0,5.0,0.0,0.0,3.56,South East
-4270,10007798,The University of Manchester,A,5,Biological Sciences,,,Outputs,143.05,,100.0,54.7,37.5,7.0,0.2,0.6,3.455,South East
-4271,10007798,The University of Manchester,A,5,Biological Sciences,,,Impact,143.05,,100.0,61.1,38.9,0.0,0.0,0.0,3.611,South East
-4272,10007798,The University of Manchester,A,5,Biological Sciences,,,Environment,143.05,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,South East
-4273,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Overall,70.78,,100.0,60.0,39.0,1.0,0.0,0.0,3.59,South East
-4274,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Outputs,70.78,,100.0,49.2,49.1,1.7,0.0,0.0,3.475,South East
-4275,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Impact,70.78,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4276,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Environment,70.78,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4277,10007798,The University of Manchester,B,8,Chemistry,,,Overall,76.2,,100.0,63.0,37.0,0.0,0.0,0.0,3.63,South East
-4278,10007798,The University of Manchester,B,8,Chemistry,,,Outputs,76.2,,100.0,58.9,40.5,0.6,0.0,0.0,3.583,South East
-4279,10007798,The University of Manchester,B,8,Chemistry,,,Impact,76.2,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,South East
-4280,10007798,The University of Manchester,B,8,Chemistry,,,Environment,76.2,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4281,10007798,The University of Manchester,B,9,Physics,,,Overall,87.0,,100.0,66.0,32.0,2.0,0.0,0.0,3.64,South East
-4282,10007798,The University of Manchester,B,9,Physics,,,Outputs,87.0,,100.0,49.1,47.2,3.7,0.0,0.0,3.454,South East
-4283,10007798,The University of Manchester,B,9,Physics,,,Impact,87.0,,100.0,85.7,14.3,0.0,0.0,0.0,3.857,South East
-4284,10007798,The University of Manchester,B,9,Physics,,,Environment,87.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4285,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Overall,89.95,,100.0,55.0,44.0,1.0,0.0,0.0,3.5400000000000005,South East
-4286,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Outputs,89.95,,100.0,46.0,53.1,0.9,0.0,0.0,3.451,South East
-4287,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Impact,89.95,,100.0,57.1,42.9,0.0,0.0,0.0,3.571,South East
-4288,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Environment,89.95,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,South East
-4289,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Overall,53.1,,100.0,62.0,37.0,1.0,0.0,0.0,3.61,South East
-4290,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Outputs,53.1,,100.0,48.9,48.8,2.3,0.0,0.0,3.466,South East
-4291,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Impact,53.1,,100.0,70.0,30.0,0.0,0.0,0.0,3.7,South East
-4292,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Environment,53.1,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4293,10007798,The University of Manchester,B,12,Engineering,,,Overall,311.31,,100.0,52.0,44.0,4.0,0.0,0.0,3.4800000000000004,South East
-4294,10007798,The University of Manchester,B,12,Engineering,,,Outputs,311.31,,100.0,37.5,58.0,3.7,0.8,0.0,3.322,South East
-4295,10007798,The University of Manchester,B,12,Engineering,,,Impact,311.31,,100.0,57.7,38.5,3.8,0.0,0.0,3.539,South East
-4296,10007798,The University of Manchester,B,12,Engineering,,,Environment,311.31,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4297,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Overall,27.6,,100.0,48.0,45.0,7.0,0.0,0.0,3.41,South East
-4298,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Outputs,27.6,,100.0,49.3,46.4,4.3,0.0,0.0,3.45,South East
-4299,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Impact,27.6,,100.0,50.0,33.3,16.7,0.0,0.0,3.333,South East
-4300,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Environment,27.6,,100.0,37.5,62.5,0.0,0.0,0.0,3.375,South East
-4301,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Overall,36.3,,100.0,32.0,60.0,7.0,1.0,0.0,3.23,South East
-4302,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Outputs,36.3,,100.0,38.5,51.6,8.8,1.1,0.0,3.2750000000000004,South East
-4303,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Impact,36.3,,100.0,12.5,87.5,0.0,0.0,0.0,3.125,South East
-4304,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Environment,36.3,,100.0,37.5,50.0,12.5,0.0,0.0,3.25,South East
-4305,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Overall,35.95,,100.0,41.0,54.0,5.0,0.0,0.0,3.36,South East
-4306,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Outputs,35.95,,100.0,26.7,65.5,7.8,0.0,0.0,3.1890000000000005,South East
-4307,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Impact,35.95,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,South East
-4308,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Environment,35.95,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,South East
-4309,10007798,The University of Manchester,C,17,Business and Management Studies,,,Overall,163.1,,100.0,58.0,33.0,8.0,1.0,0.0,3.4799999999999995,South East
-4310,10007798,The University of Manchester,C,17,Business and Management Studies,,,Outputs,163.1,,100.0,42.8,44.8,10.9,1.5,0.0,3.289,South East
-4311,10007798,The University of Manchester,C,17,Business and Management Studies,,,Impact,163.1,,100.0,75.0,20.0,5.0,0.0,0.0,3.7,South East
-4312,10007798,The University of Manchester,C,17,Business and Management Studies,,,Environment,163.1,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,South East
-4313,10007798,The University of Manchester,C,18,Law,,,Overall,52.8,,100.0,27.0,55.0,18.0,0.0,0.0,3.0900000000000003,South East
-4314,10007798,The University of Manchester,C,18,Law,,,Outputs,52.8,,100.0,28.0,45.5,25.7,0.8,0.0,3.007000000000001,South East
-4315,10007798,The University of Manchester,C,18,Law,,,Impact,52.8,,100.0,40.0,60.0,0.0,0.0,0.0,3.4,South East
-4316,10007798,The University of Manchester,C,18,Law,,,Environment,52.8,,100.0,0.0,87.5,12.5,0.0,0.0,2.875,South East
-4317,10007798,The University of Manchester,C,19,Politics and International Studies,,,Overall,51.7,,100.0,49.0,46.0,4.0,1.0,0.0,3.43,South East
-4318,10007798,The University of Manchester,C,19,Politics and International Studies,,,Outputs,51.7,,100.0,57.3,33.6,8.2,0.9,0.0,3.473,South East
-4319,10007798,The University of Manchester,C,19,Politics and International Studies,,,Impact,51.7,,100.0,30.0,70.0,0.0,0.0,0.0,3.3,South East
-4320,10007798,The University of Manchester,C,19,Politics and International Studies,,,Environment,51.7,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,South East
-4321,10007798,The University of Manchester,C,21,Sociology,,,Overall,55.8,,100.0,59.0,33.0,8.0,0.0,0.0,3.51,South East
-4322,10007798,The University of Manchester,C,21,Sociology,,,Outputs,55.8,,100.0,51.9,35.1,12.2,0.8,0.0,3.381,South East
-4323,10007798,The University of Manchester,C,21,Sociology,,,Impact,55.8,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,South East
-4324,10007798,The University of Manchester,C,21,Sociology,,,Environment,55.8,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4325,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Overall,41.85,,100.0,58.0,33.0,9.0,0.0,0.0,3.49,South East
-4326,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Outputs,41.85,,100.0,40.2,45.4,14.4,0.0,0.0,3.258,South East
-4327,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Impact,41.85,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4328,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Environment,41.85,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4329,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Overall,23.4,,100.0,39.0,54.0,7.0,0.0,0.0,3.3200000000000003,South East
-4330,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Outputs,23.4,,100.0,46.0,50.0,4.0,0.0,0.0,3.42,South East
-4331,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Impact,23.4,,100.0,0.0,83.3,16.7,0.0,0.0,2.833,South East
-4332,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Environment,23.4,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4333,10007798,The University of Manchester,C,23,Education,,,Overall,31.7,,100.0,61.0,26.0,11.0,2.0,0.0,3.46,South East
-4334,10007798,The University of Manchester,C,23,Education,,,Outputs,31.7,,100.0,41.8,36.7,17.7,3.8,0.0,3.165,South East
-4335,10007798,The University of Manchester,C,23,Education,,,Impact,31.7,,100.0,83.3,16.7,0.0,0.0,0.0,3.833,South East
-4336,10007798,The University of Manchester,C,23,Education,,,Environment,31.7,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4337,10007798,The University of Manchester,D,25,Area Studies,,,Overall,16.0,,100.0,45.0,30.0,23.0,2.0,0.0,3.18,South East
-4338,10007798,The University of Manchester,D,25,Area Studies,,,Outputs,16.0,,100.0,37.8,40.6,18.9,2.7,0.0,3.135,South East
-4339,10007798,The University of Manchester,D,25,Area Studies,,,Impact,16.0,,100.0,50.0,0.0,50.0,0.0,0.0,3.0,South East
-4340,10007798,The University of Manchester,D,25,Area Studies,,,Environment,16.0,,100.0,65.0,35.0,0.0,0.0,0.0,3.65,South East
-4341,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Overall,54.25,,100.0,49.0,42.0,9.0,0.0,0.0,3.4,South East
-4342,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Outputs,54.25,,100.0,41.2,43.4,14.7,0.7,0.0,3.2510000000000003,South East
-4343,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Impact,54.25,,100.0,70.0,30.0,0.0,0.0,0.0,3.7,South East
-4344,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Environment,54.25,,100.0,45.0,55.0,0.0,0.0,0.0,3.45,South East
-4345,10007798,The University of Manchester,D,27,English Language and Literature,,,Overall,41.35,,100.0,57.0,38.0,5.0,0.0,0.0,3.52,South East
-4346,10007798,The University of Manchester,D,27,English Language and Literature,,,Outputs,41.35,,100.0,40.8,50.5,8.7,0.0,0.0,3.321,South East
-4347,10007798,The University of Manchester,D,27,English Language and Literature,,,Impact,41.35,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4348,10007798,The University of Manchester,D,27,English Language and Literature,,,Environment,41.35,,100.0,90.0,10.0,0.0,0.0,0.0,3.9,South East
-4349,10007798,The University of Manchester,D,28,History,,,Overall,44.0,,100.0,59.0,32.0,9.0,0.0,0.0,3.5,South East
-4350,10007798,The University of Manchester,D,28,History,,,Outputs,44.0,,100.0,50.9,33.6,15.5,0.0,0.0,3.354,South East
-4351,10007798,The University of Manchester,D,28,History,,,Impact,44.0,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4352,10007798,The University of Manchester,D,28,History,,,Environment,44.0,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,South East
-4353,10007798,The University of Manchester,D,29,Classics,,,Overall,18.4,,100.0,58.0,30.0,11.0,1.0,0.0,3.45,South East
-4354,10007798,The University of Manchester,D,29,Classics,,,Outputs,18.4,,100.0,50.0,37.0,10.8,2.2,0.0,3.348,South East
-4355,10007798,The University of Manchester,D,29,Classics,,,Impact,18.4,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4356,10007798,The University of Manchester,D,29,Classics,,,Environment,18.4,,100.0,20.0,52.5,27.5,0.0,0.0,2.925,South East
-4357,10007798,The University of Manchester,D,30,Philosophy,,,Overall,16.05,,100.0,44.0,46.0,10.0,0.0,0.0,3.3400000000000003,South East
-4358,10007798,The University of Manchester,D,30,Philosophy,,,Outputs,16.05,,100.0,22.5,60.0,17.5,0.0,0.0,3.05,South East
-4359,10007798,The University of Manchester,D,30,Philosophy,,,Impact,16.05,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4360,10007798,The University of Manchester,D,30,Philosophy,,,Environment,16.05,,100.0,77.5,22.5,0.0,0.0,0.0,3.775,South East
-4361,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Overall,11.3,,100.0,28.0,46.0,26.0,0.0,0.0,3.02,South East
-4362,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Outputs,11.3,,100.0,25.0,42.9,32.1,0.0,0.0,2.929,South East
-4363,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Impact,11.3,,100.0,50.0,25.0,25.0,0.0,0.0,3.25,South East
-4364,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Environment,11.3,,100.0,0.0,100.0,0.0,0.0,0.0,3.0,South East
-4365,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Overall,14.0,,100.0,64.0,27.0,9.0,0.0,0.0,3.5500000000000003,South East
-4366,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Outputs,14.0,,100.0,45.5,39.3,15.2,0.0,0.0,3.3029999999999995,South East
-4367,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Impact,14.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4368,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Environment,14.0,,100.0,77.5,22.5,0.0,0.0,0.0,3.775,South East
-4369,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Overall,15.0,,100.0,76.0,18.0,4.0,2.0,0.0,3.68,South East
-4370,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Outputs,15.0,,100.0,63.2,26.3,7.9,2.6,0.0,3.501,South East
-4371,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Impact,15.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
-4372,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Environment,15.0,,100.0,90.0,10.0,0.0,0.0,0.0,3.9,South East
-4373,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Overall,15.0,,100.0,58.0,34.0,8.0,0.0,0.0,3.5,South East
-4374,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Outputs,15.0,,100.0,47.4,39.4,13.2,0.0,0.0,3.342,South East
-4375,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Impact,15.0,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
-4376,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Environment,15.0,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
+4253,10007798,The University of Manchester,A,1,Clinical Medicine,,,Overall,221.06,,100.0,52.0,37.0,10.0,0.0,1.0,3.39,North West
+4254,10007798,The University of Manchester,A,1,Clinical Medicine,,,Outputs,221.06,,100.0,37.4,44.5,15.9,1.1,1.1,3.16,North West
+4255,10007798,The University of Manchester,A,1,Clinical Medicine,,,Impact,221.06,,100.0,72.7,27.3,0.0,0.0,0.0,3.727,North West
+4256,10007798,The University of Manchester,A,1,Clinical Medicine,,,Environment,221.06,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4257,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Overall,85.6,,100.0,55.0,31.0,11.0,0.0,3.0,3.35,North West
+4258,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Outputs,85.6,,100.0,42.5,46.8,5.6,0.0,5.1,3.216,North West
+4259,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Impact,85.6,,100.0,64.3,7.1,28.6,0.0,0.0,3.357,North West
+4260,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Environment,85.6,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,North West
+4261,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Overall,125.52,,100.0,63.0,33.0,3.0,1.0,0.0,3.58,North West
+4262,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,125.52,,100.0,47.5,48.4,3.1,0.7,0.3,3.421,North West
+4263,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,125.52,,100.0,77.8,16.6,5.6,0.0,0.0,3.722,North West
+4264,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Environment,125.52,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4265,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Overall,94.72,,100.0,54.0,35.0,8.0,1.0,2.0,3.38,North West
+4266,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Outputs,94.72,,100.0,35.9,45.5,14.0,1.6,3.0,3.0970000000000004,North West
+4267,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Impact,94.72,,100.0,85.7,14.3,0.0,0.0,0.0,3.857,North West
+4268,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Environment,94.72,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4269,10007798,The University of Manchester,A,5,Biological Sciences,,,Overall,143.05,,100.0,61.0,34.0,5.0,0.0,0.0,3.56,North West
+4270,10007798,The University of Manchester,A,5,Biological Sciences,,,Outputs,143.05,,100.0,54.7,37.5,7.0,0.2,0.6,3.455,North West
+4271,10007798,The University of Manchester,A,5,Biological Sciences,,,Impact,143.05,,100.0,61.1,38.9,0.0,0.0,0.0,3.611,North West
+4272,10007798,The University of Manchester,A,5,Biological Sciences,,,Environment,143.05,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,North West
+4273,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Overall,70.78,,100.0,60.0,39.0,1.0,0.0,0.0,3.59,North West
+4274,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Outputs,70.78,,100.0,49.2,49.1,1.7,0.0,0.0,3.475,North West
+4275,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Impact,70.78,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4276,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Environment,70.78,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4277,10007798,The University of Manchester,B,8,Chemistry,,,Overall,76.2,,100.0,63.0,37.0,0.0,0.0,0.0,3.63,North West
+4278,10007798,The University of Manchester,B,8,Chemistry,,,Outputs,76.2,,100.0,58.9,40.5,0.6,0.0,0.0,3.583,North West
+4279,10007798,The University of Manchester,B,8,Chemistry,,,Impact,76.2,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,North West
+4280,10007798,The University of Manchester,B,8,Chemistry,,,Environment,76.2,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4281,10007798,The University of Manchester,B,9,Physics,,,Overall,87.0,,100.0,66.0,32.0,2.0,0.0,0.0,3.64,North West
+4282,10007798,The University of Manchester,B,9,Physics,,,Outputs,87.0,,100.0,49.1,47.2,3.7,0.0,0.0,3.454,North West
+4283,10007798,The University of Manchester,B,9,Physics,,,Impact,87.0,,100.0,85.7,14.3,0.0,0.0,0.0,3.857,North West
+4284,10007798,The University of Manchester,B,9,Physics,,,Environment,87.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4285,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Overall,89.95,,100.0,55.0,44.0,1.0,0.0,0.0,3.5400000000000005,North West
+4286,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Outputs,89.95,,100.0,46.0,53.1,0.9,0.0,0.0,3.451,North West
+4287,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Impact,89.95,,100.0,57.1,42.9,0.0,0.0,0.0,3.571,North West
+4288,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Environment,89.95,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,North West
+4289,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Overall,53.1,,100.0,62.0,37.0,1.0,0.0,0.0,3.61,North West
+4290,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Outputs,53.1,,100.0,48.9,48.8,2.3,0.0,0.0,3.466,North West
+4291,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Impact,53.1,,100.0,70.0,30.0,0.0,0.0,0.0,3.7,North West
+4292,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Environment,53.1,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4293,10007798,The University of Manchester,B,12,Engineering,,,Overall,311.31,,100.0,52.0,44.0,4.0,0.0,0.0,3.4800000000000004,North West
+4294,10007798,The University of Manchester,B,12,Engineering,,,Outputs,311.31,,100.0,37.5,58.0,3.7,0.8,0.0,3.322,North West
+4295,10007798,The University of Manchester,B,12,Engineering,,,Impact,311.31,,100.0,57.7,38.5,3.8,0.0,0.0,3.539,North West
+4296,10007798,The University of Manchester,B,12,Engineering,,,Environment,311.31,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4297,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Overall,27.6,,100.0,48.0,45.0,7.0,0.0,0.0,3.41,North West
+4298,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Outputs,27.6,,100.0,49.3,46.4,4.3,0.0,0.0,3.45,North West
+4299,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Impact,27.6,,100.0,50.0,33.3,16.7,0.0,0.0,3.333,North West
+4300,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Environment,27.6,,100.0,37.5,62.5,0.0,0.0,0.0,3.375,North West
+4301,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Overall,36.3,,100.0,32.0,60.0,7.0,1.0,0.0,3.23,North West
+4302,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Outputs,36.3,,100.0,38.5,51.6,8.8,1.1,0.0,3.2750000000000004,North West
+4303,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Impact,36.3,,100.0,12.5,87.5,0.0,0.0,0.0,3.125,North West
+4304,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Environment,36.3,,100.0,37.5,50.0,12.5,0.0,0.0,3.25,North West
+4305,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Overall,35.95,,100.0,41.0,54.0,5.0,0.0,0.0,3.36,North West
+4306,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Outputs,35.95,,100.0,26.7,65.5,7.8,0.0,0.0,3.1890000000000005,North West
+4307,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Impact,35.95,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,North West
+4308,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Environment,35.95,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,North West
+4309,10007798,The University of Manchester,C,17,Business and Management Studies,,,Overall,163.1,,100.0,58.0,33.0,8.0,1.0,0.0,3.4799999999999995,North West
+4310,10007798,The University of Manchester,C,17,Business and Management Studies,,,Outputs,163.1,,100.0,42.8,44.8,10.9,1.5,0.0,3.289,North West
+4311,10007798,The University of Manchester,C,17,Business and Management Studies,,,Impact,163.1,,100.0,75.0,20.0,5.0,0.0,0.0,3.7,North West
+4312,10007798,The University of Manchester,C,17,Business and Management Studies,,,Environment,163.1,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,North West
+4313,10007798,The University of Manchester,C,18,Law,,,Overall,52.8,,100.0,27.0,55.0,18.0,0.0,0.0,3.0900000000000003,North West
+4314,10007798,The University of Manchester,C,18,Law,,,Outputs,52.8,,100.0,28.0,45.5,25.7,0.8,0.0,3.007000000000001,North West
+4315,10007798,The University of Manchester,C,18,Law,,,Impact,52.8,,100.0,40.0,60.0,0.0,0.0,0.0,3.4,North West
+4316,10007798,The University of Manchester,C,18,Law,,,Environment,52.8,,100.0,0.0,87.5,12.5,0.0,0.0,2.875,North West
+4317,10007798,The University of Manchester,C,19,Politics and International Studies,,,Overall,51.7,,100.0,49.0,46.0,4.0,1.0,0.0,3.43,North West
+4318,10007798,The University of Manchester,C,19,Politics and International Studies,,,Outputs,51.7,,100.0,57.3,33.6,8.2,0.9,0.0,3.473,North West
+4319,10007798,The University of Manchester,C,19,Politics and International Studies,,,Impact,51.7,,100.0,30.0,70.0,0.0,0.0,0.0,3.3,North West
+4320,10007798,The University of Manchester,C,19,Politics and International Studies,,,Environment,51.7,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,North West
+4321,10007798,The University of Manchester,C,21,Sociology,,,Overall,55.8,,100.0,59.0,33.0,8.0,0.0,0.0,3.51,North West
+4322,10007798,The University of Manchester,C,21,Sociology,,,Outputs,55.8,,100.0,51.9,35.1,12.2,0.8,0.0,3.381,North West
+4323,10007798,The University of Manchester,C,21,Sociology,,,Impact,55.8,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,North West
+4324,10007798,The University of Manchester,C,21,Sociology,,,Environment,55.8,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4325,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Overall,41.85,,100.0,58.0,33.0,9.0,0.0,0.0,3.49,North West
+4326,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Outputs,41.85,,100.0,40.2,45.4,14.4,0.0,0.0,3.258,North West
+4327,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Impact,41.85,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4328,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Environment,41.85,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4329,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Overall,23.4,,100.0,39.0,54.0,7.0,0.0,0.0,3.3200000000000003,North West
+4330,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Outputs,23.4,,100.0,46.0,50.0,4.0,0.0,0.0,3.42,North West
+4331,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Impact,23.4,,100.0,0.0,83.3,16.7,0.0,0.0,2.833,North West
+4332,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Environment,23.4,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4333,10007798,The University of Manchester,C,23,Education,,,Overall,31.7,,100.0,61.0,26.0,11.0,2.0,0.0,3.46,North West
+4334,10007798,The University of Manchester,C,23,Education,,,Outputs,31.7,,100.0,41.8,36.7,17.7,3.8,0.0,3.165,North West
+4335,10007798,The University of Manchester,C,23,Education,,,Impact,31.7,,100.0,83.3,16.7,0.0,0.0,0.0,3.833,North West
+4336,10007798,The University of Manchester,C,23,Education,,,Environment,31.7,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4337,10007798,The University of Manchester,D,25,Area Studies,,,Overall,16.0,,100.0,45.0,30.0,23.0,2.0,0.0,3.18,North West
+4338,10007798,The University of Manchester,D,25,Area Studies,,,Outputs,16.0,,100.0,37.8,40.6,18.9,2.7,0.0,3.135,North West
+4339,10007798,The University of Manchester,D,25,Area Studies,,,Impact,16.0,,100.0,50.0,0.0,50.0,0.0,0.0,3.0,North West
+4340,10007798,The University of Manchester,D,25,Area Studies,,,Environment,16.0,,100.0,65.0,35.0,0.0,0.0,0.0,3.65,North West
+4341,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Overall,54.25,,100.0,49.0,42.0,9.0,0.0,0.0,3.4,North West
+4342,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Outputs,54.25,,100.0,41.2,43.4,14.7,0.7,0.0,3.2510000000000003,North West
+4343,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Impact,54.25,,100.0,70.0,30.0,0.0,0.0,0.0,3.7,North West
+4344,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Environment,54.25,,100.0,45.0,55.0,0.0,0.0,0.0,3.45,North West
+4345,10007798,The University of Manchester,D,27,English Language and Literature,,,Overall,41.35,,100.0,57.0,38.0,5.0,0.0,0.0,3.52,North West
+4346,10007798,The University of Manchester,D,27,English Language and Literature,,,Outputs,41.35,,100.0,40.8,50.5,8.7,0.0,0.0,3.321,North West
+4347,10007798,The University of Manchester,D,27,English Language and Literature,,,Impact,41.35,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4348,10007798,The University of Manchester,D,27,English Language and Literature,,,Environment,41.35,,100.0,90.0,10.0,0.0,0.0,0.0,3.9,North West
+4349,10007798,The University of Manchester,D,28,History,,,Overall,44.0,,100.0,59.0,32.0,9.0,0.0,0.0,3.5,North West
+4350,10007798,The University of Manchester,D,28,History,,,Outputs,44.0,,100.0,50.9,33.6,15.5,0.0,0.0,3.354,North West
+4351,10007798,The University of Manchester,D,28,History,,,Impact,44.0,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4352,10007798,The University of Manchester,D,28,History,,,Environment,44.0,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,North West
+4353,10007798,The University of Manchester,D,29,Classics,,,Overall,18.4,,100.0,58.0,30.0,11.0,1.0,0.0,3.45,North West
+4354,10007798,The University of Manchester,D,29,Classics,,,Outputs,18.4,,100.0,50.0,37.0,10.8,2.2,0.0,3.348,North West
+4355,10007798,The University of Manchester,D,29,Classics,,,Impact,18.4,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4356,10007798,The University of Manchester,D,29,Classics,,,Environment,18.4,,100.0,20.0,52.5,27.5,0.0,0.0,2.925,North West
+4357,10007798,The University of Manchester,D,30,Philosophy,,,Overall,16.05,,100.0,44.0,46.0,10.0,0.0,0.0,3.3400000000000003,North West
+4358,10007798,The University of Manchester,D,30,Philosophy,,,Outputs,16.05,,100.0,22.5,60.0,17.5,0.0,0.0,3.05,North West
+4359,10007798,The University of Manchester,D,30,Philosophy,,,Impact,16.05,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4360,10007798,The University of Manchester,D,30,Philosophy,,,Environment,16.05,,100.0,77.5,22.5,0.0,0.0,0.0,3.775,North West
+4361,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Overall,11.3,,100.0,28.0,46.0,26.0,0.0,0.0,3.02,North West
+4362,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Outputs,11.3,,100.0,25.0,42.9,32.1,0.0,0.0,2.929,North West
+4363,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Impact,11.3,,100.0,50.0,25.0,25.0,0.0,0.0,3.25,North West
+4364,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Environment,11.3,,100.0,0.0,100.0,0.0,0.0,0.0,3.0,North West
+4365,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Overall,14.0,,100.0,64.0,27.0,9.0,0.0,0.0,3.5500000000000003,North West
+4366,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Outputs,14.0,,100.0,45.5,39.3,15.2,0.0,0.0,3.3029999999999995,North West
+4367,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Impact,14.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4368,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Environment,14.0,,100.0,77.5,22.5,0.0,0.0,0.0,3.775,North West
+4369,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Overall,15.0,,100.0,76.0,18.0,4.0,2.0,0.0,3.68,North West
+4370,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Outputs,15.0,,100.0,63.2,26.3,7.9,2.6,0.0,3.501,North West
+4371,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Impact,15.0,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,North West
+4372,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Environment,15.0,,100.0,90.0,10.0,0.0,0.0,0.0,3.9,North West
+4373,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Overall,15.0,,100.0,58.0,34.0,8.0,0.0,0.0,3.5,North West
+4374,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Outputs,15.0,,100.0,47.4,39.4,13.2,0.0,0.0,3.342,North West
+4375,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Impact,15.0,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
+4376,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Environment,15.0,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,North West
 4377,10004180,Manchester Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Overall,91.97,,45.0,21.0,60.0,19.0,0.0,0.0,3.02,North West
 4378,10004180,Manchester Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,91.97,,45.0,28.3,52.1,19.2,0.4,0.0,3.083,North West
 4379,10004180,Manchester Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,91.97,,45.0,14.3,71.4,14.3,0.0,0.0,3.0000000000000004,North West
@@ -4409,7 +4409,7 @@
 4407,10004180,Manchester Metropolitan University,C,23,Education,,,Impact,46.3,,35.0,50.0,50.0,0.0,0.0,0.0,3.5,North West
 4408,10004180,Manchester Metropolitan University,C,23,Education,,,Environment,46.3,,35.0,12.5,75.0,12.5,0.0,0.0,3.0,North West
 4409,10004180,Manchester Metropolitan University,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Overall,52.8,,70.0,37.0,57.0,6.0,0.0,0.0,3.31,North West
-4410,10004180,Manchester Metropolitan University,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Outputs,52.8,,70.0,39.4,55.3,5.3,0.0,0.0,3.3409999999999997,North West
+4410,10004180,Manchester Metropolitan University,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Outputs,52.8,,70.0,39.4,55.3,5.3,0.0,0.0,3.341,North West
 4411,10004180,Manchester Metropolitan University,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Impact,52.8,,70.0,30.0,60.0,10.0,0.0,0.0,3.2,North West
 4412,10004180,Manchester Metropolitan University,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Environment,52.8,,70.0,37.5,62.5,0.0,0.0,0.0,3.375,North West
 4413,10004180,Manchester Metropolitan University,D,27,English Language and Literature,,,Overall,54.7,,80.0,52.0,39.0,9.0,0.0,0.0,3.43,North West
@@ -4824,7 +4824,7 @@
 4822,10007154,"University of Nottingham, The",C,16,Economics and Econometrics,,,Outputs,34.8,,100.0,44.8,54.1,1.1,0.0,0.0,3.437,East Midlands
 4823,10007154,"University of Nottingham, The",C,16,Economics and Econometrics,,,Impact,34.8,,100.0,66.7,33.3,0.0,0.0,0.0,3.667,East Midlands
 4824,10007154,"University of Nottingham, The",C,16,Economics and Econometrics,,,Environment,34.8,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,East Midlands
-4825,10007154,"University of Nottingham, The",C,17,Business and Management Studies,,,Overall,134.7,,100.0,35.0,47.0,17.0,1.0,0.0,3.1599999999999997,East Midlands
+4825,10007154,"University of Nottingham, The",C,17,Business and Management Studies,,,Overall,134.7,,100.0,35.0,47.0,17.0,1.0,0.0,3.16,East Midlands
 4826,10007154,"University of Nottingham, The",C,17,Business and Management Studies,,,Outputs,134.7,,100.0,32.6,50.2,16.3,0.9,0.0,3.145,East Midlands
 4827,10007154,"University of Nottingham, The",C,17,Business and Management Studies,,,Impact,134.7,,100.0,38.9,38.9,22.2,0.0,0.0,3.167,East Midlands
 4828,10007154,"University of Nottingham, The",C,17,Business and Management Studies,,,Environment,134.7,,100.0,37.5,50.0,12.5,0.0,0.0,3.25,East Midlands
@@ -5184,7 +5184,7 @@
 5182,10007801,University of Plymouth,B,11,Computer Science and Informatics,,,Outputs,14.62,,100.0,35.1,54.1,10.8,0.0,0.0,3.2430000000000003,South West
 5183,10007801,University of Plymouth,B,11,Computer Science and Informatics,,,Impact,14.62,,100.0,0.0,0.0,50.0,50.0,0.0,1.5,South West
 5184,10007801,University of Plymouth,B,11,Computer Science and Informatics,,,Environment,14.62,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South West
-5185,10007801,University of Plymouth,B,12,Engineering,,,Overall,34.3,,100.0,15.0,70.0,14.0,1.0,0.0,2.9899999999999998,South West
+5185,10007801,University of Plymouth,B,12,Engineering,,,Overall,34.3,,100.0,15.0,70.0,14.0,1.0,0.0,2.99,South West
 5186,10007801,University of Plymouth,B,12,Engineering,,,Outputs,34.3,,100.0,11.6,76.8,9.3,2.3,0.0,2.9770000000000003,South West
 5187,10007801,University of Plymouth,B,12,Engineering,,,Impact,34.3,,100.0,33.3,50.0,16.7,0.0,0.0,3.166,South West
 5188,10007801,University of Plymouth,B,12,Engineering,,,Environment,34.3,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South West
@@ -5268,7 +5268,7 @@
 5266,10007155,University of Portsmouth,C,18,Law,,,Outputs,19.6,,75.0,24.5,22.4,44.9,8.2,0.0,2.632,South East
 5267,10007155,University of Portsmouth,C,18,Law,,,Impact,19.6,,75.0,25.0,25.0,25.0,25.0,0.0,2.5,South East
 5268,10007155,University of Portsmouth,C,18,Law,,,Environment,19.6,,75.0,0.0,25.0,75.0,0.0,0.0,2.25,South East
-5269,10007155,University of Portsmouth,C,20,Social Work and Social Policy,,,Overall,37.3,,55.0,18.0,60.0,21.0,1.0,0.0,2.9499999999999997,South East
+5269,10007155,University of Portsmouth,C,20,Social Work and Social Policy,,,Overall,37.3,,55.0,18.0,60.0,21.0,1.0,0.0,2.95,South East
 5270,10007155,University of Portsmouth,C,20,Social Work and Social Policy,,,Outputs,37.3,,55.0,16.1,57.0,24.7,2.2,0.0,2.87,South East
 5271,10007155,University of Portsmouth,C,20,Social Work and Social Policy,,,Impact,37.3,,55.0,25.0,50.0,25.0,0.0,0.0,3.0,South East
 5272,10007155,University of Portsmouth,C,20,Social Work and Social Policy,,,Environment,37.3,,55.0,12.5,87.5,0.0,0.0,0.0,3.125,South East
@@ -5276,7 +5276,7 @@
 5274,10007155,University of Portsmouth,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Outputs,20.5,,60.0,29.8,61.7,8.5,0.0,0.0,3.213,South East
 5275,10007155,University of Portsmouth,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Impact,20.5,,60.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
 5276,10007155,University of Portsmouth,C,24,"Sport and Exercise Sciences, Leisure and Tourism",,,Environment,20.5,,60.0,12.5,87.5,0.0,0.0,0.0,3.125,South East
-5277,10007155,University of Portsmouth,D,25,Area Studies,,,Overall,73.6,,75.0,41.0,43.0,15.0,1.0,0.0,3.2399999999999998,South East
+5277,10007155,University of Portsmouth,D,25,Area Studies,,,Overall,73.6,,75.0,41.0,43.0,15.0,1.0,0.0,3.24,South East
 5278,10007155,University of Portsmouth,D,25,Area Studies,,,Outputs,73.6,,75.0,33.7,40.2,24.5,1.6,0.0,3.0600000000000005,South East
 5279,10007155,University of Portsmouth,D,25,Area Studies,,,Impact,73.6,,75.0,50.0,50.0,0.0,0.0,0.0,3.5,South East
 5280,10007155,University of Portsmouth,D,25,Area Studies,,,Environment,73.6,,75.0,52.5,47.5,0.0,0.0,0.0,3.525,South East
@@ -5692,7 +5692,7 @@
 5690,10005553,Royal Holloway and Bedford New College,A,4,"Psychology, Psychiatry and Neuroscience",,,Outputs,31.3,,100.0,47.9,43.9,8.2,0.0,0.0,3.397,South East
 5691,10005553,Royal Holloway and Bedford New College,A,4,"Psychology, Psychiatry and Neuroscience",,,Impact,31.3,,100.0,100.0,0.0,0.0,0.0,0.0,4.0,South East
 5692,10005553,Royal Holloway and Bedford New College,A,4,"Psychology, Psychiatry and Neuroscience",,,Environment,31.3,,100.0,87.5,12.5,0.0,0.0,0.0,3.875,South East
-5693,10005553,Royal Holloway and Bedford New College,A,5,Biological Sciences,,,Overall,28.35,,100.0,29.0,58.0,13.0,0.0,0.0,3.1599999999999997,South East
+5693,10005553,Royal Holloway and Bedford New College,A,5,Biological Sciences,,,Overall,28.35,,100.0,29.0,58.0,13.0,0.0,0.0,3.16,South East
 5694,10005553,Royal Holloway and Bedford New College,A,5,Biological Sciences,,,Outputs,28.35,,100.0,33.8,50.7,15.5,0.0,0.0,3.183,South East
 5695,10005553,Royal Holloway and Bedford New College,A,5,Biological Sciences,,,Impact,28.35,,100.0,33.3,66.7,0.0,0.0,0.0,3.333,South East
 5696,10005553,Royal Holloway and Bedford New College,A,5,Biological Sciences,,,Environment,28.35,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South East
@@ -5712,7 +5712,7 @@
 5710,10005553,Royal Holloway and Bedford New College,B,11,Computer Science and Informatics,,,Outputs,38.1,,100.0,50.0,46.4,3.6,0.0,0.0,3.464,South East
 5711,10005553,Royal Holloway and Bedford New College,B,11,Computer Science and Informatics,,,Impact,38.1,,100.0,62.5,25.0,12.5,0.0,0.0,3.5,South East
 5712,10005553,Royal Holloway and Bedford New College,B,11,Computer Science and Informatics,,,Environment,38.1,,100.0,62.5,37.5,0.0,0.0,0.0,3.625,South East
-5713,10005553,Royal Holloway and Bedford New College,B,12,Engineering,,,Overall,17.3,,100.0,18.0,60.0,21.0,1.0,0.0,2.9499999999999997,South East
+5713,10005553,Royal Holloway and Bedford New College,B,12,Engineering,,,Overall,17.3,,100.0,18.0,60.0,21.0,1.0,0.0,2.95,South East
 5714,10005553,Royal Holloway and Bedford New College,B,12,Engineering,,,Outputs,17.3,,100.0,30.2,62.8,4.7,2.3,0.0,3.209,South East
 5715,10005553,Royal Holloway and Bedford New College,B,12,Engineering,,,Impact,17.3,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South East
 5716,10005553,Royal Holloway and Bedford New College,B,12,Engineering,,,Environment,17.3,,100.0,0.0,25.0,75.0,0.0,0.0,2.25,South East
@@ -5986,7 +5986,7 @@
 5984,10005790,Sheffield Hallam University,C,13,"Architecture, Built Environment and Planning",,,Environment,38.7,,35.0,25.0,75.0,0.0,0.0,0.0,3.25,Yorkshire and The Humber
 5985,10005790,Sheffield Hallam University,C,17,Business and Management Studies,,,Overall,24.9,,15.0,14.0,38.0,38.0,9.0,1.0,2.55,Yorkshire and The Humber
 5986,10005790,Sheffield Hallam University,C,17,Business and Management Studies,,,Outputs,24.9,,15.0,9.7,50.0,30.6,8.1,1.6,2.581,Yorkshire and The Humber
-5987,10005790,Sheffield Hallam University,C,17,Business and Management Studies,,,Impact,24.9,,15.0,33.3,33.4,16.6,16.7,0.0,2.8329999999999997,Yorkshire and The Humber
+5987,10005790,Sheffield Hallam University,C,17,Business and Management Studies,,,Impact,24.9,,15.0,33.3,33.4,16.6,16.7,0.0,2.833,Yorkshire and The Humber
 5988,10005790,Sheffield Hallam University,C,17,Business and Management Studies,,,Environment,24.9,,15.0,0.0,0.0,100.0,0.0,0.0,2.0,Yorkshire and The Humber
 5989,10005790,Sheffield Hallam University,C,20,Social Work and Social Policy,,,Overall,20.6,,20.0,15.0,45.0,40.0,0.0,0.0,2.75,Yorkshire and The Humber
 5990,10005790,Sheffield Hallam University,C,20,Social Work and Social Policy,,,Outputs,20.6,,20.0,17.4,58.7,23.9,0.0,0.0,2.935,Yorkshire and The Humber
@@ -6313,7 +6313,7 @@
 6311,10006299,Staffordshire University,C,17,Business and Management Studies,,,Impact,9.1,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,West Midlands
 6312,10006299,Staffordshire University,C,17,Business and Management Studies,,,Environment,9.1,,100.0,0.0,25.0,75.0,0.0,0.0,2.25,West Midlands
 6313,10006299,Staffordshire University,C,20,Social Work and Social Policy,,,Overall,18.0,,100.0,5.0,53.0,34.0,8.0,0.0,2.5500000000000003,West Midlands
-6314,10006299,Staffordshire University,C,20,Social Work and Social Policy,,,Outputs,18.0,,100.0,7.7,56.4,33.3,2.6,0.0,2.6919999999999997,West Midlands
+6314,10006299,Staffordshire University,C,20,Social Work and Social Policy,,,Outputs,18.0,,100.0,7.7,56.4,33.3,2.6,0.0,2.692,West Midlands
 6315,10006299,Staffordshire University,C,20,Social Work and Social Policy,,,Impact,18.0,,100.0,0.0,50.0,25.0,25.0,0.0,2.25,West Midlands
 6316,10006299,Staffordshire University,C,20,Social Work and Social Policy,,,Environment,18.0,,100.0,0.0,50.0,50.0,0.0,0.0,2.5,West Midlands
 6317,10006299,Staffordshire University,D,32,"Art and Design: History, Practice and Theory",,,Overall,7.1,,100.0,41.0,50.0,9.0,0.0,0.0,3.32,West Midlands
@@ -6556,7 +6556,7 @@
 6554,10007806,University of Sussex,A,5,Biological Sciences,,,Outputs,63.8,,100.0,43.1,47.5,8.2,0.6,0.6,3.319,South East
 6555,10007806,University of Sussex,A,5,Biological Sciences,,,Impact,63.8,,100.0,30.0,70.0,0.0,0.0,0.0,3.3,South East
 6556,10007806,University of Sussex,A,5,Biological Sciences,,,Environment,63.8,,100.0,12.5,87.5,0.0,0.0,0.0,3.125,South East
-6557,10007806,University of Sussex,B,8,Chemistry,,,Overall,18.3,,100.0,29.0,58.0,13.0,0.0,0.0,3.1599999999999997,South East
+6557,10007806,University of Sussex,B,8,Chemistry,,,Overall,18.3,,100.0,29.0,58.0,13.0,0.0,0.0,3.16,South East
 6558,10007806,University of Sussex,B,8,Chemistry,,,Outputs,18.3,,100.0,17.4,67.4,15.2,0.0,0.0,3.022,South East
 6559,10007806,University of Sussex,B,8,Chemistry,,,Impact,18.3,,100.0,75.0,25.0,0.0,0.0,0.0,3.75,South East
 6560,10007806,University of Sussex,B,8,Chemistry,,,Environment,18.3,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South East
@@ -7130,7 +7130,7 @@
 7128,10007164,"University of the West of England, Bristol",D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Environment,30.0,,55.0,35.0,65.0,0.0,0.0,0.0,3.35,South West
 7129,10007800,University of the West of Scotland,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Overall,32.5,,20.0,18.0,51.0,24.0,5.0,2.0,2.78,London
 7130,10007800,University of the West of Scotland,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Outputs,32.5,,20.0,16.7,54.1,25.0,1.4,2.8,2.805,London
-7131,10007800,University of the West of Scotland,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,32.5,,20.0,33.3,33.4,16.6,16.7,0.0,2.8329999999999997,London
+7131,10007800,University of the West of Scotland,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Impact,32.5,,20.0,33.3,33.4,16.6,16.7,0.0,2.833,London
 7132,10007800,University of the West of Scotland,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Environment,32.5,,20.0,0.0,62.5,37.5,0.0,0.0,2.625,London
 7133,10007800,University of the West of Scotland,B,7,Earth Systems and Environmental Sciences,,,Overall,12.4,,75.0,16.0,51.0,31.0,2.0,0.0,2.81,London
 7134,10007800,University of the West of Scotland,B,7,Earth Systems and Environmental Sciences,,,Outputs,12.4,,75.0,16.1,61.3,19.4,3.2,0.0,2.903,London
@@ -7262,7 +7262,7 @@
 7260,10003614,University of Winchester,D,31,Theology and Religious Studies,,,Impact,8.4,,100.0,50.0,50.0,0.0,0.0,0.0,3.5,South East
 7261,10003614,University of Winchester,D,31,Theology and Religious Studies,,,Environment,8.4,,100.0,0.0,27.5,62.5,10.0,0.0,2.1750000000000003,South East
 7262,10003614,University of Winchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Overall,11.6,,100.0,21.0,46.0,31.0,2.0,0.0,2.8600000000000003,South East
-7263,10003614,University of Winchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Outputs,11.6,,100.0,34.5,31.0,31.1,3.4,0.0,2.9659999999999997,South East
+7263,10003614,University of Winchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Outputs,11.6,,100.0,34.5,31.0,31.1,3.4,0.0,2.966,South East
 7264,10003614,University of Winchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Impact,11.6,,100.0,0.0,75.0,25.0,0.0,0.0,2.75,South East
 7265,10003614,University of Winchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",,,Environment,11.6,,100.0,0.0,62.5,37.5,0.0,0.0,2.625,South East
 7266,10003614,University of Winchester,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Overall,14.15,,100.0,17.0,49.0,30.0,4.0,0.0,2.79,South East

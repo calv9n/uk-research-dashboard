@@ -1,4 +1,4 @@
-,UKPRN,Institution name,Main panel,UOA number,UOA name,Multiple submission name,Joint submission,Income source,2013-14,2014-15,2015-16,2016-17,2017-18,2018-19,2019-20,2013-2020 (total),2013-2020 (avg),Region
+Unnamed: 0,UKPRN,Institution name,Main panel,UOA number,UOA name,Multiple submission name,Joint submission,Income source,2013-14,2014-15,2015-16,2016-17,2017-18,2018-19,2019-20,2013-2020 (total),2013-2020 (avg),Region
 0,10007783,University of Aberdeen,A,1,Clinical Medicine,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,Scotland
 1,10007783,University of Aberdeen,A,1,Clinical Medicine,,,Health research<br>funding bodies,0,0,0,0,0,0,0,0,0.0,Scotland
 2,10007783,University of Aberdeen,A,1,Clinical Medicine,,,Total income,0,0,0,0,0,0,0,0,0.0,Scotland
@@ -2308,73 +2308,73 @@
 2306,10004113,Loughborough University,D,32,"Art and Design: History, Practice and Theory",,,Total income,0,0,0,0,0,0,0,0,0.0,East Midlands
 2307,10004113,Loughborough University,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,East Midlands
 2308,10004113,Loughborough University,D,34,"Communication, Cultural and Media Studies, Library and Information Management",,,Total income,0,0,0,0,0,0,0,0,0.0,East Midlands
-2309,10007798,The University of Manchester,A,1,Clinical Medicine,,,Research<br>councils,0,90330,168420,64757,408667,216032,35168,983374,140482.0,South East
-2310,10007798,The University of Manchester,A,1,Clinical Medicine,,,Health research<br>funding bodies,4096251,4143911,4110911,4426251,6141431,7415494,5040266,35374515,5053502.14,South East
-2311,10007798,The University of Manchester,A,1,Clinical Medicine,,,Total income,4096251,4234241,4279331,4491008,6550098,7631526,5075434,36357889,5193984.14,South East
-2312,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2313,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Health research<br>funding bodies,1196054,1784790,1730718,1783147,2147231,2970373,1971074,13583387,1940483.86,South East
-2314,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Total income,1196054,1784790,1730718,1783147,2147231,2970373,1971074,13583387,1940483.86,South East
-2315,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Research<br>councils,417040,190877,266160,496324,405516,423440,270407,2469764,352823.43,South East
-2316,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Health research<br>funding bodies,0,0,0,110853,416464,585120,1223986,2336423,333774.71,South East
-2317,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Total income,417040,190877,266160,607177,821980,1008560,1494393,4806187,686598.14,South East
-2318,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2319,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Health research<br>funding bodies,0,0,0,22601,84909,119294,81609,308413,44059.0,South East
-2320,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Total income,0,0,0,22601,84909,119294,81609,308413,44059.0,South East
-2321,10007798,The University of Manchester,A,5,Biological Sciences,,,Research<br>councils,113161,119698,330825,304541,422497,391872,361728,2044322,292046.0,South East
-2322,10007798,The University of Manchester,A,5,Biological Sciences,,,Health research<br>funding bodies,0,0,0,3091,11611,16313,11160,42175,6025.0,South East
-2323,10007798,The University of Manchester,A,5,Biological Sciences,,,Total income,113161,119698,330825,307632,434108,408185,372888,2086497,298071.0,South East
-2324,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Research<br>councils,584250,946293,1134344,573247,1134180,753600,418201,5544115,792016.43,South East
-2325,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Total income,584250,946293,1134344,573247,1134180,753600,418201,5544115,792016.43,South East
-2326,10007798,The University of Manchester,B,8,Chemistry,,,Research<br>councils,1510835,1854053,1788496,1617676,1865127,2030472,1735193,12401852,1771693.14,South East
-2327,10007798,The University of Manchester,B,8,Chemistry,,,Total income,1510835,1854053,1788496,1617676,1865127,2030472,1735193,12401852,1771693.14,South East
-2328,10007798,The University of Manchester,B,9,Physics,,,Research<br>councils,10768081,10999831,13418072,13284065,14068674,11313755,16513699,90366177,12909453.86,South East
-2329,10007798,The University of Manchester,B,9,Physics,,,Total income,10768081,10999831,13418072,13284065,14068674,11313755,16513699,90366177,12909453.86,South East
-2330,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Research<br>councils,0,0,0,0,0,0,87020,87020,12431.43,South East
-2331,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Total income,0,0,0,0,0,0,87020,87020,12431.43,South East
-2332,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Research<br>councils,0,0,0,127704,114480,0,304570,546754,78107.71,South East
-2333,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Total income,0,0,0,127704,114480,0,304570,546754,78107.71,South East
-2334,10007798,The University of Manchester,B,12,Engineering,,,Research<br>councils,1720834,1854693,2237418,1767942,2354674,2749564,1229929,13915054,1987864.86,South East
-2335,10007798,The University of Manchester,B,12,Engineering,,,Total income,1720834,1854693,2237418,1767942,2354674,2749564,1229929,13915054,1987864.86,South East
-2336,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2337,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2338,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2339,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2340,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2341,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2342,10007798,The University of Manchester,C,17,Business and Management Studies,,,Research<br>councils,1133144,2054988,2093725,2093725,2053037,2036828,338714,11804161,1686308.71,South East
-2343,10007798,The University of Manchester,C,17,Business and Management Studies,,,Total income,1133144,2054988,2093725,2093725,2053037,2036828,338714,11804161,1686308.71,South East
-2344,10007798,The University of Manchester,C,18,Law,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2345,10007798,The University of Manchester,C,18,Law,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2346,10007798,The University of Manchester,C,19,Politics and International Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2347,10007798,The University of Manchester,C,19,Politics and International Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2348,10007798,The University of Manchester,C,21,Sociology,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2349,10007798,The University of Manchester,C,21,Sociology,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2350,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2351,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2352,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2353,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2354,10007798,The University of Manchester,C,23,Education,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2355,10007798,The University of Manchester,C,23,Education,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2356,10007798,The University of Manchester,D,25,Area Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2357,10007798,The University of Manchester,D,25,Area Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2358,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2359,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2360,10007798,The University of Manchester,D,27,English Language and Literature,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2361,10007798,The University of Manchester,D,27,English Language and Literature,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2362,10007798,The University of Manchester,D,28,History,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2363,10007798,The University of Manchester,D,28,History,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2364,10007798,The University of Manchester,D,29,Classics,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2365,10007798,The University of Manchester,D,29,Classics,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2366,10007798,The University of Manchester,D,30,Philosophy,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2367,10007798,The University of Manchester,D,30,Philosophy,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2368,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2369,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2370,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2371,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2372,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2373,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Total income,0,0,0,0,0,0,0,0,0.0,South East
-2374,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,South East
-2375,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Total income,0,0,0,0,0,0,0,0,0.0,South East
+2309,10007798,The University of Manchester,A,1,Clinical Medicine,,,Research<br>councils,0,90330,168420,64757,408667,216032,35168,983374,140482.0,North West
+2310,10007798,The University of Manchester,A,1,Clinical Medicine,,,Health research<br>funding bodies,4096251,4143911,4110911,4426251,6141431,7415494,5040266,35374515,5053502.14,North West
+2311,10007798,The University of Manchester,A,1,Clinical Medicine,,,Total income,4096251,4234241,4279331,4491008,6550098,7631526,5075434,36357889,5193984.14,North West
+2312,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2313,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Health research<br>funding bodies,1196054,1784790,1730718,1783147,2147231,2970373,1971074,13583387,1940483.86,North West
+2314,10007798,The University of Manchester,A,2,"Public Health, Health Services and Primary Care",,,Total income,1196054,1784790,1730718,1783147,2147231,2970373,1971074,13583387,1940483.86,North West
+2315,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Research<br>councils,417040,190877,266160,496324,405516,423440,270407,2469764,352823.43,North West
+2316,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Health research<br>funding bodies,0,0,0,110853,416464,585120,1223986,2336423,333774.71,North West
+2317,10007798,The University of Manchester,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Total income,417040,190877,266160,607177,821980,1008560,1494393,4806187,686598.14,North West
+2318,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2319,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Health research<br>funding bodies,0,0,0,22601,84909,119294,81609,308413,44059.0,North West
+2320,10007798,The University of Manchester,A,4,"Psychology, Psychiatry and Neuroscience",,,Total income,0,0,0,22601,84909,119294,81609,308413,44059.0,North West
+2321,10007798,The University of Manchester,A,5,Biological Sciences,,,Research<br>councils,113161,119698,330825,304541,422497,391872,361728,2044322,292046.0,North West
+2322,10007798,The University of Manchester,A,5,Biological Sciences,,,Health research<br>funding bodies,0,0,0,3091,11611,16313,11160,42175,6025.0,North West
+2323,10007798,The University of Manchester,A,5,Biological Sciences,,,Total income,113161,119698,330825,307632,434108,408185,372888,2086497,298071.0,North West
+2324,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Research<br>councils,584250,946293,1134344,573247,1134180,753600,418201,5544115,792016.43,North West
+2325,10007798,The University of Manchester,B,7,Earth Systems and Environmental Sciences,,,Total income,584250,946293,1134344,573247,1134180,753600,418201,5544115,792016.43,North West
+2326,10007798,The University of Manchester,B,8,Chemistry,,,Research<br>councils,1510835,1854053,1788496,1617676,1865127,2030472,1735193,12401852,1771693.14,North West
+2327,10007798,The University of Manchester,B,8,Chemistry,,,Total income,1510835,1854053,1788496,1617676,1865127,2030472,1735193,12401852,1771693.14,North West
+2328,10007798,The University of Manchester,B,9,Physics,,,Research<br>councils,10768081,10999831,13418072,13284065,14068674,11313755,16513699,90366177,12909453.86,North West
+2329,10007798,The University of Manchester,B,9,Physics,,,Total income,10768081,10999831,13418072,13284065,14068674,11313755,16513699,90366177,12909453.86,North West
+2330,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Research<br>councils,0,0,0,0,0,0,87020,87020,12431.43,North West
+2331,10007798,The University of Manchester,B,10,Mathematical Sciences,,,Total income,0,0,0,0,0,0,87020,87020,12431.43,North West
+2332,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Research<br>councils,0,0,0,127704,114480,0,304570,546754,78107.71,North West
+2333,10007798,The University of Manchester,B,11,Computer Science and Informatics,,,Total income,0,0,0,127704,114480,0,304570,546754,78107.71,North West
+2334,10007798,The University of Manchester,B,12,Engineering,,,Research<br>councils,1720834,1854693,2237418,1767942,2354674,2749564,1229929,13915054,1987864.86,North West
+2335,10007798,The University of Manchester,B,12,Engineering,,,Total income,1720834,1854693,2237418,1767942,2354674,2749564,1229929,13915054,1987864.86,North West
+2336,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2337,10007798,The University of Manchester,C,13,"Architecture, Built Environment and Planning",,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2338,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2339,10007798,The University of Manchester,C,14,Geography and Environmental Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2340,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2341,10007798,The University of Manchester,C,16,Economics and Econometrics,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2342,10007798,The University of Manchester,C,17,Business and Management Studies,,,Research<br>councils,1133144,2054988,2093725,2093725,2053037,2036828,338714,11804161,1686308.71,North West
+2343,10007798,The University of Manchester,C,17,Business and Management Studies,,,Total income,1133144,2054988,2093725,2093725,2053037,2036828,338714,11804161,1686308.71,North West
+2344,10007798,The University of Manchester,C,18,Law,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2345,10007798,The University of Manchester,C,18,Law,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2346,10007798,The University of Manchester,C,19,Politics and International Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2347,10007798,The University of Manchester,C,19,Politics and International Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2348,10007798,The University of Manchester,C,21,Sociology,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2349,10007798,The University of Manchester,C,21,Sociology,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2350,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2351,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Development Studies,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2352,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2353,10007798,The University of Manchester,C,22,Anthropology and Development Studies,Social Anthropology,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2354,10007798,The University of Manchester,C,23,Education,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2355,10007798,The University of Manchester,C,23,Education,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2356,10007798,The University of Manchester,D,25,Area Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2357,10007798,The University of Manchester,D,25,Area Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2358,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2359,10007798,The University of Manchester,D,26,Modern Languages and Linguistics,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2360,10007798,The University of Manchester,D,27,English Language and Literature,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2361,10007798,The University of Manchester,D,27,English Language and Literature,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2362,10007798,The University of Manchester,D,28,History,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2363,10007798,The University of Manchester,D,28,History,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2364,10007798,The University of Manchester,D,29,Classics,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2365,10007798,The University of Manchester,D,29,Classics,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2366,10007798,The University of Manchester,D,30,Philosophy,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2367,10007798,The University of Manchester,D,30,Philosophy,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2368,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2369,10007798,The University of Manchester,D,31,Theology and Religious Studies,,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2370,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2371,10007798,The University of Manchester,D,32,"Art and Design: History, Practice and Theory",,,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2372,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2373,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies","Drama, Dance, Performing Arts, Film and Screen Studies",,Total income,0,0,0,0,0,0,0,0,0.0,North West
+2374,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Research<br>councils,0,0,0,0,0,0,0,0,0.0,North West
+2375,10007798,The University of Manchester,D,33,"Music, Drama, Dance, Performing Arts, Film and Screen Studies",Music,,Total income,0,0,0,0,0,0,0,0,0.0,North West
 2376,10004180,Manchester Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Research<br>councils,0,0,0,0,42232,0,0,42232,6033.14,North West
 2377,10004180,Manchester Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Health research<br>funding bodies,0,0,0,0,0,0,0,0,0.0,North West
 2378,10004180,Manchester Metropolitan University,A,3,"Allied Health Professions, Dentistry, Nursing and Pharmacy",,,Total income,0,0,0,0,42232,0,0,42232,6033.14,North West
