@@ -22,164 +22,217 @@ layout = dbc.Container(
     [
         html.Div(
             [
-                html.H1(
-                    'Institution Overview',
-                    className='subtitle-medium',
-                    id='page-title'
-                ),
-                html.H1(
-                    '',
-                    className='title',
-                    id='uni-name-heading',
-
-                ),
-                html.H1(
-                    '',
-                    className='subtitle-small-color',
-                    id='uoa-name-subheading',
-                ),
-                html.Br(),
-                dbc.Row(            # row for dropdown
+                dbc.Col(            # master col
                     [
-                        dbc.Col(
+                        dbc.Row(            # row 1
                             [
-                                html.H3(
-                                    "Institution",
-                                    className='subtitle-small',
-                                ),
-                                dcc.Dropdown(               # dropdown for uni filter
-                                    id='uni-dropdown',
-                                    options=[
-                                        {"label": col, "value": col}
-                                        for col in sorted(
-                                            results_df["Institution name"].unique()
-                                        )
+                                dbc.Col(        # col left
+                                    [
+                                        html.Div([      # div for dropdowns           
+                                            dbc.Row([
+                                                dbc.Col([
+                                                    html.H3(
+                                                        "Institution",
+                                                        className='subtitle-small',
+                                                    ),
+                                                    dcc.Dropdown(               # dropdown for uni filter
+                                                        id='uni-dropdown',
+                                                        options=[
+                                                            {"label": col, "value": col}
+                                                            for col in sorted(
+                                                                results_df["Institution name"].unique()
+                                                            )
+                                                        ],
+                                                        value="All",
+                                                        clearable=True,
+                                                        multi=False,            # can extend to be multi-select
+                                                        placeholder="Select Institution",
+                                                        className="custom-dropdown",
+                                                    )],
+                                                    width=6
+                                                ),
+                                                dbc.Col([
+                                                    html.H3(
+                                                        "Unit of Assessment",
+                                                        className='subtitle-small',
+                                                    ),
+                                                    dcc.Dropdown(               # dropdown for uoa filter
+                                                        id='uoa-dropdown',
+                                                        options=[],
+                                                        value="All",
+                                                        clearable=True,
+                                                        multi=False,            # can extend to be multi-select
+                                                        placeholder="Select Unit of Assessment",
+                                                        className="custom-dropdown",
+                                                    ),
+                                                ],
+                                                width=6
+                                                )
+                                            ])
+                                        ],className="filter-card"),
+                                        html.Div([       # div for gpa KPI
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(        # overall score col
+                                                        components.create_card("Overall", "overall-card", "fa-ranking-star"),
+                                                        width=3,
+                                                    ),
+                                                    dbc.Col(        # outputs score col
+                                                        components.create_card("Outputs", "outputs-card", "fa-file"),
+                                                        width=3,
+                                                    ), 
+                                                    dbc.Col(        # impact score col
+                                                        components.create_card("Impact", "impact-card", "fa-users"),
+                                                        width=3,
+                                                    ),
+                                                    dbc.Col(        # env score col
+                                                        components.create_card("Environment", "env-card", "fa-seedling"),
+                                                        width=3,
+                                                    ),
+                                                ]
+                                            )
+                                        ],style={"margin-bottom":"1rem"}),
+                                        html.Div([       # div for output quality, gpa dist, phd
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(        # output quality
+                                                        dcc.Loading(
+                                                            dcc.Graph(
+                                                                id="output-quality",
+                                                                config={"displayModeBar": False},
+                                                                className="chart-card",
+                                                                style={"height": "246px"},
+                                                            ),
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                    dbc.Col(        # uoa gpa dist
+                                                        dcc.Loading(
+                                                            dcc.Graph(
+                                                                id="uoa-gpa-dist",
+                                                                config={"displayModeBar": False},
+                                                                className="chart-card",
+                                                                style={"height": "246px"},
+                                                            ),
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                    dbc.Col(        # phds awarded
+                                                        dcc.Loading(
+                                                            dcc.Graph(
+                                                                id="phd-awarded-chart",
+                                                                config={"displayModeBar": False},
+                                                                className="chart-card",
+                                                                style={"height": "246px"},
+                                                            ),
+                                                            type="circle",
+                                                            color="#000000",
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                ]
+                                            )
+                                        ],style={"margin-bottom":"1rem"}),
+                                        html.Div([       # div for output quality, gpa dist, phd
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(        # income category treemap
+                                                        dcc.Loading(
+                                                            dcc.Graph(
+                                                                id="income-ik-cat-chart",
+                                                                config={"displayModeBar": False},
+                                                                className="chart-card",
+                                                                style={"height": "246px"},
+                                                            ),
+                                                            type="circle",
+                                                            color="#000000",
+                                                        ),
+                                                        width=4
+                                                    ),
+                                                    dbc.Col(        # research income in-kind plot
+                                                        dcc.Loading(
+                                                            dcc.Graph(
+                                                                id="income-ik-chart",
+                                                                config={"displayModeBar": False},
+                                                                className="chart-card",
+                                                                style={"height": "246px"},
+                                                            ),
+                                                            type="circle",
+                                                            color="#000000",
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                    dbc.Col(        # avg research income plot
+                                                        dcc.Loading(
+                                                            dcc.Graph(
+                                                                id="income-chart",
+                                                                config={"displayModeBar": False},
+                                                                className="chart-card",
+                                                                style={"height": "246px"},
+                                                            ),
+                                                            type="circle",
+                                                            color="#000000",
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                ]
+                                            )
+                                        ],style={"margin-bottom":"1rem"}),
                                     ],
-                                    value="All",
-                                    clearable=True,
-                                    multi=False,            # can extend to be multi-select
-                                    placeholder="Select Institution",
-                                    className="custom-dropdown",
+                                    width=8,
+                                ),
+                                dbc.Col(
+                                    [
+                                        html.Div([
+                                            dbc.Row(
+                                                dbc.Col([
+                                                    html.H3(
+                                                        "Institution",
+                                                        className='subtitle-small',
+                                                    ),
+                                                    dcc.Dropdown(               # dropdown for uni filter
+                                                        options=[
+                                                            {"label": col, "value": col}
+                                                            for col in sorted(
+                                                                results_df["Institution name"].unique()
+                                                            )
+                                                        ],
+                                                        value="All",
+                                                        clearable=True,
+                                                        multi=False,            # can extend to be multi-select
+                                                        placeholder="Select Institution",
+                                                        className="custom-dropdown",
+                                                    )],
+                                                    width=12,
+                                                )
+                                            )
+                                        ],className="filter-card"),
+                                        html.Div([      # div for income sources treemap
+                                            dbc.Row(
+                                                dbc.Col(        # income in-kind category treemap
+                                                    dcc.Loading(
+                                                        dcc.Graph(
+                                                            id="income-cat-chart",
+                                                            config={"displayModeBar": False},
+                                                            className="chart-card",
+                                                            style={"height": "450px"},
+                                                        ),
+                                                        type="circle",
+                                                        color="#000000",
+                                                    ),
+                                                    width=12,
+                                                )
+                                            )
+                                        ])
+                                    ],
+                                    width=4,
                                 ),
                             ],
-                            width = 3,
-                        ),
-                        dbc.Col(
-                            [
-                                html.H3(
-                                    "Unit of Assessment",
-                                    className='subtitle-small',
-                                ),
-                                dcc.Dropdown(               # dropdown for uoa filter
-                                    id='uoa-dropdown',
-                                    options=[],
-                                    value="All",
-                                    clearable=True,
-                                    multi=False,            # can extend to be multi-select
-                                    placeholder="Select Unit of Assessment",
-                                    className="custom-dropdown",
-                                ),
-                            ],
-                            width=3,
-                        ),
-                    ]
-                ),
-                html.Br(),
-                dbc.Row(                # row for cards
-                    [
-                        dbc.Col(        # overall score col
-                            components.create_card("Overall Quality (GPA)", "overall-card", "fa-ranking-star"),
-                            width=3,
-                        ),
-                        dbc.Col(        # outputs score col
-                            components.create_card("Outputs Quality (GPA)", "outputs-card", "fa-file"),
-                            width=3,
-                        ), 
-                        dbc.Col(        # impact score col
-                            components.create_card("Impact Quality (GPA)", "impact-card", "fa-users"),
-                            width=3,
-                        ),
-                        dbc.Col(        # env score col
-                            components.create_card("Environment Quality (GPA)", "env-card", "fa-seedling"),
-                            width=3,
-                        ),
-                    ]
-                ),
-                html.Br(),
-                dbc.Row(                # row for plots
-                    [
-                        dbc.Col(        # avg research income plot
-                            dcc.Loading(
-                                dcc.Graph(
-                                    id="income-chart",
-                                    config={"displayModeBar": False},
-                                    className="chart-card",
-                                    style={"height": "400px"},
-                                ),
-                                type="circle",
-                                color="#000000",
-                            ),
-                            width=4,
-                        ),
-                        dbc.Col(        # research income in-kind plot
-                            dcc.Loading(
-                                dcc.Graph(
-                                    id="income-ik-chart",
-                                    config={"displayModeBar": False},
-                                    className="chart-card",
-                                    style={"height": "400px"},
-                                ),
-                                type="circle",
-                                color="#000000",
-                            ),
-                            width=4,
-                        ),
-                        dbc.Col(        # phd awarded plot
-                            dcc.Loading(
-                                dcc.Graph(
-                                    id="phd-awarded-chart",
-                                    config={"displayModeBar": False},
-                                    className="chart-card",
-                                    style={"height": "400px"},
-                                ),
-                                type="circle",
-                                color="#000000",
-                            ),
-                            width=4,
                         )
-                    ]
+                    ],
+                    width=12
                 ),
                 html.Br(),
-                dbc.Row(                # row for income breakdowns
-                    [
-                        dbc.Col(        # income category treemap
-                            dcc.Loading(
-                                dcc.Graph(
-                                    id="income-cat-chart",
-                                    config={"displayModeBar": False},
-                                    className="chart-card",
-                                    style={"height": "450px"},
-                                ),
-                                type="circle",
-                                color="#000000",
-                            ),
-                            width=8,
-                        ),
-                        dbc.Col(        # income in-kind category treemap
-                            dcc.Loading(
-                                dcc.Graph(
-                                    id="income-ik-cat-chart",
-                                    config={"displayModeBar": False},
-                                    className="chart-card",
-                                    style={"height": "450px"},
-                                ),
-                                type="circle",
-                                color="#000000",
-                            ),
-                            width=4,
-                        )
-                    ]
-                )
             ],
             className="page-content"
         )
@@ -189,26 +242,21 @@ layout = dbc.Container(
 
 ## Callback Functions
 @callback(
-    Output("uni-name-heading", "children"),
-    Output("uoa-name-subheading", "children"),
-    Input("uni-dropdown", "value"),
-    Input("uoa-dropdown", "value"),
-    prevent_initial_call=True,
+    Output('output-quality', 'figure'),
+    Input('uni-dropdown', 'value'),
+    Input('uoa-dropdown', 'value'),
+    prevent_initial_call=True
 )
-def updatePageTitle(uni, uoa):
-    uni_rtn = ""
-    uoa_rtn = ""
+def updateQualityPieCharts(uni, uoa):
+    return components.generateQualityPieChart(uni, uoa)
 
-    if (uni != None):
-        uni_rtn = uni
-
-    if (uoa != None):
-        if (uoa == "All"):
-            uoa_rtn = "All UoAs"
-        else:
-            uoa_rtn = uoa
-
-    return uni_rtn, uoa_rtn
+@callback(
+    Output('uoa-gpa-dist', 'figure'),
+    Input('uni-dropdown', 'value'),
+    Input('uoa-dropdown', 'value'),
+)
+def updateUOADistChart(uni, uoa):
+    return components.generateUOADistChart(uni, uoa)
 
 @callback(
     Output("uoa-dropdown", "options"),
@@ -217,7 +265,7 @@ def updatePageTitle(uni, uoa):
 )
 def updateUOAbyUni(selected_uni):
     options=[
-        {"label": "All", "value": "All"}
+        {"label": "All Units of Assessment", "value": "All"}
         ] + [
         {"label": col, "value": col}
         for col in sorted(
@@ -269,4 +317,4 @@ def updatePage(uni, uoa):
             components.generateIncomeChart(uni, uoa, incomeiK_df, True),  
             components.generatePhdChart(uni, uoa), 
             components.generateIncomeCategoryChart(uni, uoa),
-            components.generateIncomeInKindPieChart(uni, uoa))
+            components.generateIncomeInKindBarChart(uni, uoa))
