@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-from utils.dashboard_components import create_card, format_value, generateMap
+import utils.dashboard_components as components
 import json
 
 # read in datasets
