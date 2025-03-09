@@ -7,7 +7,12 @@
 }
 
 .title-color {
-    font-size: 26px;
+    font-size: 24px;
+    color: #800080;
+}
+
+.ranking-title-color {
+    font-size: 36px;
     color: #800080;
 }
 
@@ -21,13 +26,18 @@
     color: #9b58b6;
 }
 
+.subtitle-medium-18-color {
+    font-size: 18px;
+    color: #9b58b6;
+}
+
 .subtitle-small {
-    font-size: 16px;
+    font-size: 14px;
     color: #3a4552;
 }
 
 .subtitle-small-color {
-    font-size: 18px;
+    font-size: 14px;
     color: #9b58b6;
 }
 
@@ -118,20 +128,28 @@ body {
 }
 
 .card-body {
-    padding: 25px;
+    padding: 10px;
     color: #3a4552;
 }
 
 .card-icon {
-    font-size: 30px;
-    margin-right: 20px;
-    margin-bottom: 15px;
-    color: #800080;
+    font-size:5vh;
+    /* margin-right: 15px;
+    margin-bottom: 10px; */
+    color: #9b58b6;
 }
 
 .card-title {
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 14px;
+    color:#9b58b6;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 34px;
+    color: #800080;
+    text-align: center;
 }
 
 /* Cards charts */
@@ -148,6 +166,12 @@ body {
     box-shadow: 0 6px 8px rgba(89, 87, 87, 0.1);
     padding: 1rem;
     background-color: #fff;
+    margin-bottom: 1rem;
+}
+
+.ranking-card {
+    text-align: center;
+
 }
 
 /* Dropdown */
@@ -183,8 +207,12 @@ body {
     width: fit-content;
     text-align: center;
     padding: 10px;
-    border-radius: 5px;
+    border: none;
     cursor: pointer;
+}
+
+.btn-custom:hover{
+    background-color: #9b58b6;
 }
 
 .user-info-text {
