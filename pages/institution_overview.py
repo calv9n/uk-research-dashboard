@@ -222,7 +222,7 @@ layout = dbc.Container(
                                                             id="income-cat-chart",
                                                             config={"displayModeBar": False},
                                                             className="chart-card",
-                                                            style={"height": "707px"},
+                                                            style={"height": "714px"},
                                                         ),
                                                         type="circle",
                                                         color="#000000",
