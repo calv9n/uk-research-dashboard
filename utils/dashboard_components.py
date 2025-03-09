@@ -26,7 +26,7 @@ def format_value(value):
     else:
         return f"{int(value) / 1e6:.1f} M"                  # Values above 1 million in millions
 
-def create_card(title, card_id, icon_class):
+def create_gpa_kpi_card(title, card_id, icon_class):
     return dbc.Card(
         dcc.Loading(
             dbc.CardBody(
@@ -50,7 +50,7 @@ def create_card(title, card_id, icon_class):
                         ]),
                     ]),
                 ],
-                className="card-body",
+                className="card-body"
             ),
         ), 
         className="card",
@@ -629,3 +629,48 @@ def generateUOADistChart(uni, uoa):
     )
 
     return chart
+
+def generateRankingCards(uni, uoa):
+    results_overall = results_df[results_df["Profile"] == "Overall"]
+    # results_outputs = results_df[results_df["Profile"] == "Outputs"]
+    # results_impact = results_df[results_df["Profile"] == "Impact"]
+    # results_environment = results_df[results_df["Profile"] == "Environment"]
+
+    if uoa != "All":
+        results_overall = results_overall[results_overall["UOA name"] == uoa]
+
+    region = results_df.loc[
+        results_df["Institution name"] == uni,
+        "Region"
+        ].values[0]
+
+    national_overall = results_overall.groupby(
+        "Institution name"
+    ).agg({
+        "GPA":"mean"
+    }).sort_values(by='GPA', ascending=False).reset_index()
+
+    overall_reg_df = results_overall[results_overall["Region"] == region]
+
+    regional_overall = overall_reg_df.groupby(
+        "Institution name",
+    ).agg({
+        "GPA":"mean"
+    }).sort_values(by='GPA', ascending=False).reset_index()
+
+    nat_ranking = int(national_overall.index[national_overall["Institution name"] == uni][0])
+    reg_ranking = int(regional_overall.index[regional_overall["Institution name"] == uni][0])
+
+    fig_nat = html.Div([
+        html.H1("National Ranking", className='subtitle-medium-18-color'),
+        html.H1(nat_ranking+1, className="ranking-title-color"),
+        html.H3("Overall GPA", className='subtitle-small-color'),
+    ], className='card card-body ranking-card')
+
+    fig_reg = html.Div([
+        html.H1("Regional Ranking", className='subtitle-medium-18-color'),
+        html.H1(reg_ranking+1, className="ranking-title-color"),
+        html.H3("Overall GPA", className='subtitle-small-color'),
+    ], className='card card-body ranking-card')
+
+    return [fig_nat, fig_reg]
