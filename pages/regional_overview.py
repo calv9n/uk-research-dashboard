@@ -116,7 +116,6 @@ layout = dbc.Container(
                                     ),
                                     dcc.Dropdown(
                                         options=[
-                                            {"label":"All Regions", "value":"All"},
                                             {"label":"London", "value":"London"},
                                             {"label":"South West", "value":"South West"},
                                             {"label":"South East", "value":"South East"},
@@ -128,7 +127,7 @@ layout = dbc.Container(
                                             {"label":"Yorkshire and The Humber", "value":"Yorkshire and The Humber"},
                                             {"label":"Northern Ireland", "value":"Northern Ireland"},
                                             {"label":"Wales", "value":"Wales"},
-                                            {"label":"Scotland", "value":"All"},
+                                            {"label":"Scotland", "value":"Scotland"},
                                         ],
                                         id='region-selection',
                                         placeholder="Please select Data to view options",
@@ -347,7 +346,7 @@ def validateDropdownsAndGenerateDataViz(n_clicks, data, uoa, period, region, agg
 
     if missing_fields:
         missing_fields_msg = "The following fields are empty: " + ", ".join(missing_fields)
-        return {}, True, {}, True, {}, True, missing_fields_msg, True, missing_fields, None, None
+        return {}, True, {}, True, missing_fields_msg, True, missing_fields, None, None
     
     if data == "GPA":
         aggfunc = "mean"
