@@ -1,5 +1,5 @@
 import dash
-from dash import callback, html, dcc, Input, Output
+from dash import callback, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
@@ -49,7 +49,7 @@ layout = dbc.Container(
                                                         placeholder="Select Institution",
                                                         className="custom-dropdown",
                                                     )],
-                                                    width=6
+                                                    width=5
                                                 ),
                                                 dbc.Col([
                                                     html.H3(
@@ -66,27 +66,36 @@ layout = dbc.Container(
                                                         className="custom-dropdown",
                                                     ),
                                                 ],
-                                                width=6
-                                                )
+                                                width=5
+                                                ),
+                                                dbc.Col([
+                                                    dbc.Button(
+                                                        "Update Dashboard",
+                                                        className="btn-custom",
+                                                        id="update-dashboard-btn"
+                                                    )
+                                                ],
+                                                width=2
+                                                ),
                                             ])
                                         ],className="filter-card"),
                                         html.Div([       # div for gpa KPI
                                             dbc.Row(
                                                 [
                                                     dbc.Col(        # overall score col
-                                                        components.create_card("Overall", "overall-card", "fa-ranking-star"),
+                                                        components.create_gpa_kpi_card("Overall", "overall-card", "fa-ranking-star"),
                                                         width=3,
                                                     ),
                                                     dbc.Col(        # outputs score col
-                                                        components.create_card("Outputs", "outputs-card", "fa-file"),
+                                                        components.create_gpa_kpi_card("Outputs", "outputs-card", "fa-file"),
                                                         width=3,
                                                     ), 
                                                     dbc.Col(        # impact score col
-                                                        components.create_card("Impact", "impact-card", "fa-users"),
+                                                        components.create_gpa_kpi_card("Impact", "impact-card", "fa-users"),
                                                         width=3,
                                                     ),
                                                     dbc.Col(        # env score col
-                                                        components.create_card("Environment", "env-card", "fa-seedling"),
+                                                        components.create_gpa_kpi_card("Environment", "env-card", "fa-seedling"),
                                                         width=3,
                                                     ),
                                                 ]
@@ -101,7 +110,7 @@ layout = dbc.Container(
                                                                 id="output-quality",
                                                                 config={"displayModeBar": False},
                                                                 className="chart-card",
-                                                                style={"height": "246px"},
+                                                                style={"height": "310px"},
                                                             ),
                                                         ),
                                                         width=4,
@@ -112,7 +121,7 @@ layout = dbc.Container(
                                                                 id="uoa-gpa-dist",
                                                                 config={"displayModeBar": False},
                                                                 className="chart-card",
-                                                                style={"height": "246px"},
+                                                                style={"height": "310px"},
                                                             ),
                                                         ),
                                                         width=4,
@@ -123,7 +132,7 @@ layout = dbc.Container(
                                                                 id="phd-awarded-chart",
                                                                 config={"displayModeBar": False},
                                                                 className="chart-card",
-                                                                style={"height": "246px"},
+                                                                style={"height": "310px"},
                                                             ),
                                                             type="circle",
                                                             color="#000000",
@@ -142,7 +151,7 @@ layout = dbc.Container(
                                                                 id="income-ik-cat-chart",
                                                                 config={"displayModeBar": False},
                                                                 className="chart-card",
-                                                                style={"height": "246px"},
+                                                                style={"height": "310px"},
                                                             ),
                                                             type="circle",
                                                             color="#000000",
@@ -155,7 +164,7 @@ layout = dbc.Container(
                                                                 id="income-ik-chart",
                                                                 config={"displayModeBar": False},
                                                                 className="chart-card",
-                                                                style={"height": "246px"},
+                                                                style={"height": "310px"},
                                                             ),
                                                             type="circle",
                                                             color="#000000",
@@ -168,7 +177,7 @@ layout = dbc.Container(
                                                                 id="income-chart",
                                                                 config={"displayModeBar": False},
                                                                 className="chart-card",
-                                                                style={"height": "246px"},
+                                                                style={"height": "310px"},
                                                             ),
                                                             type="circle",
                                                             color="#000000",
@@ -183,39 +192,33 @@ layout = dbc.Container(
                                 ),
                                 dbc.Col(
                                     [
-                                        html.Div([
-                                            dbc.Row(
+                                        html.Div([      # div for ranking & treemap
+                                            dbc.Row([       # ranking
                                                 dbc.Col([
-                                                    html.H3(
-                                                        "Institution",
-                                                        className='subtitle-small',
-                                                    ),
-                                                    dcc.Dropdown(               # dropdown for uni filter
-                                                        options=[
-                                                            {"label": col, "value": col}
-                                                            for col in sorted(
-                                                                results_df["Institution name"].unique()
-                                                            )
-                                                        ],
-                                                        value="All",
-                                                        clearable=True,
-                                                        multi=False,            # can extend to be multi-select
-                                                        placeholder="Select Institution",
-                                                        className="custom-dropdown",
-                                                    )],
-                                                    width=12,
-                                                )
-                                            )
-                                        ],className="filter-card"),
-                                        html.Div([      # div for income sources treemap
-                                            dbc.Row(
-                                                dbc.Col(        # income in-kind category treemap
+                                                    dcc.Loading(
+                                                        html.Div(
+                                                            id="nat-ranking",
+                                                            style={"height": "130px"},
+                                                        )
+                                                    )
+                                                ],width=6),
+                                                dbc.Col([
+                                                    dcc.Loading(
+                                                        html.Div(
+                                                            id="reg-ranking",
+                                                            style={"height": "130px"},
+                                                        )
+                                                    )
+                                                ], width=6)
+                                            ],style={"margin-bottom":"1rem"}),
+                                            dbc.Row(        # income in-kind category treemap
+                                                dbc.Col(        
                                                     dcc.Loading(
                                                         dcc.Graph(
                                                             id="income-cat-chart",
                                                             config={"displayModeBar": False},
                                                             className="chart-card",
-                                                            style={"height": "450px"},
+                                                            style={"height": "707px"},
                                                         ),
                                                         type="circle",
                                                         color="#000000",
@@ -241,23 +244,6 @@ layout = dbc.Container(
 )
 
 ## Callback Functions
-@callback(
-    Output('output-quality', 'figure'),
-    Input('uni-dropdown', 'value'),
-    Input('uoa-dropdown', 'value'),
-    prevent_initial_call=True
-)
-def updateQualityPieCharts(uni, uoa):
-    return components.generateQualityPieChart(uni, uoa)
-
-@callback(
-    Output('uoa-gpa-dist', 'figure'),
-    Input('uni-dropdown', 'value'),
-    Input('uoa-dropdown', 'value'),
-)
-def updateUOADistChart(uni, uoa):
-    return components.generateUOADistChart(uni, uoa)
-
 @callback(
     Output("uoa-dropdown", "options"),
     Input("uni-dropdown", "value"),
@@ -285,11 +271,16 @@ def updateUOAbyUni(selected_uni):
     Output("phd-awarded-chart", "figure"),
     Output("income-cat-chart", "figure"),
     Output("income-ik-cat-chart", "figure"),
-    Input("uni-dropdown", "value"),
-    Input("uoa-dropdown", "value"),
+    Output('output-quality', 'figure'),
+    Output('uoa-gpa-dist', 'figure'),
+    Output("nat-ranking", "children"),
+    Output("reg-ranking", "children"),
+    Input("update-dashboard-btn", 'n_clicks'),
+    State("uni-dropdown", "value"),
+    State("uoa-dropdown", "value"),
     prevent_initial_call = True,
 )
-def updatePage(uni, uoa):
+def updatePage(update, uni, uoa):
 
     # GPA cards
     if (uoa == "All"):
@@ -302,7 +293,6 @@ def updatePage(uni, uoa):
             (results_df['UOA name'] == uoa)
         ]
 
-
     # GPA cards
     overall = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Overall")]["GPA"]),2)
 
@@ -312,9 +302,15 @@ def updatePage(uni, uoa):
 
     env = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Environment")]["GPA"]), 2)
 
+    ranking_cards = components.generateRankingCards(uni, uoa)
+
     return (overall, outputs, impact, env, 
             components.generateIncomeChart(uni, uoa, income_df), 
             components.generateIncomeChart(uni, uoa, incomeiK_df, True),  
             components.generatePhdChart(uni, uoa), 
             components.generateIncomeCategoryChart(uni, uoa),
-            components.generateIncomeInKindBarChart(uni, uoa))
+            components.generateIncomeInKindBarChart(uni, uoa),
+            components.generateQualityPieChart(uni, uoa),
+            components.generateUOADistChart(uni, uoa),
+            ranking_cards[0],
+            ranking_cards[1])
