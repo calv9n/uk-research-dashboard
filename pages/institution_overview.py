@@ -1,5 +1,5 @@
 import dash
-from dash import callback, html, dcc, Input, Output, State
+from dash import callback, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
@@ -72,121 +72,125 @@ layout = dbc.Container(
                                                     dbc.Button(
                                                         "Update Dashboard",
                                                         className="btn-custom",
-                                                        id="update-dashboard-btn"
+                                                        id="update-dashboard-btn",
+                                                        disabled=False
                                                     )
                                                 ],
                                                 width=2
                                                 ),
                                             ])
                                         ],className="filter-card"),
-                                        html.Div([       # div for gpa KPI
-                                            dbc.Row(
-                                                [
-                                                    dbc.Col(        # overall score col
-                                                        components.create_gpa_kpi_card("Overall", "overall-card", "fa-ranking-star"),
-                                                        width=3,
-                                                    ),
-                                                    dbc.Col(        # outputs score col
-                                                        components.create_gpa_kpi_card("Outputs", "outputs-card", "fa-file"),
-                                                        width=3,
-                                                    ), 
-                                                    dbc.Col(        # impact score col
-                                                        components.create_gpa_kpi_card("Impact", "impact-card", "fa-users"),
-                                                        width=3,
-                                                    ),
-                                                    dbc.Col(        # env score col
-                                                        components.create_gpa_kpi_card("Environment", "env-card", "fa-seedling"),
-                                                        width=3,
-                                                    ),
-                                                ]
-                                            )
-                                        ],style={"margin-bottom":"1rem"}),
-                                        html.Div([       # div for output quality, gpa dist, phd
-                                            dbc.Row(
-                                                [
-                                                    dbc.Col(        # output quality
-                                                        dcc.Loading(
-                                                            dcc.Graph(
-                                                                id="output-quality",
-                                                                config={"displayModeBar": False},
-                                                                className="chart-card",
-                                                                style={"height": "310px"},
-                                                            ),
+                                        html.Div([
+                                            html.Div([       # div for gpa KPI
+                                                dbc.Row(
+                                                    [
+                                                        dbc.Col(        # overall score col
+                                                            components.create_gpa_kpi_card("Overall", "overall-card", "fa-ranking-star"),
+                                                            width=3,
                                                         ),
-                                                        width=4,
-                                                    ),
-                                                    dbc.Col(        # uoa gpa dist
-                                                        dcc.Loading(
-                                                            dcc.Graph(
-                                                                id="uoa-gpa-dist",
-                                                                config={"displayModeBar": False},
-                                                                className="chart-card",
-                                                                style={"height": "310px"},
-                                                            ),
+                                                        dbc.Col(        # outputs score col
+                                                            components.create_gpa_kpi_card("Outputs", "outputs-card", "fa-file"),
+                                                            width=3,
+                                                        ), 
+                                                        dbc.Col(        # impact score col
+                                                            components.create_gpa_kpi_card("Impact", "impact-card", "fa-users"),
+                                                            width=3,
                                                         ),
-                                                        width=4,
-                                                    ),
-                                                    dbc.Col(        # phds awarded
-                                                        dcc.Loading(
-                                                            dcc.Graph(
-                                                                id="phd-awarded-chart",
-                                                                config={"displayModeBar": False},
-                                                                className="chart-card",
-                                                                style={"height": "310px"},
-                                                            ),
-                                                            type="circle",
-                                                            color="#000000",
+                                                        dbc.Col(        # env score col
+                                                            components.create_gpa_kpi_card("Environment", "env-card", "fa-seedling"),
+                                                            width=3,
                                                         ),
-                                                        width=4,
-                                                    ),
-                                                ]
-                                            )
-                                        ],style={"margin-bottom":"1rem"}),
-                                        html.Div([       # div for output quality, gpa dist, phd
-                                            dbc.Row(
-                                                [
-                                                    dbc.Col(        # income category treemap
-                                                        dcc.Loading(
-                                                            dcc.Graph(
-                                                                id="income-ik-cat-chart",
-                                                                config={"displayModeBar": False},
-                                                                className="chart-card",
-                                                                style={"height": "310px"},
+                                                    ]
+                                                )
+                                            ],style={"margin-bottom":"1rem"}),
+                                            html.Div([       # div for output quality, gpa dist, phd
+                                                dbc.Row(
+                                                    [
+                                                        dbc.Col(        # output quality
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="output-quality",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
                                                             ),
-                                                            type="circle",
-                                                            color="#000000",
+                                                            width=4,
                                                         ),
-                                                        width=4
-                                                    ),
-                                                    dbc.Col(        # research income in-kind plot
-                                                        dcc.Loading(
-                                                            dcc.Graph(
-                                                                id="income-ik-chart",
-                                                                config={"displayModeBar": False},
-                                                                className="chart-card",
-                                                                style={"height": "310px"},
+                                                        dbc.Col(        # uoa gpa dist
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="uoa-gpa-dist",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
                                                             ),
-                                                            type="circle",
-                                                            color="#000000",
+                                                            width=4,
                                                         ),
-                                                        width=4,
-                                                    ),
-                                                    dbc.Col(        # avg research income plot
-                                                        dcc.Loading(
-                                                            dcc.Graph(
-                                                                id="income-chart",
-                                                                config={"displayModeBar": False},
-                                                                className="chart-card",
-                                                                style={"height": "310px"},
+                                                        dbc.Col(        # phds awarded
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="phd-awarded-chart",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
+                                                                type="circle",
+                                                                color="#000000",
                                                             ),
-                                                            type="circle",
-                                                            color="#000000",
+                                                            width=4,
                                                         ),
-                                                        width=4,
-                                                    ),
-                                                ]
-                                            )
-                                        ],style={"margin-bottom":"1rem"}),
+                                                    ]
+                                                )
+                                            ],style={"margin-bottom":"1rem"}),
+                                            html.Div([       # div for output quality, gpa dist, phd
+                                                dbc.Row(
+                                                    [
+                                                        dbc.Col(        # income category treemap
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="income-ik-cat-chart",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
+                                                                type="circle",
+                                                                color="#000000",
+                                                            ),
+                                                            width=4
+                                                        ),
+                                                        dbc.Col(        # research income in-kind plot
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="income-ik-chart",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
+                                                                type="circle",
+                                                                color="#000000",
+                                                            ),
+                                                            width=4,
+                                                        ),
+                                                        dbc.Col(        # avg research income plot
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="income-chart",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
+                                                                type="circle",
+                                                                color="#000000",
+                                                            ),
+                                                            width=4,
+                                                        ),
+                                                    ]
+                                                )
+                                            ],style={"margin-bottom":"1rem"}),
+                                        ],id="left-col", hidden=True),
+                                               
                                     ],
                                     width=8,
                                 ),
@@ -226,16 +230,20 @@ layout = dbc.Container(
                                                     width=12,
                                                 )
                                             )
-                                        ])
+                                        ], id="right-col", hidden=True)
                                     ],
                                     width=4,
                                 ),
                             ],
-                        )
+                        ),
+                        dbc.Alert(
+                            id='ins-ov-alert-msg',
+                            is_open=False,
+                            color='danger'
+                        ),
                     ],
                     width=12
                 ),
-                html.Br(),
             ],
             className="page-content"
         )
@@ -262,6 +270,36 @@ def updateUOAbyUni(selected_uni):
     return options
 
 @callback(
+    Output("left-col", 'hidden'),
+    Output("right-col", 'hidden'),
+    Output("ins-ov-alert-msg", "children"), 
+    Output("ins-ov-alert-msg", "is_open"),
+    Output('update-dashboard-btn', 'disabled'),
+    Input("update-dashboard-btn", 'n_clicks'),
+    State("uni-dropdown", "value"),
+    State("uoa-dropdown", "value"),
+    prevent_initial_call = True
+)
+def showCardsAndDisableUpdateButton(n_clicks, uni, uoa):
+    if uni is None and uoa is None:
+        return True, True, "Please select both Institution and UOA.", True, False
+    elif uni is None:
+        return True, True, "Please select an Institution.", True, False
+    elif uoa is None:
+        return True, True, "Please select a UOA.", True, False
+    else:
+        return False, False, "", False, True  # Hide alert & disabled update dashboard btn when valid
+    
+@callback(
+    Output("update-dashboard-btn", "disabled", allow_duplicate=True),
+    Input("uni-dropdown", "value"),
+    Input("uoa-dropdown", "value"),
+    prevent_initial_call=True
+)
+def enableUpdateButton(uni, uoa):
+    return False  # Re-enable button when dropdown changes
+
+@callback(
     Output("overall-card", "children"),
     Output("outputs-card", "children"),
     Output("impact-card", "children"),
@@ -281,6 +319,9 @@ def updateUOAbyUni(selected_uni):
     prevent_initial_call = True,
 )
 def updatePage(update, uni, uoa):
+
+    if uni is None or uoa is None:
+        raise dash.exceptions.PreventUpdate
 
     # GPA cards
     if (uoa == "All"):
@@ -314,3 +355,5 @@ def updatePage(update, uni, uoa):
             components.generateUOADistChart(uni, uoa),
             ranking_cards[0],
             ranking_cards[1])
+
+
