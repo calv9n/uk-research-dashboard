@@ -31,16 +31,24 @@ def create_card(title, card_id, icon_class):
         dcc.Loading(
             dbc.CardBody(
                 [
-                    html.Div(
-                        [
-                            html.I(
-                                className=f"fas {icon_class} card-icon",
+                    dbc.Col([
+                        dbc.Row([
+                            dbc.Col([
+                                html.I(
+                                    className=f"fas {icon_class} card-icon",
+                                ),
+                            ],
+                            className="d-flex justify-content-center align-items-center p-0",
+                            width=5
                             ),
-                            html.H3(title, className="card-title"),
-                        ],
-                        className="d-flex align-items-center",
-                    ),
-                    html.H4(id=card_id),
+                            dbc.Col([
+                                html.H3(title, className="card-title"),
+                                html.H4(id=card_id, className="card-text"),
+                            ],
+                            width=7
+                            ),
+                        ]),
+                    ]),
                 ],
                 className="card-body",
             ),
@@ -233,14 +241,16 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
     # graph cards
     if (inkind):
         chart = px.line(df_filtered,
-                        title=title,
                         markers=True,)
+        xaxis_title = "Year"
+        yaxis_title = "Amount (£)"
     else:
         chart = px.bar(df_filtered,
                         text_auto=True,
-                        title=title,)
+                        orientation='h',)
+        xaxis_title = "Amount (£)"
+        yaxis_title = "Year"
     
-
     chart.update_traces(
         marker_color="#800080",
         hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
@@ -248,13 +258,22 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
     )
 
     chart.update_layout(
-        xaxis_title="Year",
-        yaxis_title="Amount (£)",
-        plot_bgcolor="rgba(0, 0, 0, 0)",
-        margin=dict(l=35, r=35, t=60, b=40),
+        title=dict(text=title, font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title=dict(text=xaxis_title, font=dict(size=14)), 
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
+        yaxis=dict(
+            title=dict(text=yaxis_title, font=dict(size=14)), 
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
         showlegend=False,
+        plot_bgcolor="rgba(0, 0, 0, 0)",
         title_font_size=18,
         font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=10),
     )
 
     return chart
@@ -277,8 +296,7 @@ def generatePhdChart(uni, uoa):
 
 
     phd_awarded_chart = px.line(df_filtered,
-                                markers=True,
-                                title=f"Total PhDs Awarded")
+                                markers=True)
 
     phd_awarded_chart.update_traces(
         marker_color="#800080",
@@ -287,13 +305,22 @@ def generatePhdChart(uni, uoa):
     )
 
     phd_awarded_chart.update_layout(
-        xaxis_title="Year",
-        yaxis_title="# of PhD degrees awarded",
+        title=dict(text="PhDs Awarded", font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title=dict(text="Year", font=dict(size=14)),
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
+        yaxis=dict(
+            title=dict(text="PhDs awarded", font=dict(size=14)), 
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
+        showlegend = False,
         plot_bgcolor="rgba(0, 0, 0, 0)",
-        margin=dict(l=35, r=35, t=60, b=40),
-        showlegend=False,
         title_font_size=18,
         font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=20),
     )
 
     return phd_awarded_chart
@@ -344,12 +371,13 @@ def generateIncomeCategoryChart(uni, uoa):
 
     return income_cat_chart
 
-def generateIncomeInKindPieChart(uni, uoa):
+def generateIncomeInKindBarChart(uni, uoa):
     if (uoa == 'All'):
         income_filtered = incomeiK_df.loc[
             (incomeiK_df["Institution name"] == uni) &
             (incomeiK_df["Income source"] != "Total income")
         ]
+        income_filtered = income_filtered.groupby("Income source").agg({"2013-2020 (total)":"sum"}).reset_index()
     else:
         income_filtered = incomeiK_df.loc[
             (incomeiK_df["Institution name"] == uni) &
@@ -357,41 +385,31 @@ def generateIncomeInKindPieChart(uni, uoa):
             (incomeiK_df["UOA name"] == uoa)
         ]
 
-    incomeik_pie_chart = go.Figure(
-        data=[
-            go.Pie(
-                labels=income_filtered['Income source'],
-                values=income_filtered['2013-2020 (avg)'],
-            )
-        ]
-    )
+    chart = px.bar(income_filtered,
+                   x="Income source",
+                   y="2013-2020 (total)",
+                   text_auto=True,
+                   color_discrete_sequence=["#800080"]
+                )
 
-    incomeik_pie_chart.update_traces(
-        marker=dict(colors=["#800080", "#bc8bd0"]),
-        hole=0.7,
-        textposition= "outside",
-        texttemplate="%{label}<br>%{percent}",
-        hovertemplate='%{label}<br>Avg funding: £%{value}/yr<br>',
-    )
-
-    incomeik_pie_chart.update_layout(
-        margin = dict(t=50, l=25, r=25, b=25),
-        showlegend = False,
-    )
-
-    incomeik_pie_chart.add_annotation(
-        x=0.5,
-        y=0.5,
-        align="center",
-        xref="paper",
-        yref="paper",
-        showarrow=False,
-        font_size=18,
+    chart.update_layout(
+        title=dict(text="In-Kind Income Sources", font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title="",
+            tickfont=dict(color="#9b58b6")
+            ),
+        yaxis=dict(
+            title=dict(text="Amount (£)", font=dict(size=14)), 
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        title_font_size=18,
         font_family="Inter, sans-serif",
-        text="Research In-Kind Income<br>Sources (£avg/yr)",
+        margin = dict(t=50, l=35, r=35, b=0),
     )
 
-    return incomeik_pie_chart
+    return chart
 
 def generateMap(df, data, period):
     color = period
@@ -510,3 +528,104 @@ def generateDataFrameForScatter(data, uoa, period, region, aggfunc):
     df = df.groupby(["Institution name", "Region"]).agg(agg_func_dict).reset_index()
 
     return df
+
+def generateQualityPieChart(uni, uoa):
+    # filtering profile & uni
+    df = results_df[
+        (results_df["Profile"] == "Overall") &
+        (results_df["Institution name"] == uni)
+        ].reset_index()
+
+    # filter uoa
+    if uoa != "All":
+        df = df[df["UOA name"] == uoa].reset_index()
+
+
+    df = df.groupby(["Institution name"]).agg(
+        {
+            '4*':'mean',
+            '3*':'mean',
+            '2*':'mean',
+            '1*':'mean',
+            "0*":"mean"
+            }).reset_index()
+
+    df_melted = df.melt(
+        id_vars=["Institution name"],  # Columns to keep
+        var_name="Rating",  # Name for new column that holds '4*', '3*', etc.
+        value_name="Percentage"  # Name for new column that holds the values
+    ).sort_values(by="Percentage", ascending=False)
+
+    chart = go.Figure(
+        data=[
+            go.Pie(
+                labels=df_melted['Rating'],
+                values=df_melted['Percentage'],
+            )
+        ]
+    )
+
+    chart.update_traces(
+        marker=dict(colors=["#800080", "#9f1987", "#b6229c", "#d18cc1", "#e2b4d6"]),
+        hole=0.5,
+        textinfo="label+percent",
+        textposition="inside",
+        texttemplate="%{label}<br>%{percent:.0%}"
+    )
+
+    chart.update_layout(
+        margin = dict(t=10, l=10, r=10, b=10),
+        showlegend = False,
+    )
+
+    chart.add_annotation(
+        x=0.5,
+        y=0.5,
+        align="center",
+        xref="paper",
+        yref="paper",
+        showarrow=False,
+        font_size=18,
+        font_family="Inter, sans-serif",
+        font_color="#9b58b6",
+        text="Outputs<br>Quality",
+    )
+
+    return chart
+
+def generateUOADistChart(uni, uoa):
+    df = results_df
+
+    df = df[(df["Institution name"] == uni) &
+            (df["Profile"] == "Overall")]
+
+    df = df.groupby("UOA name").agg({'GPA':'mean'}).reset_index().sort_values(by="GPA", ascending=True)
+
+    chart = px.histogram(
+        df, 
+        x="GPA",
+        nbins=10,
+        marginal="rug",
+        hover_data="UOA name",
+        color_discrete_sequence=["#800080"]
+    )
+
+    chart.update_layout(
+        title=dict(text="GPA Distribution", font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title=dict(text="GPA (Overall)", font=dict(size=14)),
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
+        yaxis=dict(
+            title=dict(text="Frequency", font=dict(size=14)), 
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6")
+            ),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        title_font_size=18,
+        font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=20),
+    )
+
+    return chart
