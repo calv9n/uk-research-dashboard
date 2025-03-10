@@ -200,6 +200,12 @@ body {
     padding: 15px;
 }
 
+button[disabled] {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: white !important;
+}
+
 /* Button */
 .btn-custom {
     background-color: #800080;
