@@ -147,19 +147,6 @@ layout = dbc.Container(
                                             html.Div([       # div for output quality, gpa dist, phd
                                                 dbc.Row(
                                                     [
-                                                        dbc.Col(        # income category treemap
-                                                            dcc.Loading(
-                                                                dcc.Graph(
-                                                                    id="income-ik-cat-chart",
-                                                                    config={"displayModeBar": False},
-                                                                    className="chart-card",
-                                                                    style={"height": "310px"},
-                                                                ),
-                                                                type="circle",
-                                                                color="#000000",
-                                                            ),
-                                                            width=4
-                                                        ),
                                                         dbc.Col(        # research income in-kind plot
                                                             dcc.Loading(
                                                                 dcc.Graph(
@@ -172,6 +159,19 @@ layout = dbc.Container(
                                                                 color="#000000",
                                                             ),
                                                             width=4,
+                                                        ),
+                                                        dbc.Col(        # income ik category treemap
+                                                            dcc.Loading(
+                                                                dcc.Graph(
+                                                                    id="income-ik-cat-chart",
+                                                                    config={"displayModeBar": False},
+                                                                    className="chart-card",
+                                                                    style={"height": "310px"},
+                                                                ),
+                                                                type="circle",
+                                                                color="#000000",
+                                                            ),
+                                                            width=4
                                                         ),
                                                         dbc.Col(        # avg research income plot
                                                             dcc.Loading(
@@ -214,6 +214,24 @@ layout = dbc.Container(
                                                     )
                                                 ], width=6)
                                             ],style={"margin-bottom":"1rem"}),
+                                            dbc.Row([       # income & phd kpi
+                                                dbc.Col([
+                                                    dcc.Loading(
+                                                        html.Div(
+                                                            id="income-kpi",
+                                                            style={"height": "130px"},
+                                                        )
+                                                    )
+                                                ],width=6),
+                                                dbc.Col([
+                                                    dcc.Loading(
+                                                        html.Div(
+                                                            id="phd-kpi",
+                                                            style={"height": "130px"},
+                                                        )
+                                                    )
+                                                ], width=6)
+                                            ],style={"margin-bottom":"1rem"}),
                                             dbc.Row(        # income in-kind category treemap
                                                 dbc.Col(        
                                                     dcc.Loading(
@@ -221,7 +239,7 @@ layout = dbc.Container(
                                                             id="income-cat-chart",
                                                             config={"displayModeBar": False},
                                                             className="chart-card",
-                                                            style={"height": "714px"},
+                                                            style={"height": "569px"},
                                                         ),
                                                         type="circle",
                                                         color="#000000",
@@ -312,6 +330,8 @@ def enableUpdateButton(uni, uoa):
     Output('uoa-gpa-dist', 'figure'),
     Output("nat-ranking", "children"),
     Output("reg-ranking", "children"),
+    Output("income-kpi", "children"),
+    Output("phd-kpi", "children"),
     Input("update-dashboard-btn", 'n_clicks'),
     State("uni-dropdown", "value"),
     State("uoa-dropdown", "value"),
@@ -344,15 +364,21 @@ def updatePage(update, uni, uoa):
 
     ranking_cards = components.generateRankingCards(uni, uoa)
 
+    income_charts = components.generateIncomeCategoryChartAndKPICard(uni, uoa)
+
+    phd_charts = components.generatePhdChartAndKPICard(uni, uoa)
+
     return (overall, outputs, impact, env, 
             components.generateIncomeChart(uni, uoa, income_df), 
             components.generateIncomeChart(uni, uoa, incomeiK_df, True),  
-            components.generatePhdChart(uni, uoa), 
-            components.generateIncomeCategoryChart(uni, uoa),
+            phd_charts[0], 
+            income_charts[0],
             components.generateIncomeInKindBarChart(uni, uoa),
             components.generateQualityPieChart(uni, uoa),
             components.generateUOADistChart(uni, uoa),
             ranking_cards[0],
-            ranking_cards[1])
+            ranking_cards[1],
+            income_charts[1],
+            phd_charts[1])
 
 
