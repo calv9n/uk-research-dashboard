@@ -343,29 +343,30 @@ def generateIncomeCategoryChart(uni, uoa):
 
     # copy of income df to filter
     income_filter_agg = income_filtered.groupby('Income source')\
-                                    .agg({'2013-2020 (avg)':'sum'})\
+                                    .agg({'2013-2020 (total)':'sum'})\
                                     .reset_index()\
-                                    .sort_values(by="2013-2020 (avg)",ascending=False)
+                                    .sort_values(by="2013-2020 (total)",ascending=False)
 
     # defining the treemap chart
     income_cat_chart = go.Figure(go.Treemap(
-                    labels=["Average annual income"] + income_filter_agg['Income source'].tolist(),
-                    parents=[""] + (len(income_filter_agg)) * ["Average annual income"],
-                    values=[0] + income_filter_agg['2013-2020 (avg)'].tolist(),
+                    labels=["Total income"] + income_filter_agg['Income source'].tolist(),
+                    parents=[""] + (len(income_filter_agg)) * ["Total income"],
+                    values=[0] + income_filter_agg['2013-2020 (total)'].tolist(),
                     marker_colorscale = ["#FFFFFF", "#800080"],
                 ))
     
 
     income_cat_chart.update_layout(
         margin = dict(t=50, l=25, r=25, b=25),
-        title="Research Income Sources (£avg/yr)",
-        title_font_size=18,
+        title="Income Sources (Total Income)",
+        title_font_size=14,
+        title_font_color='#9b58b6',
         font_family="Inter, sans-serif",
-        font_size=14,
+        font_size=18,
     )
     
     income_cat_chart.update_traces(
-        hovertemplate='%{label}<br>Avg funding: £%{value}/yr<br>',
+        hovertemplate='%{label}<br>Total funding: £%{value}/yr<br>',
         texttemplate="%{label}<br><br>£%{value}",
     )
 
@@ -664,13 +665,13 @@ def generateRankingCards(uni, uoa):
     fig_nat = html.Div([
         html.H1("National Ranking", className='subtitle-medium-18-color'),
         html.H1(nat_ranking+1, className="ranking-title-color"),
-        html.H3("Overall GPA", className='subtitle-small-color'),
+        html.H3("Overall Research Quality", className='subtitle-small-color'),
     ], className='card card-body ranking-card')
 
     fig_reg = html.Div([
         html.H1("Regional Ranking", className='subtitle-medium-18-color'),
         html.H1(reg_ranking+1, className="ranking-title-color"),
-        html.H3("Overall GPA", className='subtitle-small-color'),
+        html.H3("Overall Research Quality", className='subtitle-small-color'),
     ], className='card card-body ranking-card')
 
     return [fig_nat, fig_reg]
