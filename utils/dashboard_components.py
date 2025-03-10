@@ -22,10 +22,12 @@ with open("assets/regions.geojson") as f:
 
 def format_value(value):
     if int(value) < 1e6:
-        return f"{int(value) / 1e3:.1f} K"                   # Values below 1 million in thousands
+        return f"{int(value) / 1e3:.1f}K"                   # Values below 1 million in thousands
+    elif int(value) < 1e9:
+        return f"{int(value) / 1e6:.1f}M"                  # Values above 1 million in millions
     else:
-        return f"{int(value) / 1e6:.1f} M"                  # Values above 1 million in millions
-
+        return f"{int(value) / 1e9:.2f}B"                   # values above 1 billion in billions
+    
 def create_gpa_kpi_card(title, card_id, icon_class):
     return dbc.Card(
         dcc.Loading(
@@ -185,7 +187,6 @@ def create_info_cards(data, df, col, region):
         ]
     )
     
-
 ## Helper Functions
 def customwrap(s, width=30):
     if (s != None):
@@ -237,26 +238,29 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
                             & (df['Income source'] == col_name)
                             & (df["UOA name"] == uoa)].agg(agg_func_dict)
         
-
     # graph cards
     if (inkind):
         chart = px.line(df_filtered,
                         markers=True,)
         xaxis_title = "Year"
         yaxis_title = "Amount (£)"
+        chart.update_traces(
+            marker_color="#800080",
+            hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
+            hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
+        )
     else:
         chart = px.bar(df_filtered,
                         text_auto=True,
                         orientation='h',)
         xaxis_title = "Amount (£)"
         yaxis_title = "Year"
+        chart.update_traces(
+            marker_color="#800080",
+            hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
+            hovertemplate="<b>%{y}</b><br>Value: £%{x:,}",
+        )
     
-    chart.update_traces(
-        marker_color="#800080",
-        hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
-    )
-
     chart.update_layout(
         title=dict(text=title, font=dict(color="#9b58b6")),
         xaxis=dict(
@@ -278,14 +282,16 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
 
     return chart
 
-def generatePhdChart(uni, uoa):
+def generatePhdChartAndKPICard(uni, uoa):
     agg_func_dict = {
             '2013': 'sum',
             '2014': 'sum',
+            '2015': 'sum',
             '2016': 'sum',
             '2017': 'sum',
             '2018': 'sum',
             '2019': 'sum',
+            'Total':'sum'
         }
     
     if (uoa == "All"):
@@ -293,7 +299,10 @@ def generatePhdChart(uni, uoa):
     else:
         df_filtered = phd_df.loc[(phd_df["Institution name"] == uni) &
                                  (phd_df["UOA name"] == uoa)].agg(agg_func_dict)
+        
+    total_phds = df_filtered['Total']
 
+    df_filtered = df_filtered.drop('Total')         # removing 'Total' value - not needed for plots
 
     phd_awarded_chart = px.line(df_filtered,
                                 markers=True)
@@ -323,10 +332,15 @@ def generatePhdChart(uni, uoa):
         margin = dict(t=50, l=35, r=35, b=20),
     )
 
-    return phd_awarded_chart
+    phd_kpi_card = html.Div([
+        html.H1("PhDs Awarded", className='subtitle-medium-18-color'),
+        html.H1(np.round(total_phds, 1), className="ranking-title-color"),
+        html.H3("2013-2019 (Total)", className='subtitle-small-color'),
+    ], className='card card-body ranking-card')  
 
-def generateIncomeCategoryChart(uni, uoa):
+    return phd_awarded_chart, phd_kpi_card
 
+def generateIncomeCategoryChartAndKPICard(uni, uoa):
     if (uoa == 'All'):
         income_filtered = income_df.loc[
             (income_df["Institution name"] == uni) &
@@ -346,6 +360,8 @@ def generateIncomeCategoryChart(uni, uoa):
                                     .agg({'2013-2020 (total)':'sum'})\
                                     .reset_index()\
                                     .sort_values(by="2013-2020 (total)",ascending=False)
+    
+    total_income = income_filter_agg['2013-2020 (total)'].sum()
 
     # defining the treemap chart
     income_cat_chart = go.Figure(go.Treemap(
@@ -358,19 +374,25 @@ def generateIncomeCategoryChart(uni, uoa):
 
     income_cat_chart.update_layout(
         margin = dict(t=50, l=25, r=25, b=25),
-        title="Income Sources (Total Income)",
-        title_font_size=14,
+        title="Income Sources (2013-2020)",
+        title_font_size=18,
         title_font_color='#9b58b6',
         font_family="Inter, sans-serif",
-        font_size=18,
+        font_size=14,
     )
     
     income_cat_chart.update_traces(
-        hovertemplate='%{label}<br>Total funding: £%{value}/yr<br>',
+        hovertemplate='%{label}<br>Total funding: £%{value}<br>',
         texttemplate="%{label}<br><br>£%{value}",
     )
 
-    return income_cat_chart
+    inc_kpi_card = html.Div([
+        html.H1("Research Income", className='subtitle-medium-18-color'),
+        html.H1(f'£ {format_value(int(total_income))}', className="ranking-title-color"),
+        html.H3("2013-2020 (Total)", className='subtitle-small-color'),
+    ], className='card card-body ranking-card')    
+
+    return income_cat_chart, inc_kpi_card
 
 def generateIncomeInKindBarChart(uni, uoa):
     if (uoa == 'All'):
@@ -394,7 +416,7 @@ def generateIncomeInKindBarChart(uni, uoa):
                 )
 
     chart.update_layout(
-        title=dict(text="In-Kind Income Sources", font=dict(color="#9b58b6")),
+        title=dict(text="In-Kind Income Sources (2013-2020)", font=dict(color="#9b58b6")),
         xaxis=dict(
             title="",
             tickfont=dict(color="#9b58b6")
