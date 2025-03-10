@@ -189,8 +189,7 @@ layout = dbc.Container(
                                                     ]
                                                 )
                                             ],style={"margin-bottom":"1rem"}),
-                                        ],id="left-col", hidden=True),
-                                               
+                                        ],id="left-col", hidden=True),                                            
                                     ],
                                     width=8,
                                 ),
