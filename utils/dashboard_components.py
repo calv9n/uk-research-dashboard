@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 import textwrap
 import plotly.express as px
 import plotly.graph_objects as go
+import plotly.figure_factory as ff
 import json
 
 # read in datasets
@@ -698,3 +699,308 @@ def generateRankingCards(uni, uoa):
     ], className='card card-body ranking-card')
 
     return [fig_nat, fig_reg]
+
+def generateRegionScatterPlots(chart_type, region):
+    if chart_type == 'phd':
+        df = phd_df
+        x_value = 'Total'
+        x_label = 'PhDs Awarded (log scale)'
+        title = 'GPA vs. PhDs Awarded'
+    if chart_type == 'income':
+        df = income_df
+        x_value = '2013-2020 (total)'
+        title = 'GPA vs. Research Income'
+        x_label = "13'-20' Income (log scale)"
+    if chart_type == 'incomeik':
+        df = incomeiK_df
+        x_value = '2013-2020 (total)'
+        title = 'GPA vs. Research Income In-Kind'
+        x_label = "13'-20' Income In-Kind (log scale)"
+
+    gpa = results_df[results_df['Region'].isin(region)]
+    metric = df[df['Region'].isin(region)]
+
+    gpa_means = gpa.groupby(['Institution name']).agg({'GPA':'mean'}).reset_index()
+    metric_totals = metric.groupby(['Institution name']).agg({x_value:'sum'}).reset_index()
+
+    gpa_metric = gpa_means.merge(metric_totals, on='Institution name')
+    gpa_metric = gpa_metric.merge(regions_mapping, on='Institution name')
+
+    fig = px.scatter(
+        gpa_metric,
+        x=x_value,
+        y='GPA',
+        hover_name='Institution name',
+        color='Region',
+        log_x=True
+    )
+
+    fig.update_layout(
+        title=dict(text=title, font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title=x_label,
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6"),
+            gridcolor='lightgrey'
+            ),
+        yaxis=dict(
+            title="GPA",
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6"),
+            gridcolor='lightgrey'
+            ),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        showlegend=True,
+        title_font_size=18,
+        font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=10),
+
+        legend=dict(
+            x=0.65,  # Horizontal position (0 to 1)
+            y=0.35,  # Vertical position (0 to 1)
+            xanchor="left",  # Anchor the legend to the left
+            yanchor="top",   # Anchor the legend to the top
+            bgcolor='rgba(255, 255, 255, 0.7)',  # Optional: background color for the legend
+            font=dict(
+                size=10,  # Font size
+                color="#9b58b6",  # Font color (can be any valid CSS color)
+            )
+        )
+    )
+
+    return fig
+
+def generateRegionLineCharts(chart_type, region):
+    if chart_type == 'phd':
+        df = phd_df
+        aggfunc = {
+            "2013":"sum",
+            "2014":"sum",
+            "2015":"sum",
+            "2016":"sum",
+            "2017":"sum",
+            "2018":"sum",
+            "2019":"sum",
+        }
+        title = "PhDs Awarded by Region"
+        hover_text = "<b>%{x}</b><br>PhDs Awarded: %{y:,}",
+        x_anno_spacing = 0.2
+    if chart_type == 'incomeik':
+        df = incomeiK_df
+        aggfunc = {
+            '2013-14': 'sum',
+            '2014-15': 'sum',
+            '2015-16': 'sum',
+            '2016-17': 'sum',
+            '2017-18': 'sum',
+            '2018-19': 'sum',
+            '2019-20': 'sum',
+        }
+        title = "Income In-Kind by Region"
+        hover_text="<b>%{x}</b><br>Value: £%{y:,}"
+        x_anno_spacing = 0
+
+    df = df[df["Region"].isin(region)]
+
+    grouped_df = df.groupby(["Region"]).agg(aggfunc).reset_index()
+    
+    df_melted = grouped_df.melt(id_vars=["Region"], 
+                     var_name="Year", 
+                     value_name="Value")
+    
+    # NOT HAPPY WITH THIS!!!
+    if chart_type == 'phd':
+        df_melted["Year"] = df_melted["Year"].astype(int)
+    else:
+        df_melted["Year"] = df_melted["Year"].apply(lambda x: int(x.split('-')[0]))
+
+    fig = px.line(df_melted, 
+                x="Year", 
+                y="Value", 
+                color="Region",  # different lines for each region
+                markers=True,  # show markers at each year
+                )
+    
+    fig.update_traces(
+        hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
+        hovertemplate=hover_text,
+    )
+
+    annotations = []
+
+    colors = {trace.name: trace.line.color for trace in fig.data}
+
+    for region in df_melted["Region"].unique():
+        region_data = df_melted[df_melted["Region"] == region]
+        
+        # get the last point (end of the line)
+        x_end, y_end = region_data["Year"].iloc[-1], region_data["Value"].iloc[-1]
+
+        line_color = colors.get(region, "black")  # Default to black if not found
+
+        if region == "Yorkshire and The Humber":
+            region = "Yorkshire"
+        
+        # annotation at the end of the line
+        annotations.append(dict(
+            x=x_end - x_anno_spacing, y=y_end + 150,
+            text=region, 
+            showarrow=False,
+            xanchor="left", yanchor="middle",
+            font=dict(size=12, color=line_color)
+        ))
+    
+    fig.update_layout(
+        title=dict(text=title, font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title="Year",
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6"),
+            gridcolor='lightgrey'
+            ),
+        yaxis=dict(
+            title=dict(text="PhDs Awarded", font=dict(size=14)), 
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6"),
+            gridcolor='lightgrey'
+            ),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        showlegend=False,
+        title_font_size=18,
+        font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=10),
+        annotations = annotations
+    )
+
+    return fig
+
+def generateRegionIncomeSankey(region):
+    income_cat = {
+        "UK Sources":[
+            'BEIS Research Councils, The Royal Society, British Academy and The Royal Society of Edinburgh',
+            'UK-based charities (open competitive process)',
+            'UK-based charities (other)',
+            'UK central government bodies/local authorities, health and hospital authorities',
+            'Health research funding bodies',
+            'UK central government tax credits for research and development expenditure',
+            'UK industry, commerce and public corporations',
+            'UK other sources'
+        ],
+        "EU Sources":[
+            'EU government bodies',
+            'EU-based charities (open competitive process)',
+            'EU industry, commerce and public corporations',
+            'EU (excluding UK) other',
+        ],
+        "Non-EU Sources":[
+            'Non-EU-based charities (open competitive process)',
+            'Non-EU industry commerce and public corporations', 
+            'Non-EU other',
+        ]
+    }
+
+    df = income_df
+    df = df[~df["Income source"].isin(["Total income"])]
+    df = df[df["Region"].isin(region)]
+
+    df = df.groupby(['Region', 'Income source']).agg({'2013-2020 (total)':'sum'}).reset_index()
+
+    df["Category"] = df["Income source"].map(
+        {src: cat for cat, sources in income_cat.items() for src in sources}
+    )
+
+    df["Income source"] = df[
+        "Income source"
+        ].apply(lambda s: customwrap(s, width=45))
+
+    all_nodes = list(set(df["Income source"]) | set(df["Category"]) | set(df["Region"]))
+
+    # Map labels to indices
+    source_indices = [all_nodes.index(src) for src in df["Income source"]]
+    category_indices = [all_nodes.index(cat) for cat in df["Category"]]
+    region_indices = [all_nodes.index(region) for region in df["Region"]]
+
+    # Create source and target lists
+    source = source_indices + category_indices  
+    target = category_indices + region_indices  
+
+    # Combine income values for both links
+    values = list(df["2013-2020 (total)"]) + list(df["2013-2020 (total)"])
+
+    fig = go.Figure(go.Sankey(
+        node=dict(
+            pad=20,
+            thickness=20,
+            line=dict(color="black", width=0.5),
+            label=all_nodes,
+        ),
+        link=dict(
+            source=source,
+            target=target,
+            value=values,
+        )
+    ))
+
+    fig.update_layout(
+        title=dict(text="Income Sources by Region", font=dict(color="#9b58b6")),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        title_font_size=18,
+        font_size=10,
+        font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=10),
+    )
+
+    return fig
+
+def generateRegionGPADist(region):
+    df = results_df
+    df = df[df["Profile"] == "Overall"]
+    df = df[df["Region"].isin(region)]
+    data = []
+
+    for r in region:
+        df1 = df[df['Region'] == r]
+        df1 = df1.groupby(['UOA name']).agg({'GPA':'mean'}).reset_index()
+        data.append(df1['GPA'])
+    
+    fig = ff.create_distplot(
+        data, 
+        region,
+        bin_size=.1,
+        curve_type='normal',
+        show_hist=False,
+        show_rug=False
+    )
+
+    fig.update_layout(
+        title=dict(text="Overall GPA Distribution by Region", font=dict(color="#9b58b6")),
+        xaxis=dict(
+            title="GPA",
+            color="#9b58b6",
+            tickfont=dict(color="#9b58b6"),
+            gridcolor='lightgrey'
+            ),
+        yaxis=dict(
+            tickfont=dict(color="#9b58b6"),
+            gridcolor='lightgrey'
+            ),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        showlegend=True,
+        title_font_size=18,
+        font_family="Inter, sans-serif",
+        margin = dict(t=50, l=35, r=35, b=10),
+
+        legend=dict(
+            x=0.70,  # Horizontal position (0 to 1)
+            y=1,  # Vertical position (0 to 1)
+            xanchor="left",  # Anchor the legend to the left
+            yanchor="top",   # Anchor the legend to the top
+            bgcolor='rgba(255, 255, 255, 0.7)',  # Optional: background color for the legend
+            font=dict(
+                size=10,  # Font size
+                color="#9b58b6",  # Font color (can be any valid CSS color)
+            )
+        )
+    )
+
+    return fig
