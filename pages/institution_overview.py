@@ -84,10 +84,6 @@ layout = dbc.Container(
                                             html.Div([       # div for gpa KPI
                                                 dbc.Row(
                                                     [
-                                                        dbc.Col(        # overall score col
-                                                            components.create_gpa_kpi_card("Overall", "overall-card", "fa-ranking-star"),
-                                                            width=3,
-                                                        ),
                                                         dbc.Col(        # outputs score col
                                                             components.create_gpa_kpi_card("Outputs", "outputs-card", "fa-file"),
                                                             width=3,
@@ -100,21 +96,55 @@ layout = dbc.Container(
                                                             components.create_gpa_kpi_card("Environment", "env-card", "fa-seedling"),
                                                             width=3,
                                                         ),
+                                                        dbc.Col(        # overall score col
+                                                            components.create_gpa_kpi_card("Overall", "overall-card", "fa-ranking-star"),
+                                                            width=3,
+                                                        ),
                                                     ]
                                                 )
                                             ],style={"margin-bottom":"1rem"}),
-                                            html.Div([       # div for output quality, gpa dist, phd
+                                            html.Div([       # div for submissions quality, gpa dist, phd
                                                 dbc.Row(
                                                     [
-                                                        dbc.Col(        # output quality
-                                                            dcc.Loading(
-                                                                dcc.Graph(
-                                                                    id="output-quality",
-                                                                    config={"displayModeBar": False},
-                                                                    className="chart-card",
-                                                                    style={"height": "310px"},
-                                                                ),
-                                                            ),
+                                                        dbc.Col(        # submissions quality
+                                                            dcc.Loading([
+                                                                html.Div([
+                                                                    html.Div(
+                                                                        dbc.RadioItems(
+                                                                            id='submissions-radios',
+                                                                            className='btn_group',
+                                                                            inputClassName="btn-check",
+                                                                            labelClassName="btn btn-outline-primary",
+                                                                            labelCheckedClassName="active",
+                                                                            options=[
+                                                                                {"label": "Outputs", "value": "Outputs"},
+                                                                                {"label": "Impact", "value": "Impact"},
+                                                                                {"label": "Environment", "value": "Environment"},
+                                                                                {"label": "Overall", "value": "Overall"},
+                                                                            ],
+                                                                            value="Overall",
+                                                                            style={'display':'flex', 
+                                                                                   'padding':'0',
+                                                                                   'justifyContent':'center',
+                                                                                   'alignItems':'center',
+                                                                                   'margin-top':'0.5rem'
+                                                                                   }
+                                                                        ), 
+                                                                        className='radio-group',
+                                                                        style={'display':'flex', 
+                                                                                   'padding':'0',
+                                                                                   'justifyContent':'center',
+                                                                                   'alignItems':'center',
+                                                                                   },
+                                                                    ),
+                                                                    dcc.Graph(
+                                                                        id="submissions-quality",
+                                                                        config={"displayModeBar": False},
+                                                                        className="chart-card",
+                                                                        style={"height": "270px"},
+                                                                    ),
+                                                                ], style={'background-color':'#fff'}),
+                                                            ]),
                                                             width=4,
                                                         ),
                                                         dbc.Col(        # uoa gpa dist
@@ -317,6 +347,16 @@ def enableUpdateButton(uni, uoa):
     return False  # Re-enable button when dropdown changes
 
 @callback(
+    Output("submissions-quality", 'figure', allow_duplicate=True),
+    Input('submissions-radios', 'value'),
+    State('uni-dropdown', 'value'),
+    State('uoa-dropdown', 'value'),
+    prevent_initial_call = True
+)
+def updateSubmissionsPieChart(profile, uni, uoa):
+    return components.generateQualityPieChart(uni, uoa, profile)
+
+@callback(
     Output("overall-card", "children"),
     Output("outputs-card", "children"),
     Output("impact-card", "children"),
@@ -326,7 +366,7 @@ def enableUpdateButton(uni, uoa):
     Output("phd-awarded-chart", "figure"),
     Output("income-cat-chart", "figure"),
     Output("income-ik-cat-chart", "figure"),
-    Output('output-quality', 'figure'),
+    Output('submissions-quality', 'figure'),
     Output('uoa-gpa-dist', 'figure'),
     Output("nat-ranking", "children"),
     Output("reg-ranking", "children"),
@@ -335,9 +375,10 @@ def enableUpdateButton(uni, uoa):
     Input("update-dashboard-btn", 'n_clicks'),
     State("uni-dropdown", "value"),
     State("uoa-dropdown", "value"),
+    State("submissions-radios", 'value'),
     prevent_initial_call = True,
 )
-def updatePage(update, uni, uoa):
+def updatePage(update, uni, uoa, gpa_profile):
 
     if uni is None or uoa is None:
         raise dash.exceptions.PreventUpdate
@@ -374,7 +415,7 @@ def updatePage(update, uni, uoa):
             phd_charts[0], 
             income_charts[0],
             components.generateIncomeInKindBarChart(uni, uoa),
-            components.generateQualityPieChart(uni, uoa),
+            components.generateQualityPieChart(uni, uoa, gpa_profile),
             components.generateUOADistChart(uni, uoa),
             ranking_cards[0],
             ranking_cards[1],
