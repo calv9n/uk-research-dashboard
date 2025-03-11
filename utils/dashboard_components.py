@@ -211,6 +211,7 @@ def generateIncomeChart(uni, uoa, df, inkind=False):
         agg_func_dict = {
             '2013-14': 'sum',
             '2014-15': 'sum',
+            '2015-16': 'sum',
             '2016-17': 'sum',
             '2017-18': 'sum',
             '2018-19': 'sum',
@@ -552,10 +553,10 @@ def generateDataFrameForScatter(data, uoa, period, region, aggfunc):
 
     return df
 
-def generateQualityPieChart(uni, uoa):
+def generateQualityPieChart(uni, uoa, profile):
     # filtering profile & uni
     df = results_df[
-        (results_df["Profile"] == "Overall") &
+        (results_df["Profile"] == profile) &
         (results_df["Institution name"] == uni)
         ].reset_index()
 
@@ -611,7 +612,7 @@ def generateQualityPieChart(uni, uoa):
         font_size=18,
         font_family="Inter, sans-serif",
         font_color="#9b58b6",
-        text="Outputs<br>Quality",
+        text="Submissions<br>Quality",
     )
 
     return chart
