@@ -24,10 +24,10 @@ with open("assets/regions.geojson") as f:
 def format_value(value):
     if int(value) < 1e6:
         return f"{int(value) / 1e3:.1f}K"                   # Values below 1 million in thousands
-    elif int(value) < 1e9:
+    elif int(value) < 1e8:
         return f"{int(value) / 1e6:.1f}M"                  # Values above 1 million in millions
     else:
-        return f"{int(value) / 1e9:.2f}B"                   # values above 1 billion in billions
+        return f"{int(value) / 1e9:.2f}B"                   # values above 100 million in billions
     
 def create_gpa_kpi_card(title, card_id, icon_class):
     return dbc.Card(
@@ -48,7 +48,7 @@ def create_gpa_kpi_card(title, card_id, icon_class):
                                 html.H3(title, className="card-title"),
                                 html.H4(id=card_id, className="card-text"),
                             ],
-                            width=7
+                            width=7, style={'padding-left':'0'}
                             ),
                         ]),
                     ]),
@@ -208,70 +208,46 @@ def returnUoAOptions():
 
 def generateIncomeChart(uni, uoa, df, inkind=False):
     # agg functions
-    if (inkind):
-        agg_func_dict = {
-            '2013-14': 'sum',
-            '2014-15': 'sum',
-            '2015-16': 'sum',
-            '2016-17': 'sum',
-            '2017-18': 'sum',
-            '2018-19': 'sum',
-            '2019-20': 'sum',
-        }
-        title = f"Research Income In-Kind"
-        col_name = "Total income"
-    else:
-        agg_func_dict = {
-            '2013-14': 'sum',
-            '2014-15': 'sum',
-            '2015-2020 (avg)': 'sum',
-            '2013-2020 (avg)': 'sum',
-        }
-        title = f"Research Income"
-        col_name = "Total income"
+    agg_func_dict = {
+        '2013-14': 'sum',
+        '2014-15': 'sum',
+        '2015-2020 (avg)': 'sum',
+    }
 
     # copy of income df to filter
     if (uoa == "All"):
         df_filtered = df.loc[(df["Institution name"] == uni) 
-                            & (df['Income source'] == col_name)
+                            & (df['Income source'] == "Total income")
                             ].agg(agg_func_dict)
     else:
         df_filtered = df.loc[(df["Institution name"] == uni) 
-                            & (df['Income source'] == col_name)
+                            & (df['Income source'] == "Total income")
                             & (df["UOA name"] == uoa)].agg(agg_func_dict)
+    
+    df_filtered = df_filtered.rename({
+        '2013-14':"13'-14'",
+        '2014-15':"14'-15'",
+        '2015-2020 (avg)':"15'-20' (avg)",
+    })
         
-    # graph cards
-    if (inkind):
-        chart = px.line(df_filtered,
-                        markers=True,)
-        xaxis_title = "Year"
-        yaxis_title = "Amount (£)"
-        chart.update_traces(
-            marker_color="#800080",
-            hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-            hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
-        )
-    else:
-        chart = px.bar(df_filtered,
-                        text_auto=True,
-                        orientation='h',)
-        xaxis_title = "Amount (£)"
-        yaxis_title = "Year"
-        chart.update_traces(
-            marker_color="#800080",
-            hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-            hovertemplate="<b>%{y}</b><br>Value: £%{x:,}",
-        )
+    chart = px.line(df_filtered,
+                    markers=True,)
+
+    chart.update_traces(
+        marker_color="#800080",
+        hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
+        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
+    )
     
     chart.update_layout(
-        title=dict(text=title, font=dict(color="#9b58b6")),
+        title=dict(text="Research Income", font=dict(color="#9b58b6")),
         xaxis=dict(
-            title=dict(text=xaxis_title, font=dict(size=14)), 
+            title=dict(text="Year", font=dict(size=14)), 
             color="#9b58b6",
             tickfont=dict(color="#9b58b6")
             ),
         yaxis=dict(
-            title=dict(text=yaxis_title, font=dict(size=14)), 
+            title=dict(text="Amount (£)", font=dict(size=14)), 
             color="#9b58b6",
             tickfont=dict(color="#9b58b6")
             ),
@@ -306,6 +282,16 @@ def generatePhdChartAndKPICard(uni, uoa):
 
     df_filtered = df_filtered.drop('Total')         # removing 'Total' value - not needed for plots
 
+    df_filtered = df_filtered.rename({
+        '2013':"13'",
+        '2014':"14'",
+        '2015':"15'",
+        '2016':"16'",
+        '2017':"17'",
+        '2018':"18'",
+        '2019':"19'",
+    })
+
     phd_awarded_chart = px.line(df_filtered,
                                 markers=True)
 
@@ -336,7 +322,7 @@ def generatePhdChartAndKPICard(uni, uoa):
 
     phd_kpi_card = html.Div([
         html.H1("PhDs Awarded", className='subtitle-medium-18-color'),
-        html.H1(np.round(total_phds, 1), className="ranking-title-color"),
+        html.H1(format_value(total_phds), className="ranking-title-color"),
         html.H3("2013-2019 (Total)", className='subtitle-small-color'),
     ], className='card card-body ranking-card')  
 
@@ -396,45 +382,47 @@ def generateIncomeCategoryChartAndKPICard(uni, uoa):
 
     return income_cat_chart, inc_kpi_card
 
-def generateIncomeInKindBarChart(uni, uoa):
+def generateStaffFTEKPICard(uni,uoa):
     if (uoa == 'All'):
-        income_filtered = incomeiK_df.loc[
-            (incomeiK_df["Institution name"] == uni) &
-            (incomeiK_df["Income source"] != "Total income")
+        df = results_df.loc[
+            (results_df["Institution name"] == uni)
         ]
-        income_filtered = income_filtered.groupby("Income source").agg({"2013-2020 (total)":"sum"}).reset_index()
     else:
-        income_filtered = incomeiK_df.loc[
+        df = results_df.loc[
+            (results_df["Institution name"] == uni) &
+            (results_df["UOA name"] == uoa)
+        ]
+    
+    total = df['FTE staff'].sum()
+
+    fte_kpi_card = html.Div([
+        html.H1("Staff FTE", className='subtitle-medium-18-color'),
+        html.H1(format_value(total), className="ranking-title-color"),
+        html.H3("Full Time Equivalent", className='subtitle-small-color'),
+    ], className='card card-body ranking-card') 
+
+    return fte_kpi_card
+
+def generateInKindKPICard(uni, uoa):
+    if (uoa == 'All'):
+        df = incomeiK_df.loc[
+            (incomeiK_df["Institution name"] == uni)
+        ]
+    else:
+        df = incomeiK_df.loc[
             (incomeiK_df["Institution name"] == uni) &
-            (incomeiK_df["Income source"] != "Total income") &
             (incomeiK_df["UOA name"] == uoa)
         ]
+    
+    total = df['2013-2020 (total)'].sum()
 
-    chart = px.bar(income_filtered,
-                   x="Income source",
-                   y="2013-2020 (total)",
-                   text_auto=True,
-                   color_discrete_sequence=["#800080"]
-                )
+    ik_kpi_card = html.Div([
+        html.H1("Income In-Kind", className='subtitle-medium-18-color'),
+        html.H1(f'£ {format_value(int(total))}', className="ranking-title-color"),
+        html.H3("2013-2020 (Total)", className='subtitle-small-color'),
+    ], className='card card-body ranking-card')   
 
-    chart.update_layout(
-        title=dict(text="In-Kind Income Sources (2013-2020)", font=dict(color="#9b58b6")),
-        xaxis=dict(
-            title="",
-            tickfont=dict(color="#9b58b6")
-            ),
-        yaxis=dict(
-            title=dict(text="Amount (£)", font=dict(size=14)), 
-            color="#9b58b6",
-            tickfont=dict(color="#9b58b6")
-            ),
-        plot_bgcolor="rgba(0, 0, 0, 0)",
-        title_font_size=18,
-        font_family="Inter, sans-serif",
-        margin = dict(t=50, l=35, r=35, b=0),
-    )
-
-    return chart
+    return ik_kpi_card
 
 def generateMap(df, data, period):
     color = period
@@ -593,6 +581,8 @@ def generateQualityPieChart(uni, uoa, profile):
     chart.update_traces(
         marker=dict(colors=["#800080", "#9f1987", "#b6229c", "#d18cc1", "#e2b4d6"]),
         hole=0.5,
+        textfont_size=14,
+        textfont_family="Inter, sans-serif",
         textinfo="label+percent",
         textposition="inside",
         texttemplate="%{label}<br>%{percent:.0%}"
@@ -613,44 +603,7 @@ def generateQualityPieChart(uni, uoa, profile):
         font_size=18,
         font_family="Inter, sans-serif",
         font_color="#9b58b6",
-        text="Submissions<br>Quality",
-    )
-
-    return chart
-
-def generateUOADistChart(uni, uoa):
-    df = results_df
-
-    df = df[(df["Institution name"] == uni) &
-            (df["Profile"] == "Overall")]
-
-    df = df.groupby("UOA name").agg({'GPA':'mean'}).reset_index().sort_values(by="GPA", ascending=True)
-
-    chart = px.histogram(
-        df, 
-        x="GPA",
-        nbins=10,
-        marginal="rug",
-        hover_data="UOA name",
-        color_discrete_sequence=["#800080"]
-    )
-
-    chart.update_layout(
-        title=dict(text="GPA Distribution", font=dict(color="#9b58b6")),
-        xaxis=dict(
-            title=dict(text="GPA (Overall)", font=dict(size=14)),
-            color="#9b58b6",
-            tickfont=dict(color="#9b58b6")
-            ),
-        yaxis=dict(
-            title=dict(text="Frequency", font=dict(size=14)), 
-            color="#9b58b6",
-            tickfont=dict(color="#9b58b6")
-            ),
-        plot_bgcolor="rgba(0, 0, 0, 0)",
-        title_font_size=18,
-        font_family="Inter, sans-serif",
-        margin = dict(t=50, l=35, r=35, b=20),
+        text=f"{profile}<br>Quality",
     )
 
     return chart
@@ -747,7 +700,8 @@ def generateRegionScatterPlots(chart_type, region):
             title="GPA",
             color="#9b58b6",
             tickfont=dict(color="#9b58b6"),
-            gridcolor='lightgrey'
+            gridcolor='lightgrey',
+            range=[0,4]
             ),
         plot_bgcolor="rgba(0, 0, 0, 0)",
         showlegend=True,
@@ -783,36 +737,29 @@ def generateRegionLineCharts(chart_type, region):
             "2019":"sum",
         }
         title = "PhDs Awarded by Region"
-        hover_text = "<b>%{x}</b><br>PhDs Awarded: %{y:,}",
-        x_anno_spacing = 0.2
-    if chart_type == 'incomeik':
-        df = incomeiK_df
+        hover_text = "<b>%{x}</b><br>PhDs Awarded: %{y:,}"
+        x_axis_label = "PhDs Awarded"
+    if chart_type == 'income':
+        df = income_df
         aggfunc = {
             '2013-14': 'sum',
             '2014-15': 'sum',
-            '2015-16': 'sum',
-            '2016-17': 'sum',
-            '2017-18': 'sum',
-            '2018-19': 'sum',
-            '2019-20': 'sum',
+            '2015-2020 (avg)': 'sum',
         }
-        title = "Income In-Kind by Region"
+        title = "Research Income by Region"
         hover_text="<b>%{x}</b><br>Value: £%{y:,}"
-        x_anno_spacing = 0
+        x_axis_label = "Amount (£)"
 
     df = df[df["Region"].isin(region)]
 
     grouped_df = df.groupby(["Region"]).agg(aggfunc).reset_index()
-    
+
     df_melted = grouped_df.melt(id_vars=["Region"], 
                      var_name="Year", 
                      value_name="Value")
     
-    # NOT HAPPY WITH THIS!!!
     if chart_type == 'phd':
         df_melted["Year"] = df_melted["Year"].astype(int)
-    else:
-        df_melted["Year"] = df_melted["Year"].apply(lambda x: int(x.split('-')[0]))
 
     fig = px.line(df_melted, 
                 x="Year", 
@@ -841,9 +788,8 @@ def generateRegionLineCharts(chart_type, region):
         if region == "Yorkshire and The Humber":
             region = "Yorkshire"
         
-        # annotation at the end of the line
         annotations.append(dict(
-            x=x_end - x_anno_spacing, y=y_end + 150,
+            x=x_end, y=y_end + 150,
             text=region, 
             showarrow=False,
             xanchor="left", yanchor="middle",
@@ -859,7 +805,7 @@ def generateRegionLineCharts(chart_type, region):
             gridcolor='lightgrey'
             ),
         yaxis=dict(
-            title=dict(text="PhDs Awarded", font=dict(size=14)), 
+            title=dict(text=x_axis_label, font=dict(size=14)), 
             color="#9b58b6",
             tickfont=dict(color="#9b58b6"),
             gridcolor='lightgrey'
@@ -978,7 +924,8 @@ def generateRegionGPADist(region):
             title="GPA",
             color="#9b58b6",
             tickfont=dict(color="#9b58b6"),
-            gridcolor='lightgrey'
+            gridcolor='lightgrey',
+            range=[0,4],
             ),
         yaxis=dict(
             tickfont=dict(color="#9b58b6"),
@@ -991,14 +938,14 @@ def generateRegionGPADist(region):
         margin = dict(t=50, l=35, r=35, b=10),
 
         legend=dict(
-            x=0.70,  # Horizontal position (0 to 1)
-            y=1,  # Vertical position (0 to 1)
-            xanchor="left",  # Anchor the legend to the left
-            yanchor="top",   # Anchor the legend to the top
-            bgcolor='rgba(255, 255, 255, 0.7)',  # Optional: background color for the legend
+            x=0,  
+            y=1,  
+            xanchor="left",  # anchor the legend to the left
+            yanchor="top",   # anchor the legend to the top
+            bgcolor='rgba(255, 255, 255, 0.7)',
             font=dict(
-                size=10,  # Font size
-                color="#9b58b6",  # Font color (can be any valid CSS color)
+                size=10,  
+                color="#9b58b6", 
             )
         )
     )
