@@ -202,7 +202,7 @@ layout = dbc.Container(
                                                     ]
                                                 )
                                             ]),
-                                        ],id="left-col", hidden=False),                                            
+                                        ],id="left-col", hidden=True),                                            
                                     ],
                                     xs=12, sm=12, md=12, lg=12, xl=8
                                 ),
@@ -242,7 +242,7 @@ layout = dbc.Container(
                                                     width=12,
                                                 )
                                             )
-                                        ], id="right-col", hidden=False)
+                                        ], id="right-col", hidden=True)
                                     ],
                                     xs=12, sm=12, md=12, lg=12, xl=4
                                 ),
