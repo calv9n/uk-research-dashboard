@@ -111,7 +111,7 @@ layout = dbc.Container(
                                                             dcc.Loading(
                                                                 html.Div(
                                                                     id="staff-fte-kpi",
-                                                                    style={"height": "130px", 'margin-bottom':'1rem'},
+                                                                    style={"height": "130px"},
                                                                 )
                                                             )
                                                         ],xs=12, sm=12, md=6, lg=3, xl=3),
@@ -119,7 +119,7 @@ layout = dbc.Container(
                                                             dcc.Loading(
                                                                 html.Div(
                                                                     id="income-kpi",
-                                                                    style={"height": "130px", 'margin-bottom':'1rem'},
+                                                                    style={"height": "130px"},
                                                                 )
                                                             )
                                                         ],xs=12, sm=12, md=6, lg=3, xl=3),
@@ -127,7 +127,7 @@ layout = dbc.Container(
                                                             dcc.Loading(
                                                                 html.Div(
                                                                     id="in-kind-kpi",
-                                                                    style={"height": "130px", 'margin-bottom':'1rem'},
+                                                                    style={"height": "130px"},
                                                                 )
                                                             )
                                                         ],xs=12, sm=12, md=6, lg=3, xl=3),
@@ -135,7 +135,7 @@ layout = dbc.Container(
                                                             dcc.Loading(
                                                                 html.Div(
                                                                     id="phd-kpi",
-                                                                    style={"height": "130px", 'margin-bottom':'1rem'},
+                                                                    style={"height": "130px"},
                                                                 )
                                                             )
                                                         ], xs=12, sm=12, md=6, lg=3, xl=3)
@@ -226,7 +226,7 @@ layout = dbc.Container(
                                                         )
                                                     )
                                                 ], width=6)
-                                            ],style={"margin-bottom":"1rem"}),
+                                            ]),
                                             dbc.Row(        # income in-kind category treemap
                                                 dbc.Col(        
                                                     dcc.Loading(
