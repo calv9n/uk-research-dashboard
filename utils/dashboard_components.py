@@ -324,7 +324,7 @@ def generatePhdChartAndKPICard(uni, uoa):
         html.H1("PhDs Awarded", className='subtitle-medium-18-color'),
         html.H1(format_value(total_phds), className="ranking-title-color"),
         html.H3("2013-2019 (Total)", className='subtitle-small-color'),
-    ], className='card card-body ranking-card')  
+    ])  
 
     return phd_awarded_chart, phd_kpi_card
 
@@ -378,7 +378,7 @@ def generateIncomeCategoryChartAndKPICard(uni, uoa):
         html.H1("Research Income", className='subtitle-medium-18-color'),
         html.H1(f'£ {format_value(int(total_income))}', className="ranking-title-color"),
         html.H3("2013-2020 (Total)", className='subtitle-small-color'),
-    ], className='card card-body ranking-card')    
+    ])    
 
     return income_cat_chart, inc_kpi_card
 
@@ -399,7 +399,7 @@ def generateStaffFTEKPICard(uni,uoa):
         html.H1("Staff FTE", className='subtitle-medium-18-color'),
         html.H1(format_value(total), className="ranking-title-color"),
         html.H3("Full Time Equivalent", className='subtitle-small-color'),
-    ], className='card card-body ranking-card') 
+    ]) 
 
     return fte_kpi_card
 
@@ -420,7 +420,7 @@ def generateInKindKPICard(uni, uoa):
         html.H1("Income In-Kind", className='subtitle-medium-18-color'),
         html.H1(f'£ {format_value(int(total))}', className="ranking-title-color"),
         html.H3("2013-2020 (Total)", className='subtitle-small-color'),
-    ], className='card card-body ranking-card')   
+    ])   
 
     return ik_kpi_card
 
@@ -643,13 +643,13 @@ def generateRankingCards(uni, uoa):
         html.H1("National Ranking", className='subtitle-medium-18-color'),
         html.H1(nat_ranking+1, className="ranking-title-color"),
         html.H3("Overall Research Quality", className='subtitle-small-color'),
-    ], className='card card-body ranking-card')
+    ])
 
     fig_reg = html.Div([
         html.H1("Regional Ranking", className='subtitle-medium-18-color'),
         html.H1(reg_ranking+1, className="ranking-title-color"),
         html.H3("Overall Research Quality", className='subtitle-small-color'),
-    ], className='card card-body ranking-card')
+    ])
 
     return [fig_nat, fig_reg]
 

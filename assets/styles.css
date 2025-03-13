@@ -63,7 +63,7 @@
 /* extra Large screens (lg) - between 1400px and 2560 */
 @media (max-width: 2560px) {
     .ranking-title-color {
-        font-size: 42px;
+        font-size: 32px;
     }
 }
 
@@ -118,7 +118,7 @@
 /* extra Large screens (lg) - between 1450px and 2560 */
 @media (max-width: 2560px) {
     .subtitle-medium-18-color {
-        font-size: 24px;
+        font-size: 18px;
     }
 }
 
@@ -163,7 +163,7 @@
 /* extra Large screens (lg) - between 1400px and 2560 */
 @media (max-width: 2560px) {
     .subtitle-small-color {
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
@@ -294,7 +294,7 @@ body {
 }
 
 .card-icon {
-    font-size:5vh;
+    font-size:4vh;
     /* margin-right: 15px;
     margin-bottom: 10px; */
     color: #9b58b6;
@@ -368,7 +368,9 @@ body {
 
 .ranking-card {
     text-align: center;
-
+    margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Placeholder */
@@ -442,50 +444,6 @@ button[disabled] {
     --bs-btn-padding-y: 0.2rem;
     --bs-btn-font-size: 14px;
   }
-
-  /* style={'display':'flex', 
-    'padding':'0',
-    'justifyContent':'center',
-    'alignItems':'center',
-    'margin-top':'0.5rem'
-    } */
-
-label[for="_dbcprivate_radioitems_submissions-radios_input_Environment"] {
-    border-radius: 0 !important;  
-    width: 50% !important;
-    display: flex;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-}
-
-label[for="_dbcprivate_radioitems_submissions-radios_input_Impact"] {
-    border-radius: 0 !important;  
-    width: 50% !important;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    justify-content: center;
-}
-
-label[for="_dbcprivate_radioitems_submissions-radios_input_Outputs"] {
-    border-top-right-radius: 0 !important;  
-    border-bottom-right-radius: 0 !important;  
-    width: 50% !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-}
-label[for="_dbcprivate_radioitems_submissions-radios_input_Overall"] {
-    border-top-left-radius: 0 !important;  
-    border-bottom-left-radius: 0 !important;   
-    width: 50% !important;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-}
   
 
 .user-info-text {

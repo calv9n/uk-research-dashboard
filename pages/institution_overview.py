@@ -112,6 +112,7 @@ layout = dbc.Container(
                                                                 html.Div(
                                                                     id="staff-fte-kpi",
                                                                     style={"height": "130px"},
+                                                                    className='card card-body ranking-card'
                                                                 )
                                                             )
                                                         ],xs=12, sm=12, md=6, lg=3, xl=3),
@@ -120,6 +121,7 @@ layout = dbc.Container(
                                                                 html.Div(
                                                                     id="income-kpi",
                                                                     style={"height": "130px"},
+                                                                    className='card card-body ranking-card'
                                                                 )
                                                             )
                                                         ],xs=12, sm=12, md=6, lg=3, xl=3),
@@ -128,6 +130,7 @@ layout = dbc.Container(
                                                                 html.Div(
                                                                     id="in-kind-kpi",
                                                                     style={"height": "130px"},
+                                                                    className='card card-body ranking-card'
                                                                 )
                                                             )
                                                         ],xs=12, sm=12, md=6, lg=3, xl=3),
@@ -136,6 +139,7 @@ layout = dbc.Container(
                                                                 html.Div(
                                                                     id="phd-kpi",
                                                                     style={"height": "130px"},
+                                                                    className='card card-body ranking-card'
                                                                 )
                                                             )
                                                         ], xs=12, sm=12, md=6, lg=3, xl=3)
@@ -202,7 +206,7 @@ layout = dbc.Container(
                                                     ]
                                                 )
                                             ]),
-                                        ],id="left-col", hidden=True),                                            
+                                        ],id="left-col", hidden=False),                                            
                                     ],
                                     xs=12, sm=12, md=12, lg=12, xl=8
                                 ),
@@ -215,6 +219,7 @@ layout = dbc.Container(
                                                         html.Div(
                                                             id="nat-ranking",
                                                             style={"height": "130px"},
+                                                            className='card card-body ranking-card'
                                                         )
                                                     )
                                                 ],width=6),
@@ -223,6 +228,7 @@ layout = dbc.Container(
                                                         html.Div(
                                                             id="reg-ranking",
                                                             style={"height": "130px"},
+                                                            className='card card-body ranking-card'
                                                         )
                                                     )
                                                 ], width=6)
@@ -242,7 +248,7 @@ layout = dbc.Container(
                                                     width=12,
                                                 )
                                             )
-                                        ], id="right-col", hidden=True)
+                                        ], id="right-col", hidden=False)
                                     ],
                                     xs=12, sm=12, md=12, lg=12, xl=4
                                 ),
