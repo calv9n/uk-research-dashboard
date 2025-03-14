@@ -14,7 +14,7 @@ phd_df = pd.read_csv('data/phd_awarded_cleaned.csv')
 dash.register_page(
     module= __name__,
     external_stylesheets = [dbc.themes.BOOTSTRAP, 'assets/style.css'],
-    path = '/institution_overview'
+    path = '/multi_level_view'
 )
 
 # layout
@@ -338,7 +338,6 @@ layout = dbc.Container(
     Output("region-col", "style"),
     Output("uoa-col", "style"),
     Input("view-dropdown", "value"),
-    # prevent_initial_call=True,
 )
 def updateDropdownsbyView(view):
     if view == None:

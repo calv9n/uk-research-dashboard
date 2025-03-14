@@ -20,7 +20,7 @@ regions_df = pd.read_csv('data/regions.csv')
 dash.register_page(
     module= __name__,
     external_stylesheets = [dbc.themes.BOOTSTRAP, 'assets/style.css'],
-    path = '/regional_overview'
+    path = '/regional_trends'
 )
 
 layout = dbc.Container(

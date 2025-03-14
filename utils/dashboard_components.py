@@ -1,3 +1,6 @@
+## This file contains almost all of the helper & utility functions
+## used to facilitate the dashboard's functionality.
+
 import pandas as pd
 import numpy as np
 from dash import dcc, html
@@ -15,23 +18,60 @@ incomeiK_df = pd.read_csv('data/incomeiK_cleaned.csv')
 phd_df = pd.read_csv('data/phd_awarded_cleaned.csv')
 regions_mapping = pd.read_csv("data/regions.csv")
 
-with open("assets/countries.geojson") as f:
-    countries_geojson = json.load(f)
-
 with open("assets/regions.geojson") as f:
     regions_geojson = json.load(f)
 
 def format_value(value):
-    if int(value) < 1e3:
+    """
+    Formats a numerical value into a more readable string representation.
+
+    Depending on the size of the input value, the function returns:
+    - A rounded value (1 decimal place) if the value is less than 1,000.
+    - A value in thousands (rounded to 1 decimal place with a 'K' suffix) if the value is between 1,000 and 999,999.
+    - A value in millions (rounded to 1 decimal place with an 'M' suffix) if the value is between 1 million and 999 million.
+    - A value in billions (rounded to 2 decimal places with a 'B' suffix) if the value is 1 billion or more.
+
+    Parameters:
+    value (float or int): The numerical value to format.
+
+    Returns:
+    str: The formatted value as a string with appropriate suffix ('', 'K', 'M', or 'B').
+
+    Example:
+    >>> format_value(750)
+    '750.0'
+
+    >>> format_value(1200)
+    '1.2K'
+
+    >>> format_value(5000000)
+    '5.0M'
+
+    >>> format_value(1500000000)
+    '1.50B'
+    """
+    if value < 1e3:
         return np.round(value,1)
-    elif int(value) < 1e6:
-        return f"{int(value) / 1e3:.1f}K"                   # Values below 1 million in thousands
-    elif int(value) < 1e9:
-        return f"{int(value) / 1e6:.1f}M"                  # Values above 1 million in millions
+    elif value < 1e6:
+        return f"{value / 1e3:.1f}K"                   # Values below 1 million in thousands
+    elif value < 1e9:
+        return f"{value / 1e6:.1f}M"                  # Values above 1 million in millions
     else:
-        return f"{int(value) / 1e9:.2f}B"                   # values above 100 million in billions
+        return f"{value / 1e9:.2f}B"                   # values above 100 million in billions
     
 def create_gpa_kpi_card(title, card_id, icon_class):
+    """
+    Creates a KPI card component with a title, value placeholder, and an icon.
+
+    This function generates a Dash `dbc.Card` that displays a KPI (Key Performance Indicator) card 
+    with a customizable title, a placeholder for the card's value (identified by `card_id`), 
+    and a FontAwesome icon for visual representation.
+
+    Parameters:
+    title (str): The title of the KPI card.
+    card_id (str): The unique identifier for the card's value. This will be used to update the value dynamically.
+    icon_class (str): The FontAwesome icon class to display in the card.
+    """
     return dbc.Card(
         dcc.Loading(
             dbc.CardBody(
@@ -61,29 +101,29 @@ def create_gpa_kpi_card(title, card_id, icon_class):
         className="card",
     )
 
-def create_leaderboard(title, df, col, region):
-    if region:
-        th = "Region",
-        td_data_col = "Region"
+def create_leaderboard(title, df, col):
+    th = 'Institution name'
+    td_data_col = 'Institution name'
+
+    if (col == 'Income') or (col == 'Income In-Kind'):
+        col_name = '2013-2020 (total)'
     else:
-        th = "Institution name"
-        td_data_col = "Institution name"
+        col_name = col
 
     return dbc.Card(
-    dcc.Loading(  # Adding the loading spinner
-        dbc.CardBody(  # The body of the card
+    dcc.Loading(  
+        dbc.CardBody(  
             [
                 html.Div(
                     [
-                        html.I(  # Icon for the card (you can adjust the icon as per your needs)
-                            className=f"fas fa-ranking-star card-icon",
+                        html.I( 
+                            className=f"fas fa-ranking-star card-icon", style={'margin-right':'10px'}
                         ),
-                        html.H3(title, className="card-title"),
+                        html.H3(title, className="card-title", style={'font-size':'18px'}),
                     ],
-                    className="d-flex align-items-center",  # Flexbox for alignment
+                    className="d-flex align-items-center",  
                 ),
                 
-                # Table inside the card body
                 dbc.Table(
                     [
                         html.Thead(
@@ -101,10 +141,10 @@ def create_leaderboard(title, df, col, region):
                                     [
                                         html.Td(i + 1),
                                         html.Td(row[td_data_col]),
-                                        html.Td(np.round(row[col], 2) if col == "GPA" or col == "FTE staff" else format_value(row[col])),
+                                        html.Td(np.round(row[col_name], 2) if col_name == "GPA" or col_name == "FTE staff" else format_value(row[col_name])),
                                     ]
                                 )
-                                for i, row in df.sort_values(col, ascending=False).head(5).reset_index(drop=True).iterrows()
+                                for i, row in df.sort_values(col_name, ascending=False).head(10).reset_index(drop=True).iterrows()
                             ]
                         ),
                     ],
@@ -116,6 +156,8 @@ def create_leaderboard(title, df, col, region):
         ),
     ),
     className="card",  # Card styling
+    style={'border-top-right-radius':'0', 'border-top-left-radius':'0', 'padding-left':'1rem', 'padding-right':'1rem'},
+
 )
 
 def create_info_cards(data, df, col, region):
@@ -252,7 +294,7 @@ def generateIncomeChart(type, ins, uoa, reg):
     chart.update_traces(
         marker_color="#800080",
         hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}",
+        hovertemplate="<b>%{x}</b><br>Value: £%{y:,}<extra></extra>",
     )
     
     chart.update_layout(
@@ -325,7 +367,7 @@ def generatePhdChartAndKPICard(type, ins, uoa, reg):
     phd_awarded_chart.update_traces(
         marker_color="#800080",
         hoverlabel=dict(bgcolor="rgba(255, 255, 255, 0.1)", font_size=12),
-        hovertemplate="<b>%{x}</b><br>PhDs Awarded: %{y}",
+        hovertemplate="<b>%{x}</b><br>PhDs Awarded: %{y}<extra></extra>",
     )
 
     phd_awarded_chart.update_layout(
@@ -357,7 +399,6 @@ def generatePhdChartAndKPICard(type, ins, uoa, reg):
 
     return phd_awarded_chart, phd_kpi_card
 
-## CLEAN-UP PLEASE
 def generateIncomeCategoryChartAndKPICard(type, uni, uoa, reg):
     if type == 'ins':
         if (uoa == 'All'):
@@ -418,7 +459,7 @@ def generateIncomeCategoryChartAndKPICard(type, uni, uoa, reg):
     )
     
     income_cat_chart.update_traces(
-        hovertemplate='%{label}<br>Total funding: £%{value}<br>',
+        hovertemplate='%{label}<br>Total funding: £%{value}<br><extra></extra>',
         texttemplate="%{label}<br><br>£%{value}",
     )
 
@@ -434,32 +475,34 @@ def generateIncomeCategoryChartAndKPICard(type, uni, uoa, reg):
 
 def generateKPICard(title, value, subtitle, icon_id, tooltip):
     return html.Div([
+        html.H1(title, className='subtitle-medium-18-color'),
+        html.H1(value, className="ranking-title-color"),
         html.Div([
-            html.H1(title, className='subtitle-medium-18-color'),
+            html.H3(subtitle, className='subtitle-small-color'),
             html.Span(
                 html.I(className="fa fa-info-circle info-icon", id=f"{icon_id}-info-icon"),
                 style={"margin": "0px 0px 8px 8px", "cursor": "pointer", "color": "#0d6efd"},
             ),
-        ], className="d-flex align-items-center"),
+        ], className="d-flex align-items-center justify-content-center"),
         dbc.Tooltip(
             tooltip,
             target=f"{icon_id}-info-icon",
             placement="right",  
         ),
-        html.H1(value, className="ranking-title-color"),
-        html.H3(subtitle, className='subtitle-small-color'),
     ])
 
 def generateStaffFTEKPICard(type, uni, uoa, reg):
     if type == 'ins':
         if (uoa == 'All'):
             df = results_df.loc[
-                (results_df["Institution name"] == uni)
+                (results_df["Institution name"] == uni) & 
+                 (results_df['Profile'] == 'Overall')
             ]
         else:
             df = results_df.loc[
                 (results_df["Institution name"] == uni) &
-                (results_df["UOA name"] == uoa)
+                (results_df["UOA name"] == uoa) &
+                (results_df['Profile'] == 'Overall')
             ]
     elif type == 'reg':
         df = results_df[(results_df['Region'] == reg) &
@@ -472,7 +515,8 @@ def generateStaffFTEKPICard(type, uni, uoa, reg):
                             (results_df['Profile'] == 'Overall')]
         else:
             df = results_df[results_df["Profile"] == "Overall"]
-
+    
+    # check if any multiple submissions
     df = df.groupby('UOA name').agg({'FTE staff':'sum'})
     
     total = df['FTE staff'].sum()
@@ -512,7 +556,7 @@ def generateInKindKPICard(type, uni, uoa, reg):
 
     ik_kpi_card = generateKPICard(
         "Income In-Kind",
-        f'£ {format_value(int(total))}',
+        f'£{format_value(int(total))}',
         "2013-2020 (Total)",
         'in-kind',
         "Non-monetary resources received to support research actvities (e.g. staff resource, time allocated to use equipment, spaces, etc.)"
@@ -1013,13 +1057,16 @@ def generateRegionGPADist(region, uoa, gpa_profile):
     return fig
 
 ## TBC
-def generateMap(df, data, period):
-    color = period
+def generateMap(df, data):
 
     if data == "Staff FTE":
         color = "FTE staff"
-    if data == "GPA":
+    if data in ["Overall GPA", 'Outputs GPA', 'Environment GPA', 'Impact GPA']:
         color = "GPA"
+    if data == 'PhDs Awarded':
+        color = 'Total'
+    if data in ['Income', 'Income In-Kind']:
+        color = '2013-2020 (total)'
 
     map_graph = px.choropleth(df,
                         geojson=regions_geojson,  
@@ -1038,60 +1085,64 @@ def generateMap(df, data, period):
 
     map_graph.update_layout(
         margin=dict(t=75, l=25, r=25, b=25),  # Adjust margins
-        title="Some title",
+        title=f"Regional Comparison of {data}",
+    )
+
+    map_graph.update_layout(
+        title=dict(text=f"Regional Comparison of {data}", font=dict(color="#9b58b6")),
+        plot_bgcolor="rgba(0, 0, 0, 0)",
+        showlegend=False,
+        title_font_size=18,
+        font_family="Inter, sans-serif",
+        margin = dict(t=40, l=10, r=10, b=10),
     )
     
     return map_graph
 
-def generateScatter(df, data, period, region):
-    x_col = period
-    y_col = "GPA" 
-    color = "Region"
-     
-    if (data == "GPA") or (data == "Staff FTE"):
-        x_col = "FTE staff"
-    if region != "All":
-        color = None
-    else:
-        color = "Region"
-
-    scatter_graph = px.scatter(
-        df,
-        x=x_col,
-        y=y_col,
-        hover_name="Institution name",
-        color=color,
-    )
-
-    scatter_graph.update_layout(
-        yaxis=dict(range=[1,4]),
-    )
-
-    return scatter_graph
-
-def generateDataFrameForMap(data, uoa, period, aggfunc):
-    agg_func_dict = {
-        period:aggfunc
-    }
-
-    if (data == "GPA"):
-        df = results_df    
+def generateDataFrameForMap(data, uoa):
+    if (data == "Overall GPA"):
+        df = results_df[results_df["Profile"] == "Overall"]
         agg_func_dict = {
             "GPA":"mean"
         }
-    if (data == "Staff FTE"):
-        df = results_df
+    elif (data == "Outputs GPA"):    
+        df = results_df[results_df["Profile"] == "Outputs"]
         agg_func_dict = {
-            "FTE staff":aggfunc
+            "GPA":"mean"
+        }
+    elif (data == "Environment GPA"):
+        df = results_df[results_df["Profile"] == "Environment"]
+        agg_func_dict = {
+            "GPA":"mean"
+        }
+    else:
+        df = results_df[results_df["Profile"] == "Impact"]
+        agg_func_dict = {
+            "GPA":"mean"
+        }
+
+    if (data == "Staff FTE"):
+        df = results_df[results_df["Profile"] == "Overall"]
+        agg_func_dict = {
+            "FTE staff":'sum'
         }
     if data == "PhDs Awarded":
         df = phd_df
+        agg_func_dict = {
+            'Total':'sum'
+        }
         
     if data == "Income":
-        df = income_df
+        df = income_df[income_df['Income source'] != 'Total income']
+        agg_func_dict = {
+            '2013-2020 (total)':'sum'
+        }
         
     if data == "Income In-Kind":
-        df = incomeiK_df
+        df = incomeiK_df[incomeiK_df['Income source'] != 'Total income']
+        agg_func_dict = {
+            '2013-2020 (total)':'sum'
+        }
     
     if uoa != "All":
         df = df[df['UOA name'] == uoa]
@@ -1100,33 +1151,3 @@ def generateDataFrameForMap(data, uoa, period, aggfunc):
 
     return df
 
-def generateDataFrameForScatter(data, uoa, period, region, aggfunc):
-    agg_func_dict = {
-            "GPA":"mean",
-            period:aggfunc
-        }  
-    
-    agg_results = results_df[results_df['Profile'] == "Overall"].groupby("Institution name").agg({"GPA":"mean"}).reset_index()
-    
-    if (data == "GPA") or (data == "Staff FTE"):
-        df = results_df
-        agg_func_dict = {
-            "FTE staff":aggfunc,
-            "GPA":"mean"
-        }
-    if data == "PhDs Awarded":
-        df = phd_df.merge(agg_results, on="Institution name")
-    if data == "Income":
-        df = income_df.merge(agg_results, on="Institution name")
-    if data == "Income In-Kind":
-        df = incomeiK_df.merge(agg_results, on="Institution name")
-
-    if uoa != "All":
-        df = df[df['UOA name'] == uoa]
-
-    if region != "All":
-        df = df[df['Region'] == region]
-
-    df = df.groupby(["Institution name", "Region"]).agg(agg_func_dict).reset_index()
-
-    return df

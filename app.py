@@ -16,16 +16,80 @@ server = app.server
 sidebar = html.Div(
     [
         dbc.Row(
-            [html.Img(src="assets/refined-analytics-high-resolution-logo-transparent.png", style={"height": "auto"})],
+            [html.Img(src="assets/logo-black.png", style={"height": "auto"})],
             className="sidebar-logo"
         ),
         html.Hr(),
         dbc.Nav(
             [
-                # dbc.NavLink('Subject Overview', href='/subject_overview', active='exact'),
-                # dbc.NavLink('Regional Overview Test', href='/regional_overview_test', active='exact'),
-                dbc.NavLink('Institution Overview', href='/institution_overview', active='exact'),
-                dbc.NavLink('Regional Overview', href='/regional_overview', active='exact'),
+                # National Overview page with info button
+                dbc.NavItem(
+                    dbc.Row(
+                        [
+                            dbc.Col(dbc.NavLink('National Overview', href='/national_overview', active='exact')),
+                            dbc.Col(
+                                html.I(
+                                    className="fa fa-info-circle",
+                                    id="info-national-overview",
+                                    style={"fontSize": "15px", "cursor": "pointer", "padding": "0", 'color':'#800080'}
+                                ),
+                                width="auto"
+                            )
+                        ],
+                        align="center"
+                    )
+                ),
+                dbc.Tooltip(
+                    "Explore the overview of national research data, including performance and trends across the UK.",
+                    target="info-national-overview",
+                    placement="right"
+                ),
+                # Multi-level View page with info button
+                dbc.NavItem(
+                    dbc.Row(
+                        [
+                            dbc.Col(dbc.NavLink('Multi-level View', href='/multi_level_view', active='exact')),
+                            dbc.Col(
+                                html.I(
+                                    className="fa fa-info-circle",
+                                    id="info-multi-level-view",
+                                    style={"fontSize": "15px", "cursor": "pointer", "padding": "0", 'color':'#800080'}
+                                ),
+                                width="auto"
+                            )
+                        ],
+                        align="center"
+                    )
+                ),
+                dbc.Tooltip(
+                    "Analyze research trends at the multi-level view, from institutions to regions and across UK.",
+                    target="info-multi-level-view",
+                    placement="right"
+                ),
+                # Regional Trends page with info button
+                dbc.NavItem(
+                    dbc.Row(
+                        [
+                            dbc.Col(dbc.NavLink('Regional Trends', href='/regional_trends', active='exact')),
+                            dbc.Col(
+                                html.I(
+                                    className="fa fa-info-circle",
+                                    id="info-regional-trends",
+                                    style={"fontSize": "15px", "cursor": "pointer", "padding": "0", 'color':'#800080'}
+                                ),
+                                width="auto"
+                            )
+                        ],
+                        align="center"
+                    )
+                ),
+                dbc.Tooltip(
+                    "Explore regional research performance and trends across the different parts of the UK.",
+                    target="info-regional-trends",
+                    placement="right"
+                ),
+                dbc.NavLink('Back to Home', href='/', active='exact'),
+
             ],
             vertical=True,
             pills=True
@@ -73,12 +137,14 @@ app.layout = html.Div(
 # Callback to Show/Hide Sidebar
 @callback(
     Output("sidebar-container", "children"),
+    Output("sidebar-container", "style"),
     Input("url", "pathname")
 )
 def toggle_sidebar(pathname):
     if pathname == "/": 
-        return ""
-    return sidebar
+        return "", {'display':'none'}
+    return sidebar, {'display':'block'}
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

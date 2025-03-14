@@ -48,6 +48,7 @@
 .title {
     font-size: 32px;
     color: #3a4552;
+    font-family: 'Inter', sans-serif;
 }
 
 .title-color {
@@ -346,6 +347,11 @@ body {
     .card-text {
         font-size: 28px;
     }
+}
+
+.card-info {
+    font-size: 1.5rem;
+    color: #800080
 }
 
 .info-icon {
