@@ -28,52 +28,87 @@ layout = dbc.Container(
         html.Div(
             [
                 dbc.Col([               # master col
-                    dbc.Row([           # master row
-                        dbc.Col([       # left col
-                            html.Div([      # div for region dropdown & update btn
-                                dbc.Row([
-                                    dbc.Col([       # region dropdown
-                                        html.H3(
-                                            "Region(s)",
-                                            className='subtitle-small',
-                                        ),
-                                        dcc.Dropdown(               # dropdown for uni filter
-                                            id='region-dropdown',
-                                            options=[
-                                                {"label":"London", "value":"London"},
-                                                {"label":"South West", "value":"South West"},
-                                                {"label":"South East", "value":"South East"},
-                                                {"label":"East of England", "value":"East of England"},
-                                                {"label":"West Midlands", "value":"West Midlands"},
-                                                {"label":"East Midlands", "value":"East Midlands"},
-                                                {"label":"North West", "value":"North West"},
-                                                {"label":"North East", "value":"North East"},
-                                                {"label":"Yorkshire and The Humber", "value":"Yorkshire and The Humber"},
-                                                {"label":"Northern Ireland", "value":"Northern Ireland"},
-                                                {"label":"Wales", "value":"Wales"},
-                                                {"label":"Scotland", "value":"Scotland"},
-                                            ],
-                                            value="All",
-                                            clearable=True,
-                                            multi=True,
-                                            placeholder="Select Region(s)",
-                                            className="custom-dropdown",
-                                        )
-                                    ], width=10),
-                                    dbc.Col([
+                    html.Div([      # div for region dropdown & update btn
+                        dbc.Row([
+                            dbc.Col([       # region dropdown
+                                html.H3(
+                                    "Region(s)",
+                                    className='subtitle-small',
+                                ),
+                                dcc.Dropdown(               # dropdown for uni filter
+                                    id='region-dropdown',
+                                    options=[
+                                        {"label":"London", "value":"London"},
+                                        {"label":"South West", "value":"South West"},
+                                        {"label":"South East", "value":"South East"},
+                                        {"label":"East of England", "value":"East of England"},
+                                        {"label":"West Midlands", "value":"West Midlands"},
+                                        {"label":"East Midlands", "value":"East Midlands"},
+                                        {"label":"North West", "value":"North West"},
+                                        {"label":"North East", "value":"North East"},
+                                        {"label":"Yorkshire and The Humber", "value":"Yorkshire and The Humber"},
+                                        {"label":"Northern Ireland", "value":"Northern Ireland"},
+                                        {"label":"Wales", "value":"Wales"},
+                                        {"label":"Scotland", "value":"Scotland"},
+                                    ],
+                                    clearable=True,
+                                    multi=True,
+                                    placeholder="Select Region(s)",
+                                    className="custom-dropdown",
+                                )
+                            ], xs=12, sm=12, md=12, lg=6, xl=4),
+                            dbc.Col([       # region dropdown
+                                html.H3(
+                                    "Unit of Assessment",
+                                    className='subtitle-small',
+                                ),
+                                dcc.Dropdown(               # dropdown for uni filter
+                                    id='uoa-dropdown',
+                                    options=components.returnUoAOptions(),
+                                    clearable=True,
+                                    placeholder="Select Unit of Assessment",
+                                    className="custom-dropdown",
+                                )
+                            ], xs=12, sm=12, md=12, lg=6, xl=4),
+                            dbc.Col([       # gpa profile dropdown
+                                html.H3(
+                                    "GPA Profile",
+                                    className='subtitle-small',
+                                ),
+                                dcc.Dropdown(               # dropdown for uni filter
+                                    id='gpa-profile-dropdown',
+                                    options=[
+                                        {'label':'Overall', 'value':'Overall'},
+                                        {'label':'Outputs', 'value':'Outputs'},
+                                        {'label':'Environment', 'value':'Environment'},
+                                        {'label':'Impact', 'value':'Impact'},
+                                    ],
+                                    value = 'Overall',
+                                    clearable=True,
+                                    placeholder="Select GPA Profile",
+                                    className="custom-dropdown",
+                                )
+                            ], xs=12, sm=12, md=6, lg=3, xl=2),
+                            dbc.Col([
+                                    html.Div(
                                         dbc.Button(
                                             "Update Dashboard",
                                             className="btn-custom",
                                             id="reg-update-dashboard-btn",
-                                            disabled=False
-                                        )
-                                    ], width=2),
-                                ])
-                            ],className="filter-card"),
-                            html.Div([              # div for trend graphs
-                                html.Div([          # div for phd & inc ik
+                                        ),
+                                        style={"display": "flex", 
+                                                "flexDirection": "column", 
+                                                "height": "100%", 
+                                                "justifyContent": "flex-end"}
+                                    ) 
+                                ],xs=12, sm=12, md=6, lg=3, xl=2),
+                        ])
+                    ],className="filter-card"),
+                    dbc.Row([           # master row
+                        html.Div([              # div for trend graphs
+                                html.Div([          # div for phd & inc
                                     dbc.Row([
-                                        dbc.Col([       # col for phd trenc
+                                        dbc.Col([       # col for phd trend
                                             dcc.Loading([
                                                 dcc.Graph(
                                                     id = 'phd-trend-graph',
@@ -81,20 +116,16 @@ layout = dbc.Container(
                                                     style={'height':'370px'}
                                                 )
                                             ])
-                                        ], width=6),
-                                        dbc.Col([       # col for inc ik trend
+                                        ], xs=12, sm=12, md=6, lg=6, xl=4),
+                                        dbc.Col([       # col for inc trend
                                             dcc.Loading([
                                                 dcc.Graph(
-                                                    id='inc-ik-trend-graph',
+                                                    id='inc-trend-graph',
                                                     className='chart-card',
                                                     style={'height':'370px'}
                                                 )
                                             ])
-                                        ], width=6),
-                                    ])
-                                ], style={"margin-bottom":"1rem"}),
-                                html.Div([          # div for gpa dist & gpa v. phds scatter
-                                    dbc.Row([
+                                        ], xs=12, sm=12, md=6, lg=6, xl=4),
                                         dbc.Col([       # col for gpa dist
                                             dcc.Loading([
                                                 dcc.Graph(
@@ -103,7 +134,7 @@ layout = dbc.Container(
                                                     style={'height':'370px'}
                                                 )
                                             ])
-                                        ], width=6),
+                                        ], xs=12, sm=12, md=6, lg=6, xl=4),
                                         dbc.Col([
                                             dcc.Loading([
                                                 dcc.Graph(
@@ -112,52 +143,41 @@ layout = dbc.Container(
                                                     style={'height':'370px'}
                                                 )
                                             ])
-                                        ], width=6)
+                                        ], xs=12, sm=12, md=6, lg=6, xl=4),
+                                        dbc.Col([       # gpa vs income
+                                            dcc.Loading([
+                                                dcc.Graph(
+                                                    id='gpa-inc-scatter-graph',
+                                                    className='chart-card',
+                                                    style={'height':'370px'}
+                                                )
+                                            ])
+                                        ], xs=12, sm=12, md=6, lg=6, xl=4),
+                                        dbc.Col([       # gpa vs income in kind
+                                            dcc.Loading([
+                                                dcc.Graph(
+                                                    id='gpa-inc-ik-scatter-graph',
+                                                    className='chart-card',
+                                                    style={'height':'370px'}
+                                                )
+                                            ])
+                                        ], xs=12, sm=12, md=6, lg=6, xl=4),
                                     ])
-                                ], style={"margin-bottom":"1rem"})
-                            ], id='reg-left-col', hidden=True)
-                        ], width=6),
-                        dbc.Col([       # right col
-                            html.Div([      # div for right col
-                                html.Div([          # div for scatter plots 2
-                                    html.Div([      # div for gpa vs income & gpa vs income in kind
-                                        dbc.Row([
-                                            dbc.Col([       # gpa vs income
-                                                dcc.Loading([
-                                                    dcc.Graph(
-                                                        id='gpa-inc-scatter-graph',
-                                                        className='chart-card',
-                                                        style={'height':'370px'}
-                                                    )
-                                                ])
-                                            ], width=6),
-                                            dbc.Col([       # gpa vs income in kind
-                                                dcc.Loading([
-                                                    dcc.Graph(
-                                                        id='gpa-inc-ik-scatter-graph',
-                                                        className='chart-card',
-                                                        style={'height':'370px'}
-                                                    )
-                                                ])
-                                            ], width=6),
-                                        ])
-                                    ], style={"margin-bottom":"1rem"}),
                                 ]),
-                                html.Div([          # div for income bar chart
+                                html.Div([
                                     dbc.Row([
                                         dbc.Col([       # col for income bar chart
                                             dcc.Loading([
                                                 dcc.Graph(
                                                     id='inc-sankey-chart',
                                                     className='chart-card',
-                                                    style={'height':'53.8vh'}
+                                                    style={'height':'65vh'}
                                                 )
                                             ])
                                         ], width=12),
                                     ])
-                                ], style={"margin-bottom":"1rem"})
-                            ], id='reg-right-col', hidden=True),
-                        ])
+                                ])
+                            ], id='content-col', hidden=True),
                     ]),
                     dbc.Alert(
                         id='reg-ov-alert-msg',
@@ -173,53 +193,60 @@ layout = dbc.Container(
 )
 
 @callback(
-    Output("reg-left-col", 'hidden'),
-    Output("reg-right-col", 'hidden'),
+    Output("content-col", 'hidden'),
     Output("reg-ov-alert-msg", "children"), 
     Output("reg-ov-alert-msg", "is_open"),
     Output('reg-update-dashboard-btn', 'disabled'),
     Input("reg-update-dashboard-btn", 'n_clicks'),
     State("region-dropdown", "value"),
+    State('uoa-dropdown', 'value'),
     prevent_initial_call = True
 )
-def showCardsAndDisableUpdateButton(n_clicks, region):
-    if region == None or region == []:
-        return True, True, "Please select at least ONE(1) Region.", True, False
+def showCardsAndDisableUpdateButton(n_clicks, region, uoa):
+    if (region == None or region == []) and (uoa is None):
+        return True, "Please select at least ONE(1) Region and a Unit of Assessment.", True, False
+    elif (region == None or region == []):
+        return True, 'Please select at least ONE(1) Region', True, False
+    elif (uoa is None):
+        return True, 'Please select a Unit of Assessment', True, False
     else:
-        return False, False, "", False, True  # Hide alert & disabled update dashboard btn when valid
+        return False, "", False, True  # Hide alert & disabled update dashboard btn when valid
     
 @callback(
     Output("reg-update-dashboard-btn", "disabled", allow_duplicate=True),
     Input("region-dropdown", "value"),
+    Input("uoa-dropdown", 'value'),
+    Input('gpa-profile-dropdown', 'value'),
     prevent_initial_call=True
 )
-def enableUpdateButton(region):
+def enableUpdateButton(region, uoa, gpa_profile):
     return False  # Re-enable button when dropdown changes
 
 @callback(
     Output("phd-trend-graph", "figure"),
-    Output("inc-ik-trend-graph", "figure"),
+    Output("inc-trend-graph", "figure"),
     Output("gpa-dist-graph", 'figure'),
     Output('gpa-phd-scatter-graph', 'figure'),
     Output('gpa-inc-scatter-graph', 'figure'),
     Output('gpa-inc-ik-scatter-graph', 'figure'),
     Output("inc-sankey-chart", "figure"),
-    Output('reg-left-col', 'hidden', allow_duplicate=True),
-    Output('reg-right-col', 'hidden', allow_duplicate=True),
+    Output('content-col', 'hidden', allow_duplicate=True),
     Input("reg-update-dashboard-btn", "n_clicks"),
     State('region-dropdown', 'value'),
+    State('uoa-dropdown', 'value'),
+    State('gpa-profile-dropdown', 'value'),
     prevent_initial_call = True
 )
-def updatePage(n_clicks, region):
-    if region == None or region == []:
+def updatePage(n_clicks, region, uoa, gpa_profile):
+    if region == None or region == [] or uoa is None:
         raise dash.exceptions.PreventUpdate
     return(
-        components.generateRegionLineCharts('phd', region),
-        components.generateRegionLineCharts('incomeik', region),
-        components.generateRegionGPADist(region),
-        components.generateRegionScatterPlots('phd', region),
-        components.generateRegionScatterPlots('income', region),
-        components.generateRegionScatterPlots('incomeik', region),
-        components.generateRegionIncomeSankey(region),
-        False, False
+        components.generateRegionLineCharts('phd', region, uoa),
+        components.generateRegionLineCharts('income', region, uoa),
+        components.generateRegionGPADist(region, uoa, gpa_profile),
+        components.generateRegionScatterPlots('phd', region, uoa, gpa_profile),
+        components.generateRegionScatterPlots('income', region, uoa, gpa_profile),
+        components.generateRegionScatterPlots('incomeik', region, uoa, gpa_profile),
+        components.generateRegionIncomeSankey(region, uoa),
+        False
     )
