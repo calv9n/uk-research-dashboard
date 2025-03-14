@@ -1,24 +1,23 @@
 import dash
-from dash import Dash, html, dcc, callback, Output, Input, State
+from dash import Dash, html, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
+# dash app initialisation
 app = Dash(
-    name = __name__, 
+    __name__,
     use_pages=True,
-    title = 'UK Research Dashboard',
+    title="UK Research Dashboard",
     external_stylesheets=[dbc.themes.BOOTSTRAP, 'assets/style.css']
 )
 
 server = app.server
 
-# sidebar
+# sidebar nav
 sidebar = html.Div(
     [
         dbc.Row(
-            [
-                html.Img(src="assets/refined-analytics-high-resolution-logo-transparent.png", style={"height":"25px"})
-            ],
-            className = "sidebar-logo"
+            [html.Img(src="assets/refined-analytics-high-resolution-logo-transparent.png", style={"height": "auto"})],
+            className="sidebar-logo"
         ),
         html.Hr(),
         dbc.Nav(
@@ -30,16 +29,15 @@ sidebar = html.Div(
             ],
             vertical=True,
             pills=True
-        )
+        ),
     ],
     className='sidebar'
 )
 
-# content
-content = html.Div(
-    className= 'page-content'
-)
+# content container
+content = html.Div(id="page-content", className='page-content')
 
+# custom HTML template
 app.index_string = """
 <!DOCTYPE html>
 <html>
@@ -58,19 +56,29 @@ app.index_string = """
 </html>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap');
 </style>
 """
 
-# layout
+# main app layout
 app.layout = html.Div(
     [
-        dcc.Location(id='url', pathname="/regional_overview"),
-        sidebar,
+        dcc.Location(id='url', refresh=False),  # tracks URL changes
+        html.Div(id="sidebar-container"),  # sidebar will be inserted dynamically
         content,
-        dash.page_container,
+        dash.page_container, 
     ]
 )
+
+# Callback to Show/Hide Sidebar
+@callback(
+    Output("sidebar-container", "children"),
+    Input("url", "pathname")
+)
+def toggle_sidebar(pathname):
+    if pathname == "/": 
+        return ""
+    return sidebar
 
 if __name__ == '__main__':
     app.run_server(debug=True)
