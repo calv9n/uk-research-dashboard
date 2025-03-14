@@ -20,66 +20,130 @@ dash.register_page(
 # layout
 layout = dbc.Container(
     [
+        dcc.Store(
+            id='dropdowns-valid', data=False
+        ),
         html.Div(
             [
                 dbc.Col(            # master col
                     [
+                        html.Div([          # div for dropdowns 
+                            dbc.Row([       #dropdowns
+                                dbc.Col([
+                                    html.Label(
+                                        "View",
+                                        className='subtitle-small',
+                                    ),
+                                    dcc.Dropdown(               # dropdown for uni filter
+                                        id='view-dropdown',
+                                        options=[
+                                            {"label": 'Institution', "value": 'ins'},
+                                            {"label": 'Regional', "value": 'reg'},
+                                            {"label": 'National', "value": 'nat'},
+                                        ],
+                                        # value="All",
+                                        clearable=True,
+                                        multi=False,            
+                                        placeholder="Select View",
+                                        className="custom-dropdown",
+                                    )],
+                                    xs=6, sm=6, md=6, lg=2, xl=2
+                                ),
+                                dbc.Col([
+                                    html.Label(
+                                        "Institution",
+                                        className='subtitle-small',
+                                        id='institution-dropdown-heading',
+                                    ),
+                                    dcc.Dropdown(               # dropdown for institution/region
+                                        id='institution-dropdown',
+                                        options=[
+                                            {"label": col, "value": col}
+                                            for col in sorted(
+                                                results_df["Institution name"].unique()
+                                            )
+                                        ],
+                                        clearable=True,
+                                        multi=False,            # can extend to be multi-select
+                                        placeholder="Select Institution",
+                                        className="custom-dropdown",
+                                    )],
+                                    xs=12, sm=12, md=12, lg=3, xl=3,
+                                    id='institution-col'
+                                ),
+                                dbc.Col([
+                                    html.Label(
+                                        "Region",
+                                        className='subtitle-small',
+                                        id='region-dropdown-heading',
+                                    ),
+                                    dcc.Dropdown(               # dropdown for institution/region
+                                        id='region-dropdown',
+                                        options=[
+                                            {"label":"London", "value":"London"},
+                                            {"label":"South West", "value":"South West"},
+                                            {"label":"South East", "value":"South East"},
+                                            {"label":"East of England", "value":"East of England"},
+                                            {"label":"West Midlands", "value":"West Midlands"},
+                                            {"label":"East Midlands", "value":"East Midlands"},
+                                            {"label":"North West", "value":"North West"},
+                                            {"label":"North East", "value":"North East"},
+                                            {"label":"Yorkshire and The Humber", "value":"Yorkshire and The Humber"},
+                                            {"label":"Northern Ireland", "value":"Northern Ireland"},
+                                            {"label":"Wales", "value":"Wales"},
+                                            {"label":"Scotland", "value":"Scotland"},
+                                        ],
+                                        clearable=True,
+                                        multi=False,            # can extend to be multi-select
+                                        placeholder="Select Region",
+                                        className="custom-dropdown",
+                                    )],
+                                    xs=12, sm=12, md=12, lg=3, xl=3,
+                                    id='region-col'
+                                ),
+                                dbc.Col([
+                                    html.Label(
+                                        "Unit of Assessment",
+                                        className='subtitle-small',
+                                        id='uoa-dropdown=heading'
+                                    ),
+                                    dcc.Dropdown(               # dropdown for uoa filter
+                                        id='uoa-dropdown',
+                                        options=[],
+                                        value="All",
+                                        clearable=True,
+                                        multi=False,            # can extend to be multi-select
+                                        placeholder="Select Unit of Assessment",
+                                        className="custom-dropdown",
+                                    ),
+                                ],
+                                xs=12, sm=12, md=12, lg=3, xl=3,
+                                id='uoa-col'
+                                ),
+                                dbc.Col(
+
+                                ),
+                                dbc.Col([
+                                    html.Div(
+                                        dbc.Button(
+                                            "Update Dashboard",
+                                            className="btn-custom",
+                                            id="update-dashboard-btn",
+                                        ),
+                                        style={"display": "flex", 
+                                                "flexDirection": "column", 
+                                                "height": "100%", 
+                                                "justifyContent": "flex-end"}
+                                    ) 
+                                ],
+                                xs=12, sm=12, md=12, lg=2, xl=2
+                                ),
+                            ]),
+                        ],className="filter-card"),
                         dbc.Row(            # row 1
                             [
                                 dbc.Col(        # col left
                                     [
-                                        html.Div([      # div for dropdowns           
-                                            dbc.Row([
-                                                dbc.Col([
-                                                    html.H3(
-                                                        "Institution",
-                                                        className='subtitle-small',
-                                                    ),
-                                                    dcc.Dropdown(               # dropdown for uni filter
-                                                        id='uni-dropdown',
-                                                        options=[
-                                                            {"label": col, "value": col}
-                                                            for col in sorted(
-                                                                results_df["Institution name"].unique()
-                                                            )
-                                                        ],
-                                                        value="All",
-                                                        clearable=True,
-                                                        multi=False,            # can extend to be multi-select
-                                                        placeholder="Select Institution",
-                                                        className="custom-dropdown",
-                                                    )],
-                                                    xs=12, sm=12, md=12, lg=5, xl=5
-                                                ),
-                                                dbc.Col([
-                                                    html.H3(
-                                                        "Unit of Assessment",
-                                                        className='subtitle-small',
-                                                    ),
-                                                    dcc.Dropdown(               # dropdown for uoa filter
-                                                        id='uoa-dropdown',
-                                                        options=[],
-                                                        value="All",
-                                                        clearable=True,
-                                                        multi=False,            # can extend to be multi-select
-                                                        placeholder="Select Unit of Assessment",
-                                                        className="custom-dropdown",
-                                                    ),
-                                                ],
-                                                xs=12, sm=12, md=12, lg=5, xl=5
-                                                ),
-                                                dbc.Col([
-                                                    dbc.Button(
-                                                        "Update Dashboard",
-                                                        className="btn-custom",
-                                                        id="update-dashboard-btn",
-                                                        disabled=False
-                                                    )
-                                                ],
-                                                xs=4, sm=4, md=4, lg=2, xl=2
-                                                ),
-                                            ])
-                                        ],className="filter-card"),
                                         html.Div([
                                             html.Div([       # div for gpa KPI
                                                 dbc.Row(
@@ -87,7 +151,6 @@ layout = dbc.Container(
                                                         dbc.Col(        # outputs score col
                                                             components.create_gpa_kpi_card("Outputs", "outputs-card", "fa-file"),
                                                             xs=12, sm=12, md=6, lg=3, xl=3
-
                                                         ), 
                                                         dbc.Col(        # impact score col
                                                             components.create_gpa_kpi_card("Impact", "impact-card", "fa-users"),
@@ -172,10 +235,10 @@ layout = dbc.Container(
                                                                         className="chart-card",
                                                                         style={"height": "38vh"},
                                                                     ),
-                                                                ], style={'background-color':'#fff', 
+                                                                ], id='submissions-pie-div', style={'background-color':'#fff', 
                                                                           'border-radius':'8px'}),
                                                             ]),
-                                                            xs=12, sm=12, md=12, lg=12, xl=4
+                                                            className = 'col-12 col-xl-4', id='submissions-col'
                                                         ),
                                                         dbc.Col(        # phds awarded
                                                             dcc.Loading(
@@ -188,7 +251,7 @@ layout = dbc.Container(
                                                                 type="circle",
                                                                 color="#000000",
                                                             ),
-                                                            xs=12, sm=12, md=12, lg=12, xl=4,
+                                                            className = 'col-12 col-xl-4', id = 'phd-col'
                                                         ),
                                                         dbc.Col(        # avg research income plot
                                                             dcc.Loading(
@@ -201,12 +264,12 @@ layout = dbc.Container(
                                                                 type="circle",
                                                                 color="#000000",
                                                             ),
-                                                            xs=12, sm=12, md=12, lg=12, xl=4,
+                                                            className = 'col-12 col-xl-4', id = 'inc-chart-col'
                                                         ), 
                                                     ]
                                                 )
                                             ]),
-                                        ],id="left-col", hidden=False),                                            
+                                        ],id="left-col", hidden=True),                                            
                                     ],
                                     xs=12, sm=12, md=12, lg=12, xl=8
                                 ),
@@ -222,7 +285,7 @@ layout = dbc.Container(
                                                             className='card card-body ranking-card'
                                                         )
                                                     )
-                                                ],width=6),
+                                                ],width=6, id='nat-ranking-col'),
                                                 dbc.Col([
                                                     dcc.Loading(
                                                         html.Div(
@@ -231,7 +294,7 @@ layout = dbc.Container(
                                                             className='card card-body ranking-card'
                                                         )
                                                     )
-                                                ], width=6)
+                                                ], width=6, id='reg-ranking-col')
                                             ]),
                                             dbc.Row(        # income in-kind category treemap
                                                 dbc.Col(        
@@ -248,7 +311,7 @@ layout = dbc.Container(
                                                     width=12,
                                                 )
                                             )
-                                        ], id="right-col", hidden=False)
+                                        ], id="right-col", hidden=True)
                                     ],
                                     xs=12, sm=12, md=12, lg=12, xl=4
                                 ),
@@ -271,19 +334,60 @@ layout = dbc.Container(
 
 ## Callback Functions
 @callback(
-    Output("uoa-dropdown", "options"),
-    Input("uni-dropdown", "value"),
+    Output("institution-col", "style"),
+    Output("region-col", "style"),
+    Output("uoa-col", "style"),
+    Input("view-dropdown", "value"),
+    # prevent_initial_call=True,
+)
+def updateDropdownsbyView(view):
+    if view == None:
+        return ({"display": "none"}, {"display": "none"}, {"display": "none"})
+    elif view == 'ins':
+        return ({"display": "block"}, {"display": "none"}, {"display": "block"})
+    elif view == 'reg':
+        return ({"display": "none"}, {"display": "block"}, {"display": "block"})
+    elif view == 'nat':
+        return ({"display": "none"}, {"display": "none"}, {"display": "block"})
+
+@callback(
+    Output("uoa-dropdown", "options", allow_duplicate=True),
+    Input("institution-dropdown", "value"),
+    State("view-dropdown", "value"),
     prevent_initial_call=True,
 )
-def updateUOAbyUni(selected_uni):
-    options=[
-        {"label": "All Units of Assessment", "value": "All"}
-        ] + [
-        {"label": col, "value": col}
-        for col in sorted(
-            results_df[(results_df["Institution name"] == selected_uni)]["UOA name"].unique()
-        )
-    ]
+def updateUOAbyUni(ins, view):
+    if view == 'ins':
+        options=[
+            {"label": "All Units of Assessment", "value": "All"}
+            ] + [
+            {"label": col, "value": col}
+            for col in sorted(
+                results_df[(results_df["Institution name"] == ins)]["UOA name"].unique()
+            )
+        ]
+    else:
+        options = []
+
+    return options
+
+@callback(
+    Output("uoa-dropdown", "options", allow_duplicate=True),
+    Input("view-dropdown", "value"),
+    prevent_initial_call=True,
+)
+def updateUOAIfRegionalOrNational(view):
+    if view == 'nat' or view == 'reg':
+        options=[
+            {"label": "All Units of Assessment", "value": "All"}
+            ] + [
+            {"label": col, "value": col}
+            for col in sorted(
+                results_df["UOA name"].unique()
+            )
+        ]
+    else:
+        options=[]
 
     return options
 
@@ -292,35 +396,41 @@ def updateUOAbyUni(selected_uni):
     Output("right-col", 'hidden'),
     Output("ins-ov-alert-msg", "children"), 
     Output("ins-ov-alert-msg", "is_open"),
-    Output('update-dashboard-btn', 'disabled'),
     Input("update-dashboard-btn", 'n_clicks'),
-    State("uni-dropdown", "value"),
+    State("view-dropdown", "value"),
     State("uoa-dropdown", "value"),
+    State("institution-dropdown", "value"),
+    State("region-dropdown", "value"),
     prevent_initial_call = True
 )
-def showCardsAndDisableUpdateButton(n_clicks, uni, uoa):
-    if uni is None and uoa is None:
-        return True, True, "Please select both Institution and UOA.", True, False
-    elif uni is None:
-        return True, True, "Please select an Institution.", True, False
-    elif uoa is None:
-        return True, True, "Please select a UOA.", True, False
-    else:
-        return False, False, "", False, True  # Hide alert & disabled update dashboard btn when valid
+def showCardsAndDisableUpdateButton(n_clicks, view, uoa, ins, reg):
+    if view is None:
+        return True, True, "Please select a View", True
     
-@callback(
-    Output("update-dashboard-btn", "disabled", allow_duplicate=True),
-    Input("uni-dropdown", "value"),
-    Input("uoa-dropdown", "value"),
-    prevent_initial_call=True
-)
-def enableUpdateButton(uni, uoa):
-    return False  # Re-enable button when dropdown changes
+    if view == 'ins':
+        if uoa is None and ins is None:
+            return True, True, "Please make a selection for Institution and Unit of Assessment.", True
+        elif uoa is None:
+            return True, True, "Please select a Unit of Assessment.", True
+        elif ins is None:
+            return True, True, "Please select an Institution.", True
+    elif view == 'reg':
+        if uoa is None and reg is None:
+            return True, True, "Please make a selection for Region and Unit of Assessment.", True
+        elif uoa is None:
+            return True, True, "Please select a Unit of Assessment.", True
+        elif reg is None:
+            return True, True, "Please select a Region.", True
+    elif view == 'nat':
+        if uoa is None:
+            return True, True, "Please select a Unit of Assessment.", True
+        
+    return False, False, '', False
 
 @callback(
     Output("submissions-quality", 'figure', allow_duplicate=True),
     Input('submissions-radios', 'value'),
-    State('uni-dropdown', 'value'),
+    State('institution-dropdown', 'value'),
     State('uoa-dropdown', 'value'),
     prevent_initial_call = True
 )
@@ -336,59 +446,115 @@ def updateSubmissionsPieChart(profile, uni, uoa):
     Output("phd-awarded-chart", "figure"),
     Output("income-cat-chart", "figure"),
     Output('submissions-quality', 'figure'),
+    Output('submissions-pie-div', 'hidden'),
+    Output('submissions-col', 'style'),
+    Output('phd-col', 'className'),
+    Output('inc-chart-col', 'className'),
     Output("nat-ranking", "children"),
     Output("reg-ranking", "children"),
     Output("staff-fte-kpi", "children"),
     Output("income-kpi", "children"),
     Output("in-kind-kpi", "children"),
     Output("phd-kpi", "children"),
+    Output('nat-ranking', 'style'),
+    Output('reg-ranking', 'style'),
     Input("update-dashboard-btn", 'n_clicks'),
-    State("uni-dropdown", "value"),
+    State("view-dropdown", "value"),
+    State("institution-dropdown", "value"),
+    State("region-dropdown", "value"),
     State("uoa-dropdown", "value"),
     State("submissions-radios", 'value'),
     prevent_initial_call = True,
 )
-def updatePage(update, uni, uoa, gpa_profile):
+def updatePage(update, view, ins, reg, uoa, gpa_profile):
 
-    if uni is None or uoa is None:
+    if view is None:
         raise dash.exceptions.PreventUpdate
-
-    # GPA cards
-    if (uoa == "All"):
-        filtered_df = results_df[
-            (results_df['Institution name'] == uni) 
-        ]
+    
+    if view == 'ins' and (ins is None or uoa is None):
+        raise dash.exceptions.PreventUpdate
+    
+    if view == 'reg' and (reg is None or uoa is None):
+        raise dash.exceptions.PreventUpdate
+    
+    if view == 'nat' and (uoa is None):
+        raise dash.exceptions.PreventUpdate
+    
+    if view == 'ins':
+        if uoa == 'All':
+            df = results_df[
+                (results_df['Institution name'] == ins) 
+            ]
+            hide_submissions = True
+            submissions_col_style = {'display':'none'}
+            phd_inc_col_class = 'col-12 col-xl-6'
+            ranking_col_style = {}
+        else:
+            df = results_df[
+                (results_df['Institution name'] == ins) &
+                (results_df['UOA name'] == uoa)
+            ]
+            hide_submissions = False
+            submissions_col_style = {}
+            phd_inc_col_class = 'col-12 col-xl-4'
+            ranking_col_style = {}
+    elif view == 'reg':
+        df = results_df[results_df['Region'] == reg]
+        if uoa == 'All':
+            df = df.groupby(['Region', 'Profile']).agg({'GPA':'mean'}).reset_index()
+        else:
+            df = df.groupby(['Region', 'Profile', 'UOA name']).agg({'GPA':'mean'}).reset_index()
+            df = df[df['UOA name'] == uoa]
+        hide_submissions = True
+        submissions_col_style = {'display':'none'}
+        phd_inc_col_class = 'col-12 col-xl-6'
+        ranking_col_style = {'display':'none'}
     else:
-        filtered_df = results_df[
-            (results_df['Institution name'] == uni) &
-            (results_df['UOA name'] == uoa)
-        ]
+        if uoa != 'All':
+            df = results_df[results_df['UOA name'] == uoa]
+        else:
+            df = results_df
+        hide_submissions = True
+        submissions_col_style = {'display':'none'}
+        phd_inc_col_class = 'col-12 col-xl-6'
+        ranking_col_style = {'display':'none'}
 
     # GPA cards
-    overall = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Overall")]["GPA"]),2)
+    if view == 'nat':
+        overall = np.round(np.mean(df[df['Profile'] == 'Overall']['GPA']),2)
+        outputs = np.round(np.mean(df[df['Profile'] == 'Outputs']['GPA']),2)
+        impact = np.round(np.mean(df[df['Profile'] == 'Impact']['GPA']),2)
+        env = np.round(np.mean(df[df['Profile'] == 'Environment']['GPA']),2)
+    else:
+        overall = np.round(np.mean(df.loc[(df["Profile"] == "Overall")]["GPA"]),2)
+        outputs = np.round(np.mean(df.loc[(df["Profile"] == "Outputs")]["GPA"]), 2)
+        impact = np.round(np.mean(df.loc[(df["Profile"] == "Impact")]["GPA"]), 2)
+        env = np.round(np.mean(df.loc[(df["Profile"] == "Environment")]["GPA"]), 2)
 
-    outputs = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Outputs")]["GPA"]), 2)
+    ranking_cards = components.generateRankingCards(view, ins, uoa)
 
-    impact = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Impact")]["GPA"]), 2)
+    income_charts = components.generateIncomeCategoryChartAndKPICard(view, ins, uoa, reg)
 
-    env = np.round(np.mean(filtered_df.loc[(filtered_df["Profile"] == "Environment")]["GPA"]), 2)
+    phd_charts = components.generatePhdChartAndKPICard(view, ins, uoa, reg)
 
-    ranking_cards = components.generateRankingCards(uni, uoa)
 
-    income_charts = components.generateIncomeCategoryChartAndKPICard(uni, uoa)
-
-    phd_charts = components.generatePhdChartAndKPICard(uni, uoa)
 
     return (overall, outputs, impact, env, 
-            components.generateIncomeChart(uni, uoa, income_df), 
+            components.generateIncomeChart(view, ins, uoa, reg), 
             phd_charts[0], 
             income_charts[0],
-            components.generateQualityPieChart(uni, uoa, gpa_profile),
+            components.generateQualityPieChart(ins, uoa, gpa_profile),
+            hide_submissions,
+            submissions_col_style,
+            phd_inc_col_class,
+            phd_inc_col_class,
             ranking_cards[0],
             ranking_cards[1],
-            components.generateStaffFTEKPICard(uni,uoa),
+            components.generateStaffFTEKPICard(view, ins, uoa, reg),
             income_charts[1],
-            components.generateInKindKPICard(uni, uoa),
-            phd_charts[1])
+            components.generateInKindKPICard(view, ins, uoa, reg),
+            phd_charts[1],
+            ranking_col_style,
+            ranking_col_style)
 
 
