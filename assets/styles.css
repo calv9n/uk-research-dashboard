@@ -348,6 +348,10 @@ body {
     }
 }
 
+.info-icon {
+    color: #9b58b6;
+}
+
 /* Cards charts */
 .chart-card {
     border: 2px solid #fff;
