@@ -324,7 +324,7 @@ layout = dbc.Container(
                             [
                                 html.H4("Welcome to the Multi-Level View Page.", className="alert-heading"),
                                 html.P(
-                                    "Here, you can visualise the REF 2021 data from three different perspectives: Institution, Region, and National. "
+                                    "Here, you can visualise the REF 2021 data from three different perspectives: Institutional, Regional, and National. "
                                     "You will be able to gain insights on the quality of submissions, income trends, income breakdown and more."
                                 ),
                                 html.Hr(),
