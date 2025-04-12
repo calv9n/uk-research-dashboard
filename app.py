@@ -40,7 +40,7 @@ sidebar = html.Div(
                     )
                 ),
                 dbc.Tooltip(
-                    "Explore the overview of national research data, including performance and trends across the UK.",
+                    "Explore the overview of national research data, including performance and trends across the U.K.",
                     target="info-national-overview",
                     placement="right"
                 ),
@@ -62,7 +62,7 @@ sidebar = html.Div(
                     )
                 ),
                 dbc.Tooltip(
-                    "Analyze research trends at the multi-level view, from institutions to regions and across UK.",
+                    "Analyse research trends at the multi-level view, from institutions to regions and across U.K.",
                     target="info-multi-level-view",
                     placement="right"
                 ),
@@ -70,7 +70,7 @@ sidebar = html.Div(
                 dbc.NavItem(
                     dbc.Row(
                         [
-                            dbc.Col(dbc.NavLink('Regional Trends', href='/regional_trends', active='exact')),
+                            dbc.Col(dbc.NavLink('Regional Trend Analysis', href='/regional_trends', active='exact')),
                             dbc.Col(
                                 html.I(
                                     className="fa fa-info-circle",
@@ -84,7 +84,7 @@ sidebar = html.Div(
                     )
                 ),
                 dbc.Tooltip(
-                    "Explore regional research performance and trends across the different parts of the UK.",
+                    "Explore regional research performance and trends across the different parts of the U.K.",
                     target="info-regional-trends",
                     placement="right"
                 ),

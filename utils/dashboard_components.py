@@ -87,7 +87,18 @@ def create_gpa_kpi_card(title, card_id, icon_class):
                             width=5
                             ),
                             dbc.Col([
-                                html.H3(title, className="card-title"),
+                                html.Div([
+                                    html.H3(title, className="subtitle-small-color", style={'font-size':'1rem'}),
+                                    html.Span(
+                                        html.I(className="fa fa-info-circle info-icon", id=f"{icon_class}-info-icon"),
+                                        style={"margin": "0px 0px 2px 8px", "cursor": "pointer", "color": "#0d6efd"},
+                                    ),
+                                ], className="d-flex align-items-center justify-content-center"),
+                                dbc.Tooltip(
+                                    'GPA is calculated as the weighted average of the proportions of submissions rated at each quality level (4*, 3*, 2*, 1*, 0*).',
+                                    target=f"{icon_class}-info-icon",
+                                    placement="right",  
+                                ),
                                 html.H4(id=card_id, className="card-text"),
                             ],
                             width=7, style={'padding-left':'0'}
@@ -481,7 +492,7 @@ def generateKPICard(title, value, subtitle, icon_id, tooltip):
             html.H3(subtitle, className='subtitle-small-color'),
             html.Span(
                 html.I(className="fa fa-info-circle info-icon", id=f"{icon_id}-info-icon"),
-                style={"margin": "0px 0px 8px 8px", "cursor": "pointer", "color": "#0d6efd"},
+                style={"margin": "0px 0px 2px 8px", "cursor": "pointer", "color": "#0d6efd"},
             ),
         ], className="d-flex align-items-center justify-content-center"),
         dbc.Tooltip(
@@ -607,7 +618,8 @@ def generateQualityPieChart(uni, uoa, profile):
         textfont_family="Inter, sans-serif",
         textinfo="label+percent",
         textposition="inside",
-        texttemplate="%{label}<br>%{percent:.0%}"
+        texttemplate="%{label}<br>%{percent:.0%}",
+        hovertemplate="%{percent:.0%} of outputs rated %{label}<extra></extra>"
     )
 
     chart.update_layout(

@@ -25,7 +25,7 @@ layout = dbc.Container(
         html.Div(
             [
                 html.H2(
-                    "Research Quality in the U.K.",
+                    "National Overview of Research Excellence Framework (REF) 2021",
                     className="title",
                     style={'color':'#800080'}
                 ),
@@ -45,7 +45,7 @@ layout = dbc.Container(
                                     style={"height": "130px"},
                                     className='card card-body ranking-card'
                                 )
-                            ], xs=12, sm=12, md=6, lg=4, xl=4),
+                            ], xs=12, sm=12, md=6, lg=6, xl=4),
                             dbc.Col([          # no. of submissions 
                                 html.Div(
                                     components.generateKPICard(
@@ -58,7 +58,7 @@ layout = dbc.Container(
                                     style={"height": "130px"},
                                     className='card card-body ranking-card'
                                 )
-                            ], xs=12, sm=12, md=6, lg=4, xl=4),
+                            ], xs=12, sm=12, md=6, lg=6, xl=4),
                             dbc.Col([           # no. of outputs
                                 html.Div(
                                     components.generateKPICard(
@@ -71,7 +71,7 @@ layout = dbc.Container(
                                     style={"height": "130px"},
                                     className='card card-body ranking-card'
                                 )
-                            ], xs=12, sm=12, md=6, lg=4, xl=4)
+                            ], xs=12, sm=12, md=6, lg=6, xl=4)
                         ]),
                         dbc.Row([
                             dbc.Col([           # total income
@@ -86,7 +86,7 @@ layout = dbc.Container(
                                     style={"height": "130px"},
                                     className='card card-body ranking-card'
                                 )
-                            ], xs=12, sm=12, md=6, lg=4, xl=4),
+                            ], xs=12, sm=12, md=6, lg=6, xl=4),
                             dbc.Col([           # staff fte
                                 html.Div(
                                     components.generateKPICard(
@@ -99,7 +99,7 @@ layout = dbc.Container(
                                     style={"height": "130px"},
                                     className='card card-body ranking-card'
                                 )
-                            ], xs=12, sm=12, md=6, lg=4, xl=4),
+                            ], xs=12, sm=12, md=6, lg=6, xl=4),
                             dbc.Col([           # phds awarded
                                 html.Div(
                                     components.generateKPICard(
@@ -112,7 +112,7 @@ layout = dbc.Container(
                                     style={"height": "130px"},
                                     className='card card-body ranking-card'
                                 )
-                            ], xs=12, sm=12, md=6, lg=4, xl=4)
+                            ], xs=12, sm=12, md=6, lg=6, xl=4)
                         ]),
                         dbc.Row([               # selection & leaderboard
                             dbc.Col([
@@ -139,9 +139,11 @@ layout = dbc.Container(
                                                 'border-bottom-right-radius':'0', 
                                                 'border-bottom-left-radius':'0', }
                                         ),
-                                        html.Div(           # leaderboard
-                                            id = 'leaderboard',
-                                        )
+                                        dcc.Loading(
+                                            html.Div(           # leaderboard
+                                                id = 'leaderboard',
+                                            )
+                                        ),
                                     ])
                                 ])
                             ])
@@ -171,13 +173,15 @@ layout = dbc.Container(
                                            'border-bottom-right-radius':'0', 
                                            'border-bottom-left-radius':'0', }
                                 ),
-                                dcc.Graph(          # map
-                                    id="region-map",
-                                    config={"displayModeBar": False},
-                                    className="chart-card",
-                                    style={"height": "89.5vh",
-                                            'border-top-right-radius':'0', 
-                                            'border-top-left-radius':'0'},
+                                dcc.Loading(
+                                    dcc.Graph(          # map
+                                        id="region-map",
+                                        config={"displayModeBar": False},
+                                        className="chart-card",
+                                        style={"height": "89.5vh",
+                                                'border-top-right-radius':'0', 
+                                                'border-top-left-radius':'0'},
+                                    ),
                                 ),
                             ]),
                         ])
@@ -232,7 +236,7 @@ def generateLeaderboard(filter):
     elif filter == 'Staff FTE':
         df = results_df[results_df['Profile'] == 'Overall']
         df = df.groupby('Institution name').agg({'FTE staff':'sum'}).reset_index()
-        col_label = 'Staff FTE'
+        col_label = 'FTE staff'
 
     leaderboard = components.create_leaderboard(
         f"Top 10 Institutions for {filter}",

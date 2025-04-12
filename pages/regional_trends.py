@@ -180,6 +180,22 @@ layout = dbc.Container(
                             ], id='content-col', hidden=True),
                     ]),
                     dbc.Alert(
+                        [
+                            html.H4("Welcome to the Regional Trend Analysis Page.", className="alert-heading"),
+                            html.P(
+                                "Explore the research performance and trends across different regions in the U.K. "
+                                "You will be able to compare the trends in PhD awards and income, GPA distribution and more.",
+                            ),
+                            html.Hr(),
+                            html.P(
+                                "To get started, choose the region/regions you would like to compare from the dropdown menu and choose the relevant filters. ",
+                                className="mb-0",
+                            ),
+                        ], 
+                        color="light",
+                        id = "ins-ov-info",
+                    ),
+                    dbc.Alert(
                         id='reg-ov-alert-msg',
                         is_open=False,
                         color='danger'

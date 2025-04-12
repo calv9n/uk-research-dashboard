@@ -67,6 +67,7 @@ layout = dbc.Container(
                                         multi=False,            # can extend to be multi-select
                                         placeholder="Select Institution",
                                         className="custom-dropdown",
+                                        optionHeight=50
                                     )],
                                     xs=12, sm=12, md=12, lg=3, xl=3,
                                     id='institution-col'
@@ -115,6 +116,7 @@ layout = dbc.Container(
                                         multi=False,            # can extend to be multi-select
                                         placeholder="Select Unit of Assessment",
                                         className="custom-dropdown",
+                                        optionHeight=50
                                     ),
                                 ],
                                 xs=12, sm=12, md=12, lg=3, xl=3,
@@ -129,6 +131,7 @@ layout = dbc.Container(
                                             "Update Dashboard",
                                             className="btn-custom",
                                             id="update-dashboard-btn",
+                                            disabled=True
                                         ),
                                         style={"display": "flex", 
                                                 "flexDirection": "column", 
@@ -318,6 +321,22 @@ layout = dbc.Container(
                             ],
                         ),
                         dbc.Alert(
+                            [
+                                html.H4("Welcome to the Multi-Level View Page.", className="alert-heading"),
+                                html.P(
+                                    "Here, you can visualise the REF 2021 data from three different perspectives: Institution, Region, and National. "
+                                    "You will be able to gain insights on the quality of submissions, income trends, income breakdown and more."
+                                ),
+                                html.Hr(),
+                                html.P(
+                                    "To get started, select a view from the dropdown menu and choose the relevant filters. ",
+                                    className="mb-0",
+                                ),
+                            ], 
+                            color="light",
+                            id = "ins-ov-info",
+                        ),
+                        dbc.Alert(
                             id='ins-ov-alert-msg',
                             is_open=False,
                             color='danger'
@@ -371,6 +390,17 @@ def updateUOAbyUni(ins, view):
     return options
 
 @callback(
+    Output("update-dashboard-btn", "disabled", allow_duplicate=True),
+    Input("view-dropdown", "value"),
+    Input("uoa-dropdown", "value"),
+    Input("institution-dropdown", "value"),
+    Input("region-dropdown", "value"),
+    prevent_initial_call=True
+)
+def enableUpdateButton(view, uoa, ins, reg):
+    return False  # Re-enable button when dropdown changes
+
+@callback(
     Output("uoa-dropdown", "options", allow_duplicate=True),
     Input("view-dropdown", "value"),
     prevent_initial_call=True,
@@ -395,6 +425,8 @@ def updateUOAIfRegionalOrNational(view):
     Output("right-col", 'hidden'),
     Output("ins-ov-alert-msg", "children"), 
     Output("ins-ov-alert-msg", "is_open"),
+    Output("update-dashboard-btn", 'disabled'),
+    Output('ins-ov-info', 'is_open'),
     Input("update-dashboard-btn", 'n_clicks'),
     State("view-dropdown", "value"),
     State("uoa-dropdown", "value"),
@@ -404,27 +436,27 @@ def updateUOAIfRegionalOrNational(view):
 )
 def showCardsAndDisableUpdateButton(n_clicks, view, uoa, ins, reg):
     if view is None:
-        return True, True, "Please select a View", True
+        return True, True, "Please select a View", True, True, True
     
     if view == 'ins':
         if uoa is None and ins is None:
-            return True, True, "Please make a selection for Institution and Unit of Assessment.", True
+            return True, True, "Please make a selection for Institution and Unit of Assessment.", True, True, True
         elif uoa is None:
-            return True, True, "Please select a Unit of Assessment.", True
+            return True, True, "Please select a Unit of Assessment.", True, True, True
         elif ins is None:
-            return True, True, "Please select an Institution.", True
+            return True, True, "Please select an Institution.", True, True, True
     elif view == 'reg':
         if uoa is None and reg is None:
-            return True, True, "Please make a selection for Region and Unit of Assessment.", True
+            return True, True, "Please make a selection for Region and Unit of Assessment.", True, True, True
         elif uoa is None:
-            return True, True, "Please select a Unit of Assessment.", True
+            return True, True, "Please select a Unit of Assessment.", True, True, True
         elif reg is None:
-            return True, True, "Please select a Region.", True
+            return True, True, "Please select a Region.", True, True, True
     elif view == 'nat':
         if uoa is None:
-            return True, True, "Please select a Unit of Assessment.", True
+            return True, True, "Please select a Unit of Assessment.", True, True, True
         
-    return False, False, '', False
+    return False, False, '', False, False, False
 
 @callback(
     Output("submissions-quality", 'figure', allow_duplicate=True),
