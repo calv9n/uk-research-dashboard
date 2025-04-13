@@ -193,7 +193,7 @@ layout = dbc.Container(
                             ),
                         ], 
                         color="light",
-                        id = "ins-ov-info",
+                        id = "reg-ov-info",
                     ),
                     dbc.Alert(
                         id='reg-ov-alert-msg',
@@ -213,6 +213,7 @@ layout = dbc.Container(
     Output("reg-ov-alert-msg", "children"), 
     Output("reg-ov-alert-msg", "is_open"),
     Output('reg-update-dashboard-btn', 'disabled'),
+    Output('reg-ov-info', 'is_open'),
     Input("reg-update-dashboard-btn", 'n_clicks'),
     State("region-dropdown", "value"),
     State('uoa-dropdown', 'value'),
@@ -220,13 +221,13 @@ layout = dbc.Container(
 )
 def showCardsAndDisableUpdateButton(n_clicks, region, uoa):
     if (region == None or region == []) and (uoa is None):
-        return True, "Please select at least ONE(1) Region and a Unit of Assessment.", True, False
+        return True, "Please select at least ONE(1) Region and a Unit of Assessment.", True, False, True
     elif (region == None or region == []):
-        return True, 'Please select at least ONE(1) Region', True, False
+        return True, 'Please select at least ONE(1) Region', True, False, True
     elif (uoa is None):
-        return True, 'Please select a Unit of Assessment', True, False
+        return True, 'Please select a Unit of Assessment', True, False, True
     else:
-        return False, "", False, True  # Hide alert & disabled update dashboard btn when valid
+        return False, "", False, True, False  # Hide alert & disabled update dashboard btn when valid
     
 @callback(
     Output("reg-update-dashboard-btn", "disabled", allow_duplicate=True),
